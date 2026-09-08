@@ -1,0 +1,5 @@
+vessel_class,capacity_t,draft_m,loa_m,beam_m,base_cost_usd
+Handysize,35000,10,170,27,550000
+Supramax,55000,12,190,32,612000
+Panamax,80000,14.5,225,32.2,720000
+Capesize,170000,17.5,289,45,1250000
