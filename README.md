@@ -24,7 +24,7 @@ When architecting Navora, the primary goal was to bridge the gap between heavy m
 
 ---
 
-## 📊 Data Engineering: Sources & Pipelines
+##  Data Engineering: Sources & Pipelines
 
 Navora's intelligence relies on a robust data foundation. We intentionally targeted high-quality, publicly available data streams and official government proxies to maintain feasibility without compromising on the realism of our predictions.
 
