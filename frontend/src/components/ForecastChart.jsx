@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { 
   ComposedChart, 
   Line, 
@@ -9,35 +8,29 @@ import {
   Tooltip, 
   Legend, 
   ResponsiveContainer,
-  ReferenceDot
 } from 'recharts';
 
-export default function ForecastChart({ forecastData, adjustmentFactor = 1.0 }) {
-  const [horizon, setHorizon] = useState(30);
+export default function ForecastChart({ forecastData, activeModel = 'ensemble' }) {
+  if (!forecastData || !forecastData.historical || !forecastData.model_predictions) {
+    return <div className="h-full w-full flex items-center justify-center text-slate-500">No forecast data available</div>;
+  }
 
-  // Pick the right forecast array based on horizon toggle
-  const forecastArrayKey = `forecast_${horizon}`;
-  const forecastArray = forecastData[forecastArrayKey] || forecastData.forecast_30;
+  const { historical, model_predictions } = forecastData;
+  const activeForecast = model_predictions[activeModel] || [];
 
   // Combine historical and forecast for the chart
-  const historicalMapped = forecastData.historical.map(d => ({
+  const historicalMapped = historical.map(d => ({
     date: d.date,
     historicalRate: d.rate,
   }));
 
-  // Apply adjustment factor to forecast
-  const forecastMapped = forecastArray.map(d => ({
+  const forecastMapped = activeForecast.map(d => ({
     date: d.date,
-    forecastRate: d.rate * adjustmentFactor,
-    lowerBound: d.lower * adjustmentFactor,
-    upperBound: d.upper * adjustmentFactor,
-    // Provide an array for Area chart to draw range [lower, upper]
-    confidenceInterval: [d.lower * adjustmentFactor, d.upper * adjustmentFactor]
+    forecastRate: d.rate,
+    confidenceInterval: (d.lower !== undefined && d.upper !== undefined) ? [d.lower, d.upper] : null
   }));
 
-  // We need a connected point between historical and forecast
-  // Just for visual continuity, we can overlap the last historical point or just plot them together.
-  // Actually, we'll just merge the data by date
+  // Merge data by date for ComposedChart
   const allDates = Array.from(new Set([...historicalMapped.map(d=>d.date), ...forecastMapped.map(d=>d.date)])).sort();
   
   const chartData = allDates.map(date => {
@@ -55,21 +48,6 @@ export default function ForecastChart({ forecastData, adjustmentFactor = 1.0 }) 
     <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-full flex flex-col">
       <div className="flex justify-between items-center mb-6">
         <h3 className="font-semibold text-lg text-slate-800">Freight Rate Forecast</h3>
-        <div className="flex bg-slate-100 p-1 rounded-lg">
-          {[14, 30, 90].map(days => (
-            <button
-              key={days}
-              onClick={() => setHorizon(days)}
-              className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
-                horizon === days 
-                  ? 'bg-white text-slate-800 shadow-sm' 
-                  : 'text-slate-500 hover:text-slate-700'
-              }`}
-            >
-              {days} Days
-            </button>
-          ))}
-        </div>
       </div>
       
       <div className="flex-grow min-h-[300px]">
@@ -87,7 +65,7 @@ export default function ForecastChart({ forecastData, adjustmentFactor = 1.0 }) 
               axisLine={false} 
               tickLine={false} 
               tick={{fill: '#64748b', fontSize: 12}}
-              domain={['dataMin - 200', 'dataMax + 200']}
+              domain={['auto', 'auto']}
             />
             <Tooltip 
               contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
@@ -99,7 +77,7 @@ export default function ForecastChart({ forecastData, adjustmentFactor = 1.0 }) 
               dataKey="confidenceInterval" 
               fill="#cbd5e1" 
               stroke="none" 
-              name="Confidence Interval" 
+              name="95% Confidence Interval" 
               fillOpacity={0.4}
             />
             
@@ -108,7 +86,7 @@ export default function ForecastChart({ forecastData, adjustmentFactor = 1.0 }) 
               dataKey="historicalRate" 
               stroke="#0f172a" 
               strokeWidth={2} 
-              dot={{r: 3, fill: '#0f172a'}} 
+              dot={false}
               name="Historical" 
               connectNulls
             />
@@ -119,8 +97,8 @@ export default function ForecastChart({ forecastData, adjustmentFactor = 1.0 }) 
               stroke="#3b82f6" 
               strokeWidth={2} 
               strokeDasharray="5 5"
-              dot={{r: 3, fill: '#3b82f6'}} 
-              name="Forecast" 
+              dot={false}
+              name={`Forecast (${activeModel})`}
               connectNulls
             />
           </ComposedChart>

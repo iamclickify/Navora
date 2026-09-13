@@ -1,7 +1,58 @@
+import { useState, useEffect } from 'react';
 import { Check, X, Info } from 'lucide-react';
 
-export default function VesselTable({ vessels, isLoading }) {
-  if (isLoading || !vessels) {
+export default function VesselTable({ portName, cargoVolume, predictedRate }) {
+  const [vessels, setVessels] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    async function fetchVessels() {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/v1/vessel-recommendation', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            port_name: portName,
+            cargo_volume: cargoVolume,
+            predicted_freight_rate: predictedRate,
+            transit_days: 15 // Assuming a standard transit for the demo
+          })
+        });
+        
+        if (!response.ok) throw new Error("Failed to fetch vessels");
+        const data = await response.json();
+        
+        // Combine feasible and infeasible for rendering
+        const combined = [
+          ...data.feasible_vessels.map(v => ({ ...v, feasible: true })),
+          ...data.infeasible_vessels.map(v => ({ ...v, feasible: false, reasons: [v.reason] }))
+        ];
+        
+        setVessels(combined);
+      } catch (e) {
+        setError(e.message);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    
+    if (portName && predictedRate) {
+      fetchVessels();
+    }
+  }, [portName, cargoVolume, predictedRate]);
+
+  if (error) {
+    return (
+      <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-full flex items-center justify-center text-red-500">
+        Failed to load vessel rankings
+      </div>
+    );
+  }
+
+  if (isLoading || !vessels.length) {
     return (
       <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-full flex flex-col animate-pulse">
         <div className="h-6 bg-slate-200 rounded w-1/2 mb-6"></div>
@@ -59,9 +110,9 @@ export default function VesselTable({ vessels, isLoading }) {
                   )}
                 </td>
                 <td className="py-4 px-2 text-right">
-                  {vessel.feasible && vessel.base_cost_usd ? (
+                  {vessel.feasible && vessel.total_cost ? (
                     <span className="font-semibold text-slate-700">
-                      ${(vessel.base_cost_usd / 1000).toFixed(0)}k
+                      ${(vessel.total_cost / 1000).toFixed(0)}k
                     </span>
                   ) : (
                     <span className="text-slate-400">-</span>

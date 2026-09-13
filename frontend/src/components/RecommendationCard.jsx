@@ -1,31 +1,19 @@
 import { TrendingDown, TrendingUp, AlertCircle, CheckCircle } from 'lucide-react';
 
-export default function RecommendationCard({ recommendation, adjustedRate }) {
-  const { expected_savings_usd, base_rate, rationale } = recommendation;
+export default function RecommendationCard({ action, rationale, expectedSavings, currentRate }) {
   
-  // Calculate dynamic recommendation based on adjusted rate
-  let actionLabel = recommendation.action;
   let actionColor = "text-slate-700 bg-slate-100 border-slate-200";
   let Icon = AlertCircle;
-  let dynamicRationale = rationale;
   
-  const ratio = adjustedRate / base_rate;
-  
-  if (ratio > 1.05) {
-    actionLabel = "Buy Now";
+  if (action === "Buy Now") {
     actionColor = "text-emerald-700 bg-emerald-50 border-emerald-200";
     Icon = CheckCircle;
-    dynamicRationale = "Adjusted forecast indicates rates will rise significantly. Secure vessels immediately.";
-  } else if (ratio < 0.95) {
-    actionLabel = "Wait";
+  } else if (action === "Wait") {
     actionColor = "text-blue-700 bg-blue-50 border-blue-200";
     Icon = TrendingDown;
-    dynamicRationale = "Adjusted forecast indicates rates will fall. Delay procurement for better pricing.";
   } else {
-    actionLabel = "Hold / Monitor";
     actionColor = "text-amber-700 bg-amber-50 border-amber-200";
-    Icon = TrendingUp; // Or just a neutral icon
-    dynamicRationale = "Rates are expected to remain stable. Monitor market conditions closely.";
+    Icon = TrendingUp;
   }
 
   return (
@@ -35,25 +23,27 @@ export default function RecommendationCard({ recommendation, adjustedRate }) {
         
         <div className={`inline-flex items-center space-x-2 px-4 py-2 rounded-lg border mb-4 ${actionColor}`}>
           <Icon size={20} />
-          <span className="font-bold text-lg">{actionLabel}</span>
+          <span className="font-bold text-lg">{action}</span>
         </div>
         
-        <p className="text-slate-600 mb-6 line-clamp-3">
-          {dynamicRationale}
-        </p>
+        <p className="text-slate-600 mb-6">{rationale}</p>
+        
+        <div className="bg-white rounded-lg p-4 flex items-center justify-between border border-slate-100 mb-6">
+          <div className="flex items-center space-x-3">
+            <TrendingDown className="text-emerald-600" size={20} />
+            <span className="text-slate-600 font-medium">Expected Savings vs Delay</span>
+          </div>
+          <span className="font-bold text-lg text-emerald-700">
+            ${expectedSavings.toLocaleString(undefined, {maximumFractionDigits: 0})}
+          </span>
+        </div>
       </div>
       
       <div className="pt-4 border-t border-slate-100 flex items-end justify-between">
-        <div>
-          <p className="text-xs text-slate-500 mb-1">Expected Savings vs Spot</p>
-          <p className="text-2xl font-bold text-slate-800">
-            ${expected_savings_usd.toLocaleString()}
-          </p>
-        </div>
-        <div className="text-right">
+        <div className="text-right ml-auto">
           <p className="text-xs text-slate-500 mb-1">Current Base Rate</p>
           <p className="text-lg font-semibold text-slate-700">
-            ${Math.round(adjustedRate).toLocaleString()}/day
+            ${Math.round(currentRate).toLocaleString()}/day
           </p>
         </div>
       </div>

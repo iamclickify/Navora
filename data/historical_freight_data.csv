@@ -1,4 +1,4 @@
-date,bdi_index,fuel_price_usd,congestion_score,freight_rate_usd_per_t
+date,bdi_index,fuel in usd,congestion_score,freight_rate_usd_per_t
 01-01-2023,1500,600,0.5,30.72
 02-01-2023,1517.54,600.79,0.16,31.01
 03-01-2023,1514.98,580.79,0.32,27.64
