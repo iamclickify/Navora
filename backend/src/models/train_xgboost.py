@@ -51,12 +51,30 @@ def main():
     df['bdi_roll_mean_7'] = df['bdi_index'].rolling(7).mean()
     df['bdi_roll_std_7'] = df['bdi_index'].rolling(7).std()
     
+    weather_path = data_dir / 'all_ports_historical_weather.csv'
+    if weather_path.exists():
+        w_df = pd.read_csv(weather_path)
+        w_df['date'] = pd.to_datetime(w_df['date'])
+        # Average weather across all ports for the macro model
+        w_agg = w_df.groupby('date').agg({
+            'wind_speed_max_kmh': 'mean',
+            'precipitation_sum_mm': 'mean'
+        }).reset_index()
+        df = pd.merge(df, w_agg, on='date', how='left')
+        # Fill any missing weather with rolling median or 0
+        df['wind_speed_max_kmh'] = df['wind_speed_max_kmh'].fillna(df['wind_speed_max_kmh'].rolling(7, min_periods=1).median()).fillna(0)
+        df['precipitation_sum_mm'] = df['precipitation_sum_mm'].fillna(0)
+    else:
+        df['wind_speed_max_kmh'] = 0.0
+        df['precipitation_sum_mm'] = 0.0
+    
     # Drop NaNs resulting from shifts and rolling windows
     df = df.dropna().reset_index(drop=True)
     
     # Define features and target (Target is 'bdi_index', the main proxy)
     features = ['fuel in usd', 'congestion_score', 'month', 'dayofweek', 
-                'bdi_lag_1', 'bdi_lag_7', 'bdi_roll_mean_7', 'bdi_roll_std_7']
+                'bdi_lag_1', 'bdi_lag_7', 'bdi_roll_mean_7', 'bdi_roll_std_7',
+                'wind_speed_max_kmh', 'precipitation_sum_mm']
     target = 'bdi_index'
     
     X = df[features]

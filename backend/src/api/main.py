@@ -8,11 +8,18 @@ import numpy as np
 from datetime import datetime, timedelta
 from pathlib import Path
 import sys
+import asyncio
+import logging
 
-# Ensure backend root is in path for imports
-project_root = Path(__file__).resolve().parent.parent.parent
-if str(project_root) not in sys.path:
-    sys.path.insert(0, str(project_root))
+# Setup paths
+project_root = Path(__file__).resolve().parent.parent.parent.parent
+data_dir = project_root / 'data'
+models_dir = project_root / 'backend' / 'models'
+
+# Add src to path for absolute imports if needed
+sys.path.append(str(project_root / 'backend' / 'src'))
+from data.ingest.live_data_fetcher import refresh_live_data, fetch_live_weather, fetch_port_forecast, PORT_COORDS
+sys.path.insert(0, str(project_root))
 
 from src.optimization.vessel_ranking import rank_vessels
 from src.optimization.voyage_scheduler import schedule_voyages
@@ -36,14 +43,11 @@ app.add_middleware(
 xgboost_model = None
 prophet_model = None
 ensemble_weight = 1.0
-
-# Paths — project_root is backend/, historical data is at ../data
-data_dir = project_root.parent / 'data'
-models_dir = project_root / 'models'
+live_weather_cache = {}
 
 @app.on_event("startup")
 def load_models():
-    global xgboost_model, prophet_model, ensemble_weight
+    global xgboost_model, prophet_model, ensemble_weight, live_weather_cache
     
     # Load XGBoost
     xgb_path = models_dir / 'xgboost_model.pkl'
@@ -69,12 +73,30 @@ def load_models():
             ensemble_weight = ens_data.get('w', 1.0)
         print(f"Ensemble Model loaded successfully (w={ensemble_weight}).")
 
+    # Refresh live data
+    print("Triggering live data refresh...")
+    try:
+        bdi, fuel = refresh_live_data(project_root)
+        if bdi and fuel:
+            print(f"Live data refreshed: BDI={bdi}, Fuel={fuel}")
+        else:
+            print("Live data refresh did not return new values.")
+            
+        logging.info("Fetching live weather risk...")
+        live_weather_cache = fetch_live_weather()
+    except Exception as e:
+        print(f"Error during live data refresh: {e}")
+        
+    print("API Startup Complete.")
+
 # --- Pydantic Schemas ---
 
 class ForecastRequest(BaseModel):
     horizon: int = 30
     fuel_in_usd: Optional[float] = None
     congestion_score: Optional[float] = None
+    route: Optional[str] = None
+    commodity: Optional[str] = None
 
 class ForecastResponse(BaseModel):
     historical: List[Dict[str, Any]]
@@ -82,6 +104,9 @@ class ForecastResponse(BaseModel):
     recommendation: str
     rationale: str
     expected_savings: float
+    route: Optional[str] = None
+    commodity: Optional[str] = None
+    factor_drivers: Optional[Dict[str, float]] = None
 
 class VesselRecommendationRequest(BaseModel):
     port_name: str
@@ -113,6 +138,48 @@ def get_historical_rates(limit: int = 30):
     df = pd.read_csv(historical_path)
     return {"data": df.tail(limit).to_dict(orient="records")}
 
+@app.get("/api/v1/market-summary")
+def get_market_summary():
+    historical_path = data_dir / 'historical_freight_data.csv'
+    if not historical_path.exists():
+        raise HTTPException(status_code=404, detail="Historical data not found.")
+    
+    df = pd.read_csv(historical_path)
+    last_row = df.iloc[-1]
+    last_7_row = df.iloc[-8] if len(df) >= 8 else df.iloc[0]
+    
+    bdi_current = float(last_row['bdi_index'])
+    bdi_7d_ago = float(last_7_row['bdi_index'])
+    bdi_trend = ((bdi_current - bdi_7d_ago) / bdi_7d_ago) * 100 if bdi_7d_ago else 0
+    
+    fuel_current = float(last_row['fuel in usd'])
+    fuel_7d_ago = float(last_7_row['fuel in usd'])
+    fuel_trend = ((fuel_current - fuel_7d_ago) / fuel_7d_ago) * 100 if fuel_7d_ago else 0
+    
+    cong_current = float(last_row['congestion_score'])
+    cong_7d_ago = float(last_7_row['congestion_score'])
+    cong_trend = ((cong_current - cong_7d_ago) / cong_7d_ago) * 100 if cong_7d_ago else 0
+    
+    return {
+        "bdi": {
+            "value": bdi_current,
+            "trend_pct": round(bdi_trend, 2)
+        },
+        "fuel": {
+            "value": fuel_current,
+            "trend_pct": round(fuel_trend, 2)
+        },
+        "wti_fuel": {
+            "value": fuel_current / 7.33,
+            "trend_pct": round(fuel_trend, 2)
+        },
+        "congestion": {
+            "value": cong_current,
+            "trend_pct": round(cong_trend, 2)
+        },
+        "last_updated": str(last_row['date'])
+    }
+
 @app.get("/api/v1/port-constraints")
 def get_port_constraints():
     port_path = data_dir / 'port_constraints.csv'
@@ -121,6 +188,37 @@ def get_port_constraints():
         
     df = pd.read_csv(port_path)
     return {"ports": df.to_dict(orient="records")}
+
+@app.get("/api/v1/weather-risk")
+def get_weather_risk():
+    return {"weather_risk": live_weather_cache}
+
+@app.get("/api/v1/weather-forecast")
+def get_weather_forecast(port: str = "Paradip"):
+    forecast = fetch_port_forecast(port, days=7)
+    if not forecast:
+        raise HTTPException(status_code=404, detail=f"Weather forecast not found or failed for port: {port}")
+    
+    coords = PORT_COORDS.get(port, {})
+    return {
+        "port": port,
+        "lat": coords.get("lat"),
+        "lon": coords.get("lon"),
+        "forecast": forecast
+    }
+
+@app.get("/api/v1/weather-forecast/all")
+def get_all_weather_forecasts():
+    all_forecasts = []
+    for port, coords in PORT_COORDS.items():
+        forecast = fetch_port_forecast(port, days=7)
+        all_forecasts.append({
+            "port": port,
+            "lat": coords["lat"],
+            "lon": coords["lon"],
+            "forecast": forecast
+        })
+    return {"ports": all_forecasts}
 
 @app.post("/api/v1/forecast")
 def forecast_freight_rate(req: ForecastRequest):
@@ -183,7 +281,9 @@ def forecast_freight_rate(req: ForecastRequest):
             'bdi_lag_1': bdi_lag_1,
             'bdi_lag_7': bdi_lag_7,
             'bdi_roll_mean_7': bdi_roll_mean_7,
-            'bdi_roll_std_7': bdi_roll_std_7
+            'bdi_roll_std_7': bdi_roll_std_7,
+            'wind_speed_max_kmh': 0.0, # Defaulting for general endpoint
+            'precipitation_sum_mm': 0.0
         }])
         
         x_rate = float(xgboost_model.predict(model_input)[0])
@@ -213,6 +313,30 @@ def forecast_freight_rate(req: ForecastRequest):
         rationale = f"Forecast shows a downward trend ({pct_change:+.1f}% over next 7 days). Delay booking for cheaper rates."
         expected_savings = (current_rate - avg_next_7) * 50000
         
+    factor_drivers = {
+        "Fuel Price": 45.0,
+        "Seasonality": 30.0,
+        "Port Congestion": 15.0,
+        "Commodity Impact": 10.0
+    }
+    try:
+        booster = xgboost_model.get_booster()
+        importance = booster.get_score(importance_type='weight')
+        total_importance = sum(importance.values())
+        if total_importance > 0:
+            fuel = importance.get('fuel in usd', 0) / total_importance * 100
+            cong = importance.get('congestion_score', 0) / total_importance * 100
+            time = (importance.get('month', 0) + importance.get('dayofweek', 0)) / total_importance * 100
+            lags = (importance.get('bdi_lag_1', 0) + importance.get('bdi_lag_7', 0) + importance.get('bdi_roll_mean_7', 0) + importance.get('bdi_roll_std_7', 0)) / total_importance * 100
+            factor_drivers = {
+                "Fuel Impact": round(fuel, 1),
+                "Port Congestion": round(cong, 1),
+                "Seasonality (Calendar)": round(time, 1),
+                "Market Momentum (Lags)": round(lags, 1)
+            }
+    except Exception:
+        pass
+
     return {
         "historical": hist_list,
         "model_predictions": {
@@ -222,7 +346,194 @@ def forecast_freight_rate(req: ForecastRequest):
         },
         "recommendation": recommendation,
         "rationale": rationale,
-        "expected_savings": float(abs(expected_savings))
+        "expected_savings": float(abs(expected_savings)),
+        "route": req.route,
+        "commodity": req.commodity,
+        "factor_drivers": factor_drivers
+    }
+    
+@app.get("/api/v1/multi-horizon-forecast")
+def get_multi_horizon_forecast(
+    route: str = None, 
+    commodity: str = None,
+    fuel_shock_pct: float = 0.0,
+    congestion_shock_pct: float = 0.0
+):
+    """Generates forecasts for 7, 15, 30, 60, and 90 days in one go."""
+    if xgboost_model is None or prophet_model is None:
+        raise HTTPException(status_code=503, detail="Models are not loaded.")
+        
+    historical_path = data_dir / 'historical_freight_data.csv'
+    if not historical_path.exists():
+        raise HTTPException(status_code=500, detail="Historical data missing.")
+        
+    df = pd.read_csv(historical_path)
+    df['date'] = pd.to_datetime(df['date'], format='%d-%m-%Y', errors='coerce')
+    df = df.dropna(subset=['date']).sort_values('date')
+    
+    # Grab last 30 for historical chart
+    hist_list = df.tail(30).apply(lambda row: {"date": row['date'].strftime('%Y-%m-%d'), "rate": float(row['bdi_index'])}, axis=1).tolist()
+    
+    current_bdi_list = list(df['bdi_index'].tail(7).values)
+    last_date = df['date'].iloc[-1]
+    
+    base_fuel = float(df['fuel in usd'].iloc[-1]) * (1 + (fuel_shock_pct / 100.0))
+    
+    # Congestion is an index 0-1, so a 10% shock means +10% of its current value (capped at 1.0)
+    base_cong = float(df['congestion_score'].iloc[-1]) * (1 + (congestion_shock_pct / 100.0))
+    base_cong = max(0.0, min(1.0, base_cong))
+
+    
+    # Dynamic thresholds based on 30-day standard deviation
+    std_30d = df['bdi_index'].tail(30).std() if len(df) >= 30 else 50.0
+    
+    # Extract port from route (e.g. "Australia - Paradip")
+    port = None
+    if route and " - " in route:
+        port = route.split(" - ")[1]
+        
+    wind_speed = 0.0
+    precip = 0.0
+    weather_risk = "Low"
+    if port and port in live_weather_cache:
+        weather_risk = live_weather_cache[port].get("risk_score", "Low")
+        wind_speed = live_weather_cache[port].get("wind_speed_max_kmh", 0.0)
+        precip = live_weather_cache[port].get("precipitation_sum_mm", 0.0)
+    
+    # Max horizon is 90
+    horizon = 90
+    future_dates = [last_date + timedelta(days=i) for i in range(1, horizon + 1)]
+    
+    prophet_df = pd.DataFrame({'ds': future_dates})
+    prophet_fcst = prophet_model.predict(prophet_df)
+    
+    ens_preds = []
+    xgb_preds = []
+    prophet_preds = []
+    
+    # Feature importance extract
+    factor_drivers = {
+        "Fuel Impact": 45.0,
+        "Port Congestion": 15.0,
+        "Seasonality (Calendar)": 30.0,
+        "Market Momentum (Lags)": 10.0
+    }
+    try:
+        booster = xgboost_model.get_booster()
+        importance = booster.get_score(importance_type='weight')
+        total_importance = sum(importance.values())
+        if total_importance > 0:
+            fuel = importance.get('fuel in usd', 0) / total_importance * 100
+            cong = importance.get('congestion_score', 0) / total_importance * 100
+            time = (importance.get('month', 0) + importance.get('dayofweek', 0)) / total_importance * 100
+            lags = (importance.get('bdi_lag_1', 0) + importance.get('bdi_lag_7', 0) + importance.get('bdi_roll_mean_7', 0) + importance.get('bdi_roll_std_7', 0)) / total_importance * 100
+            factor_drivers = {
+                "Fuel Impact": round(fuel, 1),
+                "Port Congestion": round(cong, 1),
+                "Seasonality (Calendar)": round(time, 1),
+                "Market Momentum (Lags)": round(lags, 1)
+            }
+    except:
+        pass
+        
+    for i, d in enumerate(future_dates):
+        p_rate = float(prophet_fcst['yhat'].iloc[i])
+        p_lower = float(prophet_fcst['yhat_lower'].iloc[i])
+        p_upper = float(prophet_fcst['yhat_upper'].iloc[i])
+        
+        bdi_lag_1 = current_bdi_list[-1]
+        bdi_lag_7 = current_bdi_list[-7]
+        bdi_roll_mean_7 = np.mean(current_bdi_list[-7:])
+        bdi_roll_std_7 = np.std(current_bdi_list[-7:])
+        
+        model_input = pd.DataFrame([{
+            'fuel in usd': base_fuel,
+            'congestion_score': base_cong,
+            'month': d.month,
+            'dayofweek': d.dayofweek,
+            'bdi_lag_1': bdi_lag_1,
+            'bdi_lag_7': bdi_lag_7,
+            'bdi_roll_mean_7': bdi_roll_mean_7,
+            'bdi_roll_std_7': bdi_roll_std_7,
+            'wind_speed_max_kmh': wind_speed,
+            'precipitation_sum_mm': precip
+        }])
+        
+        x_rate = float(xgboost_model.predict(model_input)[0])
+        e_rate = float(ensemble_weight * p_rate + (1 - ensemble_weight) * x_rate)
+        
+        date_str = d.strftime('%Y-%m-%d')
+        prophet_preds.append({"date": date_str, "rate": p_rate, "lower": p_lower, "upper": p_upper})
+        xgb_preds.append({"date": date_str, "rate": x_rate})
+        ens_preds.append({"date": date_str, "rate": e_rate, "lower": p_lower, "upper": p_upper})
+        current_bdi_list.append(e_rate)
+        
+    # Build Horizons response
+    horizons_dict = {}
+    current_rate = float(df['bdi_index'].iloc[-1])  # The last actual BDI
+
+    for h in [7, 15, 30, 60, 90]:
+        slice_preds = ens_preds[:h]
+        avg_rate = np.mean([x['rate'] for x in slice_preds])
+        end_rate = slice_preds[-1]['rate']  # Use end of horizon, not average, for trend signal
+        pct_change = ((end_rate - current_rate) / current_rate) * 100
+
+        # Dynamic threshold: proportional to 30-day std, but more aggressive limits
+        # Ceiling at 3% (was 5%), floor at 0.3% (was 0.5%)
+        threshold = (std_30d / current_rate) * 100
+        threshold = max(0.3, min(threshold, 3.0))
+
+        # Route-specific adjustment: high congestion ports -> lower buy threshold
+        if base_cong > 0.7:
+            threshold *= 0.8  # more sensitive to buy signal
+        elif base_cong < 0.3:
+            threshold *= 1.1  # less sensitive (quiet port)
+
+        # Weather risk tightens the threshold further
+        if weather_risk == "High":
+            threshold -= 0.3
+        elif weather_risk == "Medium":
+            threshold -= 0.15
+        threshold = max(0.2, threshold)
+
+        rec = "Hold"
+        rationale = f"Forecast shows minor fluctuation ({pct_change:+.1f}% over {h} days). Normal market conditions."
+        savings = 0.0
+
+        if pct_change > threshold:
+            rec = "Buy Now"
+            rationale = f"Forecast shows an upward trend ({pct_change:+.1f}% over {h} days vs threshold {threshold:.1f}%). Book early to avoid premium."
+            savings = abs(end_rate - current_rate) * 50000
+        elif pct_change < -threshold:
+            rec = "Wait"
+            rationale = f"Forecast shows a downward trend ({pct_change:+.1f}% over {h} days vs threshold {threshold:.1f}%). Delay booking for cheaper rates."
+            savings = abs(current_rate - end_rate) * 50000
+
+        horizons_dict[str(h)] = {
+            "avg_rate": float(avg_rate),
+            "end_rate": float(end_rate),
+            "pct_change": float(pct_change),
+            "threshold": float(threshold),
+            "recommendation": rec,
+            "rationale": rationale,
+            "expected_savings": float(abs(savings)),
+            "ensemble": slice_preds,
+            "xgboost": xgb_preds[:h],
+            "prophet": prophet_preds[:h],
+            "data": slice_preds
+        }
+        
+    return {
+        "current_bdi": current_rate,
+        "current_fuel": base_fuel,
+        "route": route,
+        "commodity": commodity,
+        "factor_drivers": factor_drivers,
+        "historical": hist_list,
+        "horizons": horizons_dict,
+        "best_horizon": "30",
+        "best_recommendation": horizons_dict["30"]["recommendation"],
+        "weather_risk": weather_risk
     }
     
 @app.get("/api/v1/feature-importance")
@@ -272,11 +583,25 @@ def get_model_metrics():
 @app.post("/api/v1/vessel-recommendation")
 def vessel_recommendation(req: VesselRecommendationRequest):
     try:
+        # Get fuel price
+        historical_path = data_dir / 'historical_freight_data.csv'
+        fuel_price = 600.0
+        if historical_path.exists():
+            df = pd.read_csv(historical_path)
+            fuel_price = float(df['fuel in usd'].iloc[-1])
+            
+        # Get weather risk
+        weather_risk_score = "Low"
+        if req.port_name in live_weather_cache:
+            weather_risk_score = live_weather_cache[req.port_name].get('risk_score', 'Low')
+            
         feasible, infeasible = rank_vessels(
             req.port_name, 
             req.cargo_volume, 
             req.predicted_freight_rate, 
-            req.transit_days
+            req.transit_days,
+            weather_risk_score,
+            fuel_price
         )
         return {
             "feasible_vessels": feasible,

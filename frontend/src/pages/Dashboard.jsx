@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import RouteSelector from '../components/RouteSelector';
+import MarketSummaryBar from '../components/MarketSummaryBar';
 import PortConstraints from '../components/PortConstraints';
 import MarketTrendsChart from '../components/MarketTrendsChart';
-import WeatherChart from '../components/WeatherChart';
+import WeatherForecastPanel from '../components/WeatherForecastPanel';
+import IndiaPortMap from '../components/IndiaPortMap';
 
 import ForecastChart from '../components/ForecastChart';
 import RecommendationCard from '../components/RecommendationCard';
@@ -13,15 +15,19 @@ import SensitivityPanel from '../components/SensitivityPanel';
 import HistoricalRatesExplorer from '../components/HistoricalRatesExplorer';
 import VesselTable from '../components/VesselTable';
 import VoyageTimeline from '../components/VoyageTimeline';
+import HorizonSelector from '../components/HorizonSelector';
+import MultiHorizonPanel from '../components/MultiHorizonPanel';
 
 import { mockScenarios } from '../data/mockData';
-import { marketTrends, weatherData } from '../data/importedData';
+import { marketTrends } from '../data/importedData';
 
 export default function Dashboard() {
   const [selectedRoute, setSelectedRoute] = useState(Object.keys(mockScenarios)[0]);
   const [selectedCommodity, setSelectedCommodity] = useState(mockScenarios[Object.keys(mockScenarios)[0]].validCommodities[0]);
+  const [cargoVolume, setCargoVolume] = useState(50000);
   
   const [activeModel, setActiveModel] = useState('ensemble');
+  const [activeHorizon, setActiveHorizon] = useState('30'); // '7', '15', '30', '60', '90'
 
   // Sensitivity State
   const [fuelShock, setFuelShock] = useState(0);
@@ -37,8 +43,7 @@ export default function Dashboard() {
 
   const scenario = mockScenarios[selectedRoute];
   const destPort = scenario.routeInfo.destination;
-  const cargoVolume = scenario.volumes[selectedCommodity] || 50000;
-  const portWeather = weatherData[destPort] || [];
+
 
   // When route changes, reset commodity if the current one isn't valid for the new route
   useEffect(() => {
@@ -67,39 +72,18 @@ export default function Dashboard() {
     loadConstraints();
   }, [destPort]);
 
-  // Load Forecast Data (using sensitivity endpoint if shocks applied)
+  // Load Forecast Data
   useEffect(() => {
     async function loadForecast() {
       setIsForecastLoading(true);
       setForecastError(null);
       try {
-        let url = 'http://127.0.0.1:8000/api/v1/forecast';
-        let body = { horizon: 30 };
+        let url = `http://127.0.0.1:8000/api/v1/multi-horizon-forecast?route=${encodeURIComponent(selectedRoute)}&commodity=${encodeURIComponent(selectedCommodity)}`;
+        if (fuelShock !== 0) url += `&fuel_shock_pct=${fuelShock}`;
+        if (congestionShock !== 0) url += `&congestion_shock_pct=${congestionShock}`;
 
-        if (fuelShock !== 0 || congestionShock !== 0) {
-          url = 'http://127.0.0.1:8000/api/v1/sensitivity-analysis';
-          body = {
-            base_row: {
-              fuel_in_usd: 0,
-              congestion_score: 0,
-              month: 1,
-              dayofweek: 1,
-              bdi_lag_1: 0,
-              bdi_lag_7: 0,
-              bdi_roll_mean_7: 0,
-              bdi_roll_std_7: 0
-            },
-            fuel_shock_pct: fuelShock,
-            congestion_shock_pct: congestionShock
-          };
-        }
-
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body)
-        });
-
+        
+        const response = await fetch(url);
         if (!response.ok) throw new Error(`Failed to fetch forecast: ${response.statusText}`);
         
         const data = await response.json();
@@ -111,64 +95,91 @@ export default function Dashboard() {
       }
     }
     
-    // Debounce to prevent spamming API while dragging slider
+    // Debounce to prevent spamming API
     const timeoutId = setTimeout(() => {
       loadForecast();
     }, 300);
     
     return () => clearTimeout(timeoutId);
-  }, [fuelShock, congestionShock]);
+  }, [fuelShock, congestionShock, selectedRoute, selectedCommodity]);
 
-  // Derived state for the vessel/voyage optimizers
-  const currentRate = forecastData ? forecastData.model_predictions[activeModel][0].rate : 1500;
+  const activeHorizonData = forecastData?.horizons?.[activeHorizon];
+  const currentRate = forecastData ? forecastData.current_bdi : 1500;
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 pb-12">
-      <RouteSelector 
-        scenarios={mockScenarios} 
-        selectedRoute={selectedRoute} 
-        onSelectRoute={setSelectedRoute} 
-        selectedCommodity={selectedCommodity}
-        onSelectCommodity={setSelectedCommodity}
-      />
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 pb-12 flex flex-col">
+      <div className="sticky top-0 z-50">
+        <RouteSelector 
+          scenarios={mockScenarios} 
+          selectedRoute={selectedRoute} 
+          onSelectRoute={setSelectedRoute} 
+          selectedCommodity={selectedCommodity}
+          onSelectCommodity={setSelectedCommodity}
+          cargoVolume={cargoVolume}
+          onSelectCargoVolume={setCargoVolume}
+        />
+        <MarketSummaryBar />
+      </div>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-8">
+      <main className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-8">
         
         {/* Model Accuracy Banner */}
         <ModelAccuracyPanel />
 
-        {/* Forecast & Recommendation Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 flex flex-col">
-            <ModelToggle activeModel={activeModel} onSelectModel={setActiveModel} />
-            <div className="flex-grow h-[400px]">
-              {isForecastLoading && !forecastData ? (
-                 <div className="h-full bg-white rounded-xl shadow-sm border border-slate-200 flex items-center justify-center animate-pulse">
-                   <span className="text-slate-500">Generating forecast...</span>
-                 </div>
-              ) : forecastError ? (
-                 <div className="h-full bg-white rounded-xl shadow-sm border border-slate-200 flex items-center justify-center text-red-500">
-                   {forecastError}
-                 </div>
-              ) : (
-                <ForecastChart forecastData={forecastData} activeModel={activeModel} />
-              )}
+        {/* Hero Row: Recommendation */}
+        <div className="w-full">
+          {isForecastLoading && !forecastData ? (
+            <div className="h-64 bg-white rounded-2xl shadow-sm border border-slate-200 flex items-center justify-center animate-pulse">
+              <span className="text-slate-500">Generating forecast...</span>
             </div>
+          ) : forecastError ? (
+            <div className="h-64 bg-white rounded-2xl shadow-sm border border-slate-200 flex items-center justify-center text-red-500">
+              {forecastError}
+            </div>
+          ) : forecastData && activeHorizonData ? (
+            <RecommendationCard 
+              action={activeHorizonData.recommendation} 
+              rationale={activeHorizonData.rationale} 
+              expectedSavings={activeHorizonData.expected_savings} 
+              currentRate={currentRate}
+              route={forecastData.route}
+              commodity={forecastData.commodity}
+              factors={forecastData.factor_drivers}
+              activeHorizon={activeHorizon}
+              weatherRisk={forecastData.weather_risk}
+            />
+          ) : null}
+        </div>
+
+        {/* Multi-Horizon Panel */}
+        {forecastData && (
+          <MultiHorizonPanel 
+            horizonsData={forecastData.horizons}
+            activeHorizon={activeHorizon}
+            onSelectHorizon={setActiveHorizon}
+            weatherRisk={forecastData.weather_risk}
+          />
+        )}
+
+        {/* Forecast Row */}
+        <div className="w-full">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+            <ModelToggle activeModel={activeModel} onSelectModel={setActiveModel} />
+            <HorizonSelector activeHorizon={activeHorizon} onSelectHorizon={setActiveHorizon} />
           </div>
           
-          <div className="flex flex-col pt-[52px]">
+          <div className="h-[450px]">
             {isForecastLoading && !forecastData ? (
-                 <div className="h-full bg-white rounded-xl shadow-sm border border-slate-200 animate-pulse" />
+              <div className="h-full bg-white rounded-xl shadow-sm border border-slate-200 flex items-center justify-center animate-pulse">
+                <span className="text-slate-500">Loading chart...</span>
+              </div>
             ) : forecastError ? (
-                 <div className="h-full bg-white rounded-xl shadow-sm border border-slate-200" />
-            ) : forecastData ? (
-              <RecommendationCard 
-                action={forecastData.recommendation} 
-                rationale={forecastData.rationale} 
-                expectedSavings={forecastData.expected_savings} 
-                currentRate={currentRate}
-              />
-            ) : null}
+               <div className="h-full bg-white rounded-xl shadow-sm border border-slate-200 flex items-center justify-center text-red-500">
+                 {forecastError}
+               </div>
+            ) : (
+              <ForecastChart forecastData={forecastData} activeModel={activeModel} activeHorizon={activeHorizon} />
+            )}
           </div>
         </div>
 
@@ -192,18 +203,23 @@ export default function Dashboard() {
         {/* Historical Explorer Row */}
         <HistoricalRatesExplorer />
 
-        {/* Original Weather & Port Constraints */}
+        {/* Weather Trends & Port Map */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="h-[350px]">
-            <WeatherChart data={portWeather} portName={destPort} />
+          <div className="h-[450px]">
+            <WeatherForecastPanel portName={destPort} />
           </div>
-          <div className="flex flex-col">
-            <PortConstraints 
-              portName={destPort} 
-              constraints={portConstraints} 
-              isLoading={isConstraintsLoading} 
-            />
+          <div className="h-[450px]">
+            <IndiaPortMap selectedPort={destPort} />
           </div>
+        </div>
+        
+        {/* Port Constraints */}
+        <div className="w-full">
+          <PortConstraints 
+            portName={destPort} 
+            constraints={portConstraints} 
+            isLoading={isConstraintsLoading} 
+          />
         </div>
 
       </main>

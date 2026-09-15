@@ -40,9 +40,9 @@ Navora's intelligence relies on a robust data foundation. We intentionally targe
    * **Source:** World Bank "Pink Sheet" Commodity Price Data.
    * **Details:** Monthly data for iron ore and coal (Australian & South African) to track macroeconomic demand signals.
 4. **Weather & Sea State**
-   * **Source:** Open-Meteo Marine API.
-   * **Timeline:** Dataset covers 1–2 years of historical daily marine weather data.
-   * **Details:** We pull localized wave height, swell, and wind speed for 7 East Coast Indian ports (e.g., Paradip, Vizag, Haldia) to model port delay risks.
+   * **Source:** Open-Meteo Atmospheric & Marine APIs.
+   * **Timeline:** Live 7-day forecasting.
+   * **Details:** We pull real-time localized weather data (wind speed, precipitation, temperature, and wave height) for 7 East Coast Indian ports (e.g., Paradip, Vizag, Haldia). This data powers a live 7-day forecast strip, interactive weather charts, and an interactive **Leaflet-based India Port Map** that color-codes port markers by real-time risk level, providing users with immediate geospatial situational awareness.
 5. **Static Reference Data & Port Constraints**
    * **Source:** Ministry of Ports, Shipping and Waterways (MoPSW) & Port Authority specs.
    * **Details:** Vessel capacities (Capesize, Panamax, Supramax, Handysize) and strict physical port constraints.

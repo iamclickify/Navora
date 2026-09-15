@@ -11,7 +11,7 @@ def main():
     # Resolve paths relative to this script
     # This script is at backend/src/data/ingest/fetch_freight_rates.py
     # Project root is backend/
-    project_root = Path(__file__).resolve().parent.parent.parent.parent
+    project_root = Path(__file__).resolve().parent.parent.parent.parent.parent
     raw_dir = project_root / 'data' / 'raw' / 'bdi'
     processed_dir = project_root / 'data' / 'processed'
     

@@ -7,7 +7,7 @@ from pathlib import Path
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 
 def main():
-    project_root = Path(__file__).resolve().parent.parent.parent.parent
+    project_root = Path(__file__).resolve().parent.parent.parent.parent.parent
     raw_dir = project_root / 'data' / 'raw' / 'worldbank_commodities'
     processed_dir = project_root / 'data' / 'processed'
     

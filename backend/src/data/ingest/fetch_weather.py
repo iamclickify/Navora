@@ -8,7 +8,7 @@ from pathlib import Path
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 
 def main():
-    project_root = Path(__file__).resolve().parent.parent.parent.parent
+    project_root = Path(__file__).resolve().parent.parent.parent.parent.parent
     ref_dir = project_root / 'data' / 'raw' / 'manual_reference'
     processed_dir = project_root / 'data' / 'processed'
     

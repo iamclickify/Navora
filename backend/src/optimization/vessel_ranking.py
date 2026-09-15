@@ -1,7 +1,7 @@
 import pandas as pd
 from pathlib import Path
 
-def rank_vessels(port_name: str, cargo_volume: float, predicted_freight_rate: float, transit_days: int):
+def rank_vessels(port_name: str, cargo_volume: float, predicted_freight_rate: float, transit_days: int, weather_risk_score: str = "Low", fuel_price: float = 600.0):
     """
     Ranks vessels for a given port and cargo based on total voyage cost.
     """
@@ -47,20 +47,44 @@ def rank_vessels(port_name: str, cargo_volume: float, predicted_freight_rate: fl
             })
         else:
             # Financial Cost Calculation
-            # total_cost = capacity * freight_rate + port_fee + daily_opex * transit_days
             freight_cost = vessel['capacity_t'] * predicted_freight_rate
             port_fee = vessel['typical_port_fee_usd']
             opex = vessel['daily_opex_usd'] * transit_days
+            fuel_cost = vessel['fuel_per_day_t'] * fuel_price * transit_days
             
-            total_cost = freight_cost + port_fee + opex
+            base_total_cost = freight_cost + port_fee + opex + fuel_cost
+            
+            # Weather Risk Penalty
+            # Base penalty multiplier for bad weather
+            risk_mult = 0.0
+            if weather_risk_score == "High":
+                risk_mult = 0.10
+            elif weather_risk_score == "Medium":
+                risk_mult = 0.05
+                
+            # Adjust penalty based on vessel size (smaller vessels suffer more in bad weather)
+            v_class = vessel['vessel_class'].lower()
+            if v_class == 'handysize':
+                risk_mult *= 1.5
+            elif v_class == 'supramax':
+                risk_mult *= 1.2
+            elif v_class == 'capesize':
+                risk_mult *= 0.3 # Capesize handles weather better
+                
+            risk_penalty = base_total_cost * risk_mult
+            total_cost = base_total_cost + risk_penalty
             
             feasible.append({
                 'vessel_class': vessel['vessel_class'],
                 'total_cost': total_cost,
+                'weather_risk_label': weather_risk_score,
+                'risk_note': f"Risk penalty applied due to {weather_risk_score} weather" if risk_mult > 0 else "Normal operating conditions",
                 'breakdown': {
                     'freight_cost': freight_cost,
                     'port_fee': port_fee,
-                    'opex': opex
+                    'opex': opex,
+                    'fuel_cost': fuel_cost,
+                    'risk_penalty': risk_penalty
                 }
             })
             

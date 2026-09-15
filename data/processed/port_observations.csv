@@ -1,0 +1,2921 @@
+date,port,congestion_score,avg_queue_length_vessels,avg_wait_hours,is_synthetic
+2024-09-16,Shanghai,0.7389,5,67.8,True
+2024-09-16,Singapore,0.7675,4,48.5,True
+2024-09-16,Rotterdam,0.5749,4,39.6,True
+2024-09-16,Los Angeles,0.4448,2,35.6,True
+2024-09-17,Shanghai,0.9055,11,118.2,True
+2024-09-17,Singapore,0.868,8,75.4,True
+2024-09-17,Rotterdam,0.8443,8,88.5,True
+2024-09-17,Los Angeles,0.6348,7,67.7,True
+2024-09-18,Shanghai,0.9578,8,89.1,True
+2024-09-18,Singapore,0.8576,8,80.5,True
+2024-09-18,Rotterdam,0.7997,6,63.5,True
+2024-09-18,Los Angeles,0.6508,7,70.6,True
+2024-09-19,Shanghai,0.6094,3,48.4,True
+2024-09-19,Singapore,0.8438,8,78.5,True
+2024-09-19,Rotterdam,0.8562,8,96.0,True
+2024-09-19,Los Angeles,0.6901,6,76.0,True
+2024-09-20,Shanghai,0.8022,8,85.3,True
+2024-09-20,Singapore,0.592,4,53.1,True
+2024-09-20,Rotterdam,0.475,6,59.2,True
+2024-09-20,Los Angeles,0.6097,5,44.7,True
+2024-09-21,Shanghai,0.813,7,87.3,True
+2024-09-21,Singapore,0.8,8,74.4,True
+2024-09-21,Rotterdam,0.8028,4,57.7,True
+2024-09-21,Los Angeles,0.7277,8,93.2,True
+2024-09-22,Shanghai,0.8063,9,90.2,True
+2024-09-22,Singapore,0.7385,7,72.0,True
+2024-09-22,Rotterdam,0.8578,8,77.0,True
+2024-09-22,Los Angeles,0.6395,5,50.9,True
+2024-09-23,Shanghai,0.6005,5,52.1,True
+2024-09-23,Singapore,0.8846,9,95.0,True
+2024-09-23,Rotterdam,0.62,5,61.6,True
+2024-09-23,Los Angeles,0.7741,6,68.3,True
+2024-09-24,Shanghai,0.7944,6,71.0,True
+2024-09-24,Singapore,0.7932,8,90.4,True
+2024-09-24,Rotterdam,0.6684,9,84.6,True
+2024-09-24,Los Angeles,0.8829,7,78.9,True
+2024-09-25,Shanghai,0.7463,6,75.9,True
+2024-09-25,Singapore,0.7118,7,69.0,True
+2024-09-25,Rotterdam,0.7177,8,77.6,True
+2024-09-25,Los Angeles,0.5845,6,64.1,True
+2024-09-26,Shanghai,0.7613,5,63.9,True
+2024-09-26,Singapore,0.656,7,80.2,True
+2024-09-26,Rotterdam,0.5603,7,60.1,True
+2024-09-26,Los Angeles,0.7295,4,50.1,True
+2024-09-27,Shanghai,0.7865,10,92.0,True
+2024-09-27,Singapore,0.8265,7,82.2,True
+2024-09-27,Rotterdam,0.6484,6,63.8,True
+2024-09-27,Los Angeles,0.5329,7,76.4,True
+2024-09-28,Shanghai,0.8885,11,105.9,True
+2024-09-28,Singapore,0.8063,7,70.0,True
+2024-09-28,Rotterdam,0.6845,6,69.3,True
+2024-09-28,Los Angeles,0.6782,7,67.5,True
+2024-09-29,Shanghai,0.8722,6,79.2,True
+2024-09-29,Singapore,0.8392,8,72.0,True
+2024-09-29,Rotterdam,0.624,5,64.2,True
+2024-09-29,Los Angeles,0.6219,6,65.0,True
+2024-09-30,Shanghai,0.7346,7,87.5,True
+2024-09-30,Singapore,0.5831,7,66.4,True
+2024-09-30,Rotterdam,0.6862,5,62.9,True
+2024-09-30,Los Angeles,0.5246,4,56.3,True
+2024-10-01,Shanghai,0.6289,5,63.8,True
+2024-10-01,Singapore,0.6576,6,60.1,True
+2024-10-01,Rotterdam,0.7081,6,73.2,True
+2024-10-01,Los Angeles,0.4644,6,60.2,True
+2024-10-02,Shanghai,0.7696,11,103.5,True
+2024-10-02,Singapore,0.5102,3,29.3,True
+2024-10-02,Rotterdam,0.5814,3,35.9,True
+2024-10-02,Los Angeles,0.5526,4,45.1,True
+2024-10-03,Shanghai,0.4889,6,63.5,True
+2024-10-03,Singapore,0.6718,7,72.3,True
+2024-10-03,Rotterdam,0.4923,5,48.1,True
+2024-10-03,Los Angeles,0.4925,4,55.8,True
+2024-10-04,Shanghai,0.8357,10,93.5,True
+2024-10-04,Singapore,0.586,6,60.1,True
+2024-10-04,Rotterdam,0.5422,6,50.8,True
+2024-10-04,Los Angeles,0.4123,4,44.7,True
+2024-10-05,Shanghai,0.364,4,41.8,True
+2024-10-05,Singapore,0.6124,6,63.5,True
+2024-10-05,Rotterdam,0.5712,2,25.9,True
+2024-10-05,Los Angeles,0.3649,4,39.5,True
+2024-10-06,Shanghai,0.5853,6,60.6,True
+2024-10-06,Singapore,0.665,8,71.7,True
+2024-10-06,Rotterdam,0.5307,7,61.1,True
+2024-10-06,Los Angeles,0.3996,4,31.4,True
+2024-10-07,Shanghai,0.4569,5,48.5,True
+2024-10-07,Singapore,0.6933,6,71.9,True
+2024-10-07,Rotterdam,0.6713,7,63.0,True
+2024-10-07,Los Angeles,0.5123,6,76.6,True
+2024-10-08,Shanghai,0.559,4,50.1,True
+2024-10-08,Singapore,0.5471,6,68.8,True
+2024-10-08,Rotterdam,0.7024,8,76.8,True
+2024-10-08,Los Angeles,0.5115,5,57.0,True
+2024-10-09,Shanghai,0.5711,8,72.1,True
+2024-10-09,Singapore,0.4945,3,37.2,True
+2024-10-09,Rotterdam,0.5225,3,42.8,True
+2024-10-09,Los Angeles,0.5291,2,37.6,True
+2024-10-10,Shanghai,0.7051,7,73.1,True
+2024-10-10,Singapore,0.5489,6,55.6,True
+2024-10-10,Rotterdam,0.337,5,51.9,True
+2024-10-10,Los Angeles,0.4976,4,50.7,True
+2024-10-11,Shanghai,0.4377,6,55.6,True
+2024-10-11,Singapore,0.5898,7,62.3,True
+2024-10-11,Rotterdam,0.6075,4,48.3,True
+2024-10-11,Los Angeles,0.424,3,28.3,True
+2024-10-12,Shanghai,0.7101,7,75.5,True
+2024-10-12,Singapore,0.5143,4,38.0,True
+2024-10-12,Rotterdam,0.4619,6,51.3,True
+2024-10-12,Los Angeles,0.4294,6,54.0,True
+2024-10-13,Shanghai,0.5186,2,34.1,True
+2024-10-13,Singapore,0.5565,4,58.5,True
+2024-10-13,Rotterdam,0.5798,7,89.9,True
+2024-10-13,Los Angeles,0.4671,5,44.3,True
+2024-10-14,Shanghai,0.5213,4,45.2,True
+2024-10-14,Singapore,0.5397,4,58.6,True
+2024-10-14,Rotterdam,0.6405,6,61.6,True
+2024-10-14,Los Angeles,0.51,5,66.2,True
+2024-10-15,Shanghai,0.6674,8,80.8,True
+2024-10-15,Singapore,0.5732,5,54.5,True
+2024-10-15,Rotterdam,0.6701,3,45.4,True
+2024-10-15,Los Angeles,0.55,5,59.8,True
+2024-10-16,Shanghai,0.7187,6,61.8,True
+2024-10-16,Singapore,0.5939,5,51.3,True
+2024-10-16,Rotterdam,0.5122,2,34.1,True
+2024-10-16,Los Angeles,0.5262,4,39.5,True
+2024-10-17,Shanghai,0.5304,3,39.6,True
+2024-10-17,Singapore,0.5757,6,55.0,True
+2024-10-17,Rotterdam,0.6017,3,43.8,True
+2024-10-17,Los Angeles,0.4218,1,21.1,True
+2024-10-18,Shanghai,0.6111,7,68.0,True
+2024-10-18,Singapore,0.4971,6,64.3,True
+2024-10-18,Rotterdam,0.5758,5,57.2,True
+2024-10-18,Los Angeles,0.4028,3,33.0,True
+2024-10-19,Shanghai,0.7606,9,95.8,True
+2024-10-19,Singapore,0.6697,10,90.7,True
+2024-10-19,Rotterdam,0.643,8,75.0,True
+2024-10-19,Los Angeles,0.5985,6,66.4,True
+2024-10-20,Shanghai,0.7935,7,71.2,True
+2024-10-20,Singapore,0.5538,5,40.1,True
+2024-10-20,Rotterdam,0.6215,4,56.5,True
+2024-10-20,Los Angeles,0.5264,3,40.7,True
+2024-10-21,Shanghai,0.5107,7,61.3,True
+2024-10-21,Singapore,0.5024,5,50.0,True
+2024-10-21,Rotterdam,0.6076,7,84.3,True
+2024-10-21,Los Angeles,0.4835,4,50.3,True
+2024-10-22,Shanghai,0.6159,8,79.3,True
+2024-10-22,Singapore,0.8057,9,87.0,True
+2024-10-22,Rotterdam,0.4762,3,47.7,True
+2024-10-22,Los Angeles,0.5531,7,79.5,True
+2024-10-23,Shanghai,0.5625,7,74.7,True
+2024-10-23,Singapore,0.5615,7,62.1,True
+2024-10-23,Rotterdam,0.6505,8,73.2,True
+2024-10-23,Los Angeles,0.5394,6,55.9,True
+2024-10-24,Shanghai,0.5589,2,39.7,True
+2024-10-24,Singapore,0.5575,5,61.1,True
+2024-10-24,Rotterdam,0.4288,3,29.7,True
+2024-10-24,Los Angeles,0.5191,2,31.1,True
+2024-10-25,Shanghai,0.4614,4,37.1,True
+2024-10-25,Singapore,0.5359,5,42.1,True
+2024-10-25,Rotterdam,0.4875,4,33.4,True
+2024-10-25,Los Angeles,0.4154,4,45.8,True
+2024-10-26,Shanghai,0.6316,6,65.7,True
+2024-10-26,Singapore,0.7353,7,60.6,True
+2024-10-26,Rotterdam,0.3186,5,44.3,True
+2024-10-26,Los Angeles,0.4423,5,43.7,True
+2024-10-27,Shanghai,0.7223,8,81.8,True
+2024-10-27,Singapore,0.4161,4,37.1,True
+2024-10-27,Rotterdam,0.4233,2,24.5,True
+2024-10-27,Los Angeles,0.3425,4,33.4,True
+2024-10-28,Shanghai,0.6468,4,57.9,True
+2024-10-28,Singapore,0.4234,2,37.2,True
+2024-10-28,Rotterdam,0.5727,4,37.2,True
+2024-10-28,Los Angeles,0.3483,4,37.7,True
+2024-10-29,Shanghai,0.5406,5,55.7,True
+2024-10-29,Singapore,0.519,3,46.0,True
+2024-10-29,Rotterdam,0.6479,5,53.7,True
+2024-10-29,Los Angeles,0.3423,1,15.1,True
+2024-10-30,Shanghai,0.732,5,52.1,True
+2024-10-30,Singapore,0.4898,4,30.6,True
+2024-10-30,Rotterdam,0.5613,5,53.4,True
+2024-10-30,Los Angeles,0.5212,5,54.9,True
+2024-10-31,Shanghai,0.5918,3,44.9,True
+2024-10-31,Singapore,0.8033,5,63.0,True
+2024-10-31,Rotterdam,0.5304,6,61.5,True
+2024-10-31,Los Angeles,0.4809,6,61.7,True
+2024-11-01,Shanghai,0.6925,7,85.2,True
+2024-11-01,Singapore,0.5393,3,48.8,True
+2024-11-01,Rotterdam,0.5561,3,41.6,True
+2024-11-01,Los Angeles,0.3323,3,36.8,True
+2024-11-02,Shanghai,0.6646,2,38.5,True
+2024-11-02,Singapore,0.4286,1,29.3,True
+2024-11-02,Rotterdam,0.5796,5,69.7,True
+2024-11-02,Los Angeles,0.4826,5,55.1,True
+2024-11-03,Shanghai,0.4343,5,52.4,True
+2024-11-03,Singapore,0.4882,3,42.3,True
+2024-11-03,Rotterdam,0.6062,6,53.5,True
+2024-11-03,Los Angeles,0.373,3,42.9,True
+2024-11-04,Shanghai,0.6835,8,82.3,True
+2024-11-04,Singapore,0.4929,7,65.1,True
+2024-11-04,Rotterdam,0.5047,2,36.9,True
+2024-11-04,Los Angeles,0.4858,2,38.0,True
+2024-11-05,Shanghai,0.5229,4,53.8,True
+2024-11-05,Singapore,0.6278,5,64.4,True
+2024-11-05,Rotterdam,0.5713,3,35.5,True
+2024-11-05,Los Angeles,0.2462,0,7.7,True
+2024-11-06,Shanghai,0.4631,4,47.9,True
+2024-11-06,Singapore,0.7079,6,61.5,True
+2024-11-06,Rotterdam,0.6982,8,73.3,True
+2024-11-06,Los Angeles,0.5094,5,66.9,True
+2024-11-07,Shanghai,0.7303,8,84.9,True
+2024-11-07,Singapore,0.6026,7,70.7,True
+2024-11-07,Rotterdam,0.76,5,65.1,True
+2024-11-07,Los Angeles,0.3722,3,37.0,True
+2024-11-08,Shanghai,0.764,6,76.3,True
+2024-11-08,Singapore,0.4091,5,45.3,True
+2024-11-08,Rotterdam,0.4148,4,43.0,True
+2024-11-08,Los Angeles,0.1789,2,27.1,True
+2024-11-09,Shanghai,0.5107,3,44.4,True
+2024-11-09,Singapore,0.6192,9,81.3,True
+2024-11-09,Rotterdam,0.7006,4,57.9,True
+2024-11-09,Los Angeles,0.6051,5,67.3,True
+2024-11-10,Shanghai,0.6086,5,50.9,True
+2024-11-10,Singapore,0.6597,4,50.6,True
+2024-11-10,Rotterdam,0.6826,7,67.6,True
+2024-11-10,Los Angeles,0.5504,6,66.3,True
+2024-11-11,Shanghai,0.6292,7,69.5,True
+2024-11-11,Singapore,0.6293,8,72.9,True
+2024-11-11,Rotterdam,0.6058,6,67.3,True
+2024-11-11,Los Angeles,0.5403,4,51.4,True
+2024-11-12,Shanghai,0.7142,6,69.0,True
+2024-11-12,Singapore,0.5016,4,49.2,True
+2024-11-12,Rotterdam,0.2375,4,52.9,True
+2024-11-12,Los Angeles,0.5822,6,60.4,True
+2024-11-13,Shanghai,0.5147,2,39.7,True
+2024-11-13,Singapore,0.3956,5,60.9,True
+2024-11-13,Rotterdam,0.4455,4,35.2,True
+2024-11-13,Los Angeles,0.3783,5,57.4,True
+2024-11-14,Shanghai,0.675,5,62.9,True
+2024-11-14,Singapore,0.6418,7,62.6,True
+2024-11-14,Rotterdam,0.6269,7,66.8,True
+2024-11-14,Los Angeles,0.4452,2,38.6,True
+2024-11-15,Shanghai,0.6126,7,71.4,True
+2024-11-15,Singapore,0.5734,6,50.2,True
+2024-11-15,Rotterdam,0.5807,4,58.7,True
+2024-11-15,Los Angeles,0.5502,3,42.6,True
+2024-11-16,Shanghai,0.5977,8,70.0,True
+2024-11-16,Singapore,0.5713,3,48.6,True
+2024-11-16,Rotterdam,0.4889,2,32.3,True
+2024-11-16,Los Angeles,0.328,3,26.2,True
+2024-11-17,Shanghai,0.4591,4,36.7,True
+2024-11-17,Singapore,0.4691,6,53.1,True
+2024-11-17,Rotterdam,0.4224,6,53.4,True
+2024-11-17,Los Angeles,0.4196,2,36.0,True
+2024-11-18,Shanghai,0.7851,10,95.3,True
+2024-11-18,Singapore,0.5708,4,48.0,True
+2024-11-18,Rotterdam,0.4346,2,38.8,True
+2024-11-18,Los Angeles,0.4259,3,44.4,True
+2024-11-19,Shanghai,0.6349,5,63.7,True
+2024-11-19,Singapore,0.3218,3,28.7,True
+2024-11-19,Rotterdam,0.6055,5,50.7,True
+2024-11-19,Los Angeles,0.4379,3,43.1,True
+2024-11-20,Shanghai,0.6528,9,91.3,True
+2024-11-20,Singapore,0.5655,5,49.3,True
+2024-11-20,Rotterdam,0.5694,7,77.8,True
+2024-11-20,Los Angeles,0.5757,7,65.9,True
+2024-11-21,Shanghai,0.5867,5,48.3,True
+2024-11-21,Singapore,0.8066,7,80.7,True
+2024-11-21,Rotterdam,0.4975,4,35.1,True
+2024-11-21,Los Angeles,0.4199,3,43.3,True
+2024-11-22,Shanghai,0.604,5,43.6,True
+2024-11-22,Singapore,0.4914,4,58.2,True
+2024-11-22,Rotterdam,0.4024,3,37.4,True
+2024-11-22,Los Angeles,0.5596,6,68.2,True
+2024-11-23,Shanghai,0.6057,7,63.1,True
+2024-11-23,Singapore,0.6425,6,58.2,True
+2024-11-23,Rotterdam,0.4597,6,59.6,True
+2024-11-23,Los Angeles,0.4444,5,62.5,True
+2024-11-24,Shanghai,0.5872,7,78.6,True
+2024-11-24,Singapore,0.4293,1,22.9,True
+2024-11-24,Rotterdam,0.5336,5,46.6,True
+2024-11-24,Los Angeles,0.4886,6,53.4,True
+2024-11-25,Shanghai,0.4994,5,52.7,True
+2024-11-25,Singapore,0.643,6,58.9,True
+2024-11-25,Rotterdam,0.5533,2,28.2,True
+2024-11-25,Los Angeles,0.4324,3,48.0,True
+2024-11-26,Shanghai,0.429,4,49.0,True
+2024-11-26,Singapore,0.5624,8,91.8,True
+2024-11-26,Rotterdam,0.4619,3,24.4,True
+2024-11-26,Los Angeles,0.3439,6,56.6,True
+2024-11-27,Shanghai,0.5672,4,40.7,True
+2024-11-27,Singapore,0.6716,6,62.8,True
+2024-11-27,Rotterdam,0.4801,4,57.2,True
+2024-11-27,Los Angeles,0.4323,3,21.5,True
+2024-11-28,Shanghai,0.5557,6,55.1,True
+2024-11-28,Singapore,0.6589,8,77.8,True
+2024-11-28,Rotterdam,0.5626,5,47.6,True
+2024-11-28,Los Angeles,0.3652,4,34.1,True
+2024-11-29,Shanghai,0.6532,5,67.9,True
+2024-11-29,Singapore,0.576,7,68.2,True
+2024-11-29,Rotterdam,0.4427,7,67.8,True
+2024-11-29,Los Angeles,0.3721,5,42.6,True
+2024-11-30,Shanghai,0.5162,4,43.3,True
+2024-11-30,Singapore,0.5293,3,31.0,True
+2024-11-30,Rotterdam,0.7526,6,71.1,True
+2024-11-30,Los Angeles,0.4222,4,33.1,True
+2024-12-01,Shanghai,0.488,4,59.9,True
+2024-12-01,Singapore,0.5587,4,55.0,True
+2024-12-01,Rotterdam,0.4142,2,18.4,True
+2024-12-01,Los Angeles,0.3016,4,53.4,True
+2024-12-02,Shanghai,0.4524,3,46.4,True
+2024-12-02,Singapore,0.468,4,32.7,True
+2024-12-02,Rotterdam,0.5677,5,59.0,True
+2024-12-02,Los Angeles,0.5905,6,64.8,True
+2024-12-03,Shanghai,0.6429,7,75.9,True
+2024-12-03,Singapore,0.5735,5,58.2,True
+2024-12-03,Rotterdam,0.555,4,48.9,True
+2024-12-03,Los Angeles,0.6229,6,50.6,True
+2024-12-04,Shanghai,0.5597,4,42.4,True
+2024-12-04,Singapore,0.5827,5,61.2,True
+2024-12-04,Rotterdam,0.4887,2,21.7,True
+2024-12-04,Los Angeles,0.3713,4,39.4,True
+2024-12-05,Shanghai,0.6254,5,62.1,True
+2024-12-05,Singapore,0.5232,3,27.6,True
+2024-12-05,Rotterdam,0.4727,2,24.4,True
+2024-12-05,Los Angeles,0.7063,4,49.7,True
+2024-12-06,Shanghai,0.6065,4,47.9,True
+2024-12-06,Singapore,0.5358,4,59.9,True
+2024-12-06,Rotterdam,0.5431,7,61.5,True
+2024-12-06,Los Angeles,0.5686,6,70.5,True
+2024-12-07,Shanghai,0.6,6,61.6,True
+2024-12-07,Singapore,0.6083,2,33.3,True
+2024-12-07,Rotterdam,0.5429,3,41.6,True
+2024-12-07,Los Angeles,0.5171,4,48.3,True
+2024-12-08,Shanghai,0.6809,8,71.0,True
+2024-12-08,Singapore,0.6235,4,54.2,True
+2024-12-08,Rotterdam,0.5094,4,40.3,True
+2024-12-08,Los Angeles,0.4923,7,79.2,True
+2024-12-09,Shanghai,0.5261,4,57.4,True
+2024-12-09,Singapore,0.6256,7,66.4,True
+2024-12-09,Rotterdam,0.4606,5,54.4,True
+2024-12-09,Los Angeles,0.3853,2,30.5,True
+2024-12-10,Shanghai,0.7499,11,111.0,True
+2024-12-10,Singapore,0.5949,6,70.8,True
+2024-12-10,Rotterdam,0.628,7,62.5,True
+2024-12-10,Los Angeles,0.5054,4,42.7,True
+2024-12-11,Shanghai,0.8192,9,94.0,True
+2024-12-11,Singapore,0.4473,2,33.3,True
+2024-12-11,Rotterdam,0.3716,5,46.5,True
+2024-12-11,Los Angeles,0.6471,6,73.8,True
+2024-12-12,Shanghai,0.5748,6,70.7,True
+2024-12-12,Singapore,0.5166,7,68.7,True
+2024-12-12,Rotterdam,0.5263,5,69.5,True
+2024-12-12,Los Angeles,0.3464,0,18.1,True
+2024-12-13,Shanghai,0.5384,8,71.2,True
+2024-12-13,Singapore,0.4395,4,47.3,True
+2024-12-13,Rotterdam,0.4636,3,43.5,True
+2024-12-13,Los Angeles,0.3369,0,7.4,True
+2024-12-14,Shanghai,0.5715,6,64.1,True
+2024-12-14,Singapore,0.7015,6,70.2,True
+2024-12-14,Rotterdam,0.5386,4,42.5,True
+2024-12-14,Los Angeles,0.5212,6,53.2,True
+2024-12-15,Shanghai,0.6405,7,83.0,True
+2024-12-15,Singapore,0.5754,4,31.6,True
+2024-12-15,Rotterdam,0.5986,6,56.8,True
+2024-12-15,Los Angeles,0.4405,1,23.7,True
+2024-12-16,Shanghai,0.2996,3,42.2,True
+2024-12-16,Singapore,0.5803,5,61.6,True
+2024-12-16,Rotterdam,0.5459,7,66.4,True
+2024-12-16,Los Angeles,0.5196,8,70.3,True
+2024-12-17,Shanghai,0.6676,6,56.8,True
+2024-12-17,Singapore,0.7444,4,52.3,True
+2024-12-17,Rotterdam,0.3808,3,33.7,True
+2024-12-17,Los Angeles,0.4537,3,44.2,True
+2024-12-18,Shanghai,0.5815,8,70.2,True
+2024-12-18,Singapore,0.6572,9,81.9,True
+2024-12-18,Rotterdam,0.6081,6,61.1,True
+2024-12-18,Los Angeles,0.3869,3,38.0,True
+2024-12-19,Shanghai,0.6078,5,43.7,True
+2024-12-19,Singapore,0.5479,5,57.2,True
+2024-12-19,Rotterdam,0.5491,5,50.7,True
+2024-12-19,Los Angeles,0.4061,4,32.8,True
+2024-12-20,Shanghai,0.4636,5,52.8,True
+2024-12-20,Singapore,0.5083,6,58.8,True
+2024-12-20,Rotterdam,0.5862,5,59.8,True
+2024-12-20,Los Angeles,0.5062,3,47.3,True
+2024-12-21,Shanghai,0.6885,8,77.1,True
+2024-12-21,Singapore,0.4839,3,43.1,True
+2024-12-21,Rotterdam,0.451,5,45.9,True
+2024-12-21,Los Angeles,0.5524,4,46.2,True
+2024-12-22,Shanghai,0.5628,5,62.8,True
+2024-12-22,Singapore,0.3927,4,38.0,True
+2024-12-22,Rotterdam,0.5078,5,56.8,True
+2024-12-22,Los Angeles,0.5081,7,64.2,True
+2024-12-23,Shanghai,0.5798,1,28.7,True
+2024-12-23,Singapore,0.7257,6,70.5,True
+2024-12-23,Rotterdam,0.5621,5,45.4,True
+2024-12-23,Los Angeles,0.522,6,58.4,True
+2024-12-24,Shanghai,0.6503,7,60.4,True
+2024-12-24,Singapore,0.4687,1,29.8,True
+2024-12-24,Rotterdam,0.6458,7,79.8,True
+2024-12-24,Los Angeles,0.5286,1,25.5,True
+2024-12-25,Shanghai,0.4633,2,19.4,True
+2024-12-25,Singapore,0.4996,5,60.9,True
+2024-12-25,Rotterdam,0.3904,5,54.0,True
+2024-12-25,Los Angeles,0.5575,6,56.4,True
+2024-12-26,Shanghai,0.6116,6,60.5,True
+2024-12-26,Singapore,0.4771,5,54.5,True
+2024-12-26,Rotterdam,0.4475,5,41.1,True
+2024-12-26,Los Angeles,0.4933,3,31.4,True
+2024-12-27,Shanghai,0.5039,6,53.3,True
+2024-12-27,Singapore,0.5296,4,39.3,True
+2024-12-27,Rotterdam,0.5308,9,89.4,True
+2024-12-27,Los Angeles,0.5499,7,71.0,True
+2024-12-28,Shanghai,0.7504,8,84.9,True
+2024-12-28,Singapore,0.6813,5,58.7,True
+2024-12-28,Rotterdam,0.3729,3,35.6,True
+2024-12-28,Los Angeles,0.3089,3,34.5,True
+2024-12-29,Shanghai,0.7002,8,77.5,True
+2024-12-29,Singapore,0.425,4,40.0,True
+2024-12-29,Rotterdam,0.5346,5,64.2,True
+2024-12-29,Los Angeles,0.5065,7,63.2,True
+2024-12-30,Shanghai,0.4886,4,46.6,True
+2024-12-30,Singapore,0.6005,4,50.4,True
+2024-12-30,Rotterdam,0.441,5,46.4,True
+2024-12-30,Los Angeles,0.3468,6,55.9,True
+2024-12-31,Shanghai,0.6604,6,69.9,True
+2024-12-31,Singapore,0.6461,5,57.5,True
+2024-12-31,Rotterdam,0.3396,0,17.1,True
+2024-12-31,Los Angeles,0.4845,7,65.0,True
+2025-01-01,Shanghai,0.6269,5,63.8,True
+2025-01-01,Singapore,0.7185,5,67.1,True
+2025-01-01,Rotterdam,0.4766,6,64.5,True
+2025-01-01,Los Angeles,0.4639,6,54.8,True
+2025-01-02,Shanghai,0.7696,5,67.8,True
+2025-01-02,Singapore,0.5352,4,54.0,True
+2025-01-02,Rotterdam,0.5882,7,65.2,True
+2025-01-02,Los Angeles,0.6629,5,64.8,True
+2025-01-03,Shanghai,0.7815,9,88.5,True
+2025-01-03,Singapore,0.5184,5,40.3,True
+2025-01-03,Rotterdam,0.6288,5,59.4,True
+2025-01-03,Los Angeles,0.4194,5,46.0,True
+2025-01-04,Shanghai,0.7198,6,72.0,True
+2025-01-04,Singapore,0.4679,6,52.5,True
+2025-01-04,Rotterdam,0.5139,4,49.0,True
+2025-01-04,Los Angeles,0.4267,4,45.5,True
+2025-01-05,Shanghai,0.4648,2,31.5,True
+2025-01-05,Singapore,0.4713,2,25.6,True
+2025-01-05,Rotterdam,0.3811,3,40.5,True
+2025-01-05,Los Angeles,0.5618,6,74.1,True
+2025-01-06,Shanghai,0.6359,6,59.0,True
+2025-01-06,Singapore,0.4782,5,69.1,True
+2025-01-06,Rotterdam,0.5021,3,42.0,True
+2025-01-06,Los Angeles,0.6928,5,63.5,True
+2025-01-07,Shanghai,0.4022,4,43.0,True
+2025-01-07,Singapore,0.556,6,53.4,True
+2025-01-07,Rotterdam,0.7075,5,60.2,True
+2025-01-07,Los Angeles,0.5753,6,75.2,True
+2025-01-08,Shanghai,0.6793,6,69.4,True
+2025-01-08,Singapore,0.4645,3,49.4,True
+2025-01-08,Rotterdam,0.6319,4,52.9,True
+2025-01-08,Los Angeles,0.4761,4,37.9,True
+2025-01-09,Shanghai,0.6049,5,56.3,True
+2025-01-09,Singapore,0.6688,6,53.9,True
+2025-01-09,Rotterdam,0.582,4,45.7,True
+2025-01-09,Los Angeles,0.451,2,36.7,True
+2025-01-10,Shanghai,0.5841,7,65.6,True
+2025-01-10,Singapore,0.7127,8,73.0,True
+2025-01-10,Rotterdam,0.4922,4,33.8,True
+2025-01-10,Los Angeles,0.4185,5,52.4,True
+2025-01-11,Shanghai,0.6889,5,60.4,True
+2025-01-11,Singapore,0.4956,3,40.4,True
+2025-01-11,Rotterdam,0.6521,5,66.2,True
+2025-01-11,Los Angeles,0.3386,2,16.0,True
+2025-01-12,Shanghai,0.5333,2,30.9,True
+2025-01-12,Singapore,0.5062,5,44.1,True
+2025-01-12,Rotterdam,0.6673,3,48.4,True
+2025-01-12,Los Angeles,0.4422,3,32.9,True
+2025-01-13,Shanghai,0.5253,3,46.8,True
+2025-01-13,Singapore,0.4561,6,64.8,True
+2025-01-13,Rotterdam,0.4964,5,51.7,True
+2025-01-13,Los Angeles,0.4713,5,48.0,True
+2025-01-14,Shanghai,0.4608,2,38.0,True
+2025-01-14,Singapore,0.6558,5,51.8,True
+2025-01-14,Rotterdam,0.5972,5,45.4,True
+2025-01-14,Los Angeles,0.7617,7,76.3,True
+2025-01-15,Shanghai,0.6028,6,65.0,True
+2025-01-15,Singapore,0.4644,3,46.2,True
+2025-01-15,Rotterdam,0.7237,9,84.8,True
+2025-01-15,Los Angeles,0.6219,7,66.0,True
+2025-01-16,Shanghai,0.4739,5,43.9,True
+2025-01-16,Singapore,0.6313,5,63.3,True
+2025-01-16,Rotterdam,0.5615,6,66.8,True
+2025-01-16,Los Angeles,0.473,5,58.5,True
+2025-01-17,Shanghai,0.6321,7,63.8,True
+2025-01-17,Singapore,0.4102,6,60.1,True
+2025-01-17,Rotterdam,0.5143,4,36.5,True
+2025-01-17,Los Angeles,0.5715,7,72.8,True
+2025-01-18,Shanghai,0.5808,5,59.2,True
+2025-01-18,Singapore,0.4894,5,49.7,True
+2025-01-18,Rotterdam,0.7009,7,82.4,True
+2025-01-18,Los Angeles,0.3268,3,34.2,True
+2025-01-19,Shanghai,0.59,6,58.7,True
+2025-01-19,Singapore,0.5758,5,48.0,True
+2025-01-19,Rotterdam,0.4227,6,56.5,True
+2025-01-19,Los Angeles,0.5748,5,67.1,True
+2025-01-20,Shanghai,0.503,3,35.2,True
+2025-01-20,Singapore,0.6587,5,66.2,True
+2025-01-20,Rotterdam,0.5662,5,48.7,True
+2025-01-20,Los Angeles,0.3014,3,21.5,True
+2025-01-21,Shanghai,0.786,8,84.0,True
+2025-01-21,Singapore,0.565,5,63.7,True
+2025-01-21,Rotterdam,0.4291,3,46.1,True
+2025-01-21,Los Angeles,0.281,2,29.0,True
+2025-01-22,Shanghai,0.4119,4,42.8,True
+2025-01-22,Singapore,0.5623,4,38.8,True
+2025-01-22,Rotterdam,0.4279,2,34.4,True
+2025-01-22,Los Angeles,0.5832,5,43.3,True
+2025-01-23,Shanghai,0.6404,5,65.6,True
+2025-01-23,Singapore,0.8,8,88.3,True
+2025-01-23,Rotterdam,0.3955,4,47.4,True
+2025-01-23,Los Angeles,0.4943,4,50.9,True
+2025-01-24,Shanghai,0.7092,8,72.0,True
+2025-01-24,Singapore,0.7143,8,80.3,True
+2025-01-24,Rotterdam,0.6339,7,76.4,True
+2025-01-24,Los Angeles,0.5006,5,44.1,True
+2025-01-25,Shanghai,0.568,5,49.5,True
+2025-01-25,Singapore,0.6018,7,74.8,True
+2025-01-25,Rotterdam,0.501,5,68.2,True
+2025-01-25,Los Angeles,0.3957,1,12.9,True
+2025-01-26,Shanghai,0.6429,8,82.0,True
+2025-01-26,Singapore,0.6178,7,60.1,True
+2025-01-26,Rotterdam,0.6567,6,71.2,True
+2025-01-26,Los Angeles,0.4061,5,64.0,True
+2025-01-27,Shanghai,0.5919,4,45.8,True
+2025-01-27,Singapore,0.5326,5,46.1,True
+2025-01-27,Rotterdam,0.5548,7,79.5,True
+2025-01-27,Los Angeles,0.3787,4,35.2,True
+2025-01-28,Shanghai,0.474,5,46.2,True
+2025-01-28,Singapore,0.62,4,59.1,True
+2025-01-28,Rotterdam,0.3402,2,32.7,True
+2025-01-28,Los Angeles,0.5115,6,70.7,True
+2025-01-29,Shanghai,0.5863,5,50.4,True
+2025-01-29,Singapore,0.634,6,57.2,True
+2025-01-29,Rotterdam,0.3447,4,30.8,True
+2025-01-29,Los Angeles,0.4944,5,45.4,True
+2025-01-30,Shanghai,0.5653,4,58.3,True
+2025-01-30,Singapore,0.5618,5,52.9,True
+2025-01-30,Rotterdam,0.4047,1,29.8,True
+2025-01-30,Los Angeles,0.451,4,43.3,True
+2025-01-31,Shanghai,0.5826,4,30.6,True
+2025-01-31,Singapore,0.7557,7,67.2,True
+2025-01-31,Rotterdam,0.5781,5,61.8,True
+2025-01-31,Los Angeles,0.4519,2,27.5,True
+2025-02-01,Shanghai,0.6728,5,64.1,True
+2025-02-01,Singapore,0.5169,4,39.1,True
+2025-02-01,Rotterdam,0.4466,5,63.0,True
+2025-02-01,Los Angeles,0.3515,4,35.5,True
+2025-02-02,Shanghai,0.5589,6,50.5,True
+2025-02-02,Singapore,0.6514,6,74.4,True
+2025-02-02,Rotterdam,0.4409,4,41.3,True
+2025-02-02,Los Angeles,0.4422,2,31.9,True
+2025-02-03,Shanghai,0.6374,4,56.4,True
+2025-02-03,Singapore,0.6883,8,74.1,True
+2025-02-03,Rotterdam,0.4564,1,29.3,True
+2025-02-03,Los Angeles,0.5133,4,50.4,True
+2025-02-04,Shanghai,0.7179,7,68.9,True
+2025-02-04,Singapore,0.537,4,50.0,True
+2025-02-04,Rotterdam,0.7101,7,72.9,True
+2025-02-04,Los Angeles,0.4617,5,56.8,True
+2025-02-05,Shanghai,0.6704,6,67.0,True
+2025-02-05,Singapore,0.67,3,34.1,True
+2025-02-05,Rotterdam,0.4897,3,37.3,True
+2025-02-05,Los Angeles,0.5521,5,61.1,True
+2025-02-06,Shanghai,0.5859,5,47.3,True
+2025-02-06,Singapore,0.4996,8,72.2,True
+2025-02-06,Rotterdam,0.2979,4,35.0,True
+2025-02-06,Los Angeles,0.5,5,57.5,True
+2025-02-07,Shanghai,0.5514,5,64.3,True
+2025-02-07,Singapore,0.4911,1,28.9,True
+2025-02-07,Rotterdam,0.6398,6,61.2,True
+2025-02-07,Los Angeles,0.4925,4,45.3,True
+2025-02-08,Shanghai,0.6711,6,62.3,True
+2025-02-08,Singapore,0.6504,4,56.7,True
+2025-02-08,Rotterdam,0.5513,3,44.9,True
+2025-02-08,Los Angeles,0.3741,2,30.1,True
+2025-02-09,Shanghai,0.5169,1,27.9,True
+2025-02-09,Singapore,0.3656,1,26.7,True
+2025-02-09,Rotterdam,0.5887,6,51.9,True
+2025-02-09,Los Angeles,0.5975,5,55.2,True
+2025-02-10,Shanghai,0.6823,8,73.0,True
+2025-02-10,Singapore,0.5765,4,52.2,True
+2025-02-10,Rotterdam,0.7164,8,81.3,True
+2025-02-10,Los Angeles,0.4692,6,55.7,True
+2025-02-11,Shanghai,0.7094,5,62.6,True
+2025-02-11,Singapore,0.5874,2,31.9,True
+2025-02-11,Rotterdam,0.6096,6,66.2,True
+2025-02-11,Los Angeles,0.498,3,39.6,True
+2025-02-12,Shanghai,0.4747,5,44.1,True
+2025-02-12,Singapore,0.4857,7,60.5,True
+2025-02-12,Rotterdam,0.4588,1,21.2,True
+2025-02-12,Los Angeles,0.5569,6,53.7,True
+2025-02-13,Shanghai,0.7438,7,62.9,True
+2025-02-13,Singapore,0.4393,3,36.4,True
+2025-02-13,Rotterdam,0.5416,6,53.9,True
+2025-02-13,Los Angeles,0.257,1,16.7,True
+2025-02-14,Shanghai,0.4647,4,57.8,True
+2025-02-14,Singapore,0.6209,7,65.4,True
+2025-02-14,Rotterdam,0.5913,6,61.4,True
+2025-02-14,Los Angeles,0.6327,7,67.4,True
+2025-02-15,Shanghai,0.6295,7,65.6,True
+2025-02-15,Singapore,0.3921,3,31.2,True
+2025-02-15,Rotterdam,0.575,6,64.7,True
+2025-02-15,Los Angeles,0.5434,4,37.2,True
+2025-02-16,Shanghai,0.4548,2,13.0,True
+2025-02-16,Singapore,0.6063,4,52.1,True
+2025-02-16,Rotterdam,0.7822,9,99.0,True
+2025-02-16,Los Angeles,0.5642,5,51.4,True
+2025-02-17,Shanghai,0.546,6,63.1,True
+2025-02-17,Singapore,0.5205,3,36.3,True
+2025-02-17,Rotterdam,0.4976,0,19.2,True
+2025-02-17,Los Angeles,0.2889,3,30.6,True
+2025-02-18,Shanghai,0.662,7,75.8,True
+2025-02-18,Singapore,0.7402,9,91.6,True
+2025-02-18,Rotterdam,0.3381,3,23.8,True
+2025-02-18,Los Angeles,0.5962,5,55.8,True
+2025-02-19,Shanghai,0.4148,4,43.5,True
+2025-02-19,Singapore,0.5762,4,36.3,True
+2025-02-19,Rotterdam,0.5366,4,34.0,True
+2025-02-19,Los Angeles,0.4357,4,47.7,True
+2025-02-20,Shanghai,0.6577,5,68.8,True
+2025-02-20,Singapore,0.6428,7,73.9,True
+2025-02-20,Rotterdam,0.504,4,52.1,True
+2025-02-20,Los Angeles,0.6163,8,70.7,True
+2025-02-21,Shanghai,0.5682,6,59.5,True
+2025-02-21,Singapore,0.4405,5,48.7,True
+2025-02-21,Rotterdam,0.4322,2,25.1,True
+2025-02-21,Los Angeles,0.6291,4,56.8,True
+2025-02-22,Shanghai,0.6578,8,82.7,True
+2025-02-22,Singapore,0.6177,7,70.0,True
+2025-02-22,Rotterdam,0.6169,5,60.9,True
+2025-02-22,Los Angeles,0.6319,6,60.3,True
+2025-02-23,Shanghai,0.5878,4,59.6,True
+2025-02-23,Singapore,0.5178,4,50.9,True
+2025-02-23,Rotterdam,0.5495,7,67.4,True
+2025-02-23,Los Angeles,0.5577,3,30.7,True
+2025-02-24,Shanghai,0.571,3,42.5,True
+2025-02-24,Singapore,0.6433,6,65.2,True
+2025-02-24,Rotterdam,0.503,3,44.6,True
+2025-02-24,Los Angeles,0.7747,8,82.4,True
+2025-02-25,Shanghai,0.7984,9,86.9,True
+2025-02-25,Singapore,0.5122,5,46.2,True
+2025-02-25,Rotterdam,0.508,4,58.7,True
+2025-02-25,Los Angeles,0.3355,4,48.6,True
+2025-02-26,Shanghai,0.6367,6,51.6,True
+2025-02-26,Singapore,0.5997,6,55.4,True
+2025-02-26,Rotterdam,0.4872,6,50.2,True
+2025-02-26,Los Angeles,0.2865,3,30.6,True
+2025-02-27,Shanghai,0.6921,5,54.4,True
+2025-02-27,Singapore,0.3328,2,20.8,True
+2025-02-27,Rotterdam,0.6524,7,60.3,True
+2025-02-27,Los Angeles,0.557,4,44.9,True
+2025-02-28,Shanghai,0.6723,5,62.5,True
+2025-02-28,Singapore,0.595,6,63.3,True
+2025-02-28,Rotterdam,0.4345,4,37.4,True
+2025-02-28,Los Angeles,0.408,3,49.5,True
+2025-03-01,Shanghai,0.7707,7,69.5,True
+2025-03-01,Singapore,0.5281,6,58.5,True
+2025-03-01,Rotterdam,0.4109,1,20.3,True
+2025-03-01,Los Angeles,0.5909,3,36.6,True
+2025-03-02,Shanghai,0.5308,5,62.4,True
+2025-03-02,Singapore,0.5719,5,50.7,True
+2025-03-02,Rotterdam,0.4411,4,42.5,True
+2025-03-02,Los Angeles,0.4873,4,41.9,True
+2025-03-03,Shanghai,0.6761,6,62.8,True
+2025-03-03,Singapore,0.6036,8,70.0,True
+2025-03-03,Rotterdam,0.6752,4,59.4,True
+2025-03-03,Los Angeles,0.8216,7,74.3,True
+2025-03-04,Shanghai,0.7346,7,68.3,True
+2025-03-04,Singapore,0.4867,8,72.1,True
+2025-03-04,Rotterdam,0.411,2,16.3,True
+2025-03-04,Los Angeles,0.4083,2,33.1,True
+2025-03-05,Shanghai,0.8011,6,72.7,True
+2025-03-05,Singapore,0.7528,4,58.4,True
+2025-03-05,Rotterdam,0.4045,4,47.3,True
+2025-03-05,Los Angeles,0.6053,6,51.4,True
+2025-03-06,Shanghai,0.5933,7,81.3,True
+2025-03-06,Singapore,0.7537,7,71.9,True
+2025-03-06,Rotterdam,0.5881,5,43.5,True
+2025-03-06,Los Angeles,0.5297,7,65.2,True
+2025-03-07,Shanghai,0.5486,5,50.3,True
+2025-03-07,Singapore,0.7968,7,88.3,True
+2025-03-07,Rotterdam,0.4362,4,51.2,True
+2025-03-07,Los Angeles,0.6224,5,62.6,True
+2025-03-08,Shanghai,0.7257,5,49.9,True
+2025-03-08,Singapore,0.526,6,60.2,True
+2025-03-08,Rotterdam,0.5924,2,33.9,True
+2025-03-08,Los Angeles,0.7092,5,61.9,True
+2025-03-09,Shanghai,0.5291,5,45.0,True
+2025-03-09,Singapore,0.53,4,54.5,True
+2025-03-09,Rotterdam,0.4444,3,39.1,True
+2025-03-09,Los Angeles,0.358,2,36.7,True
+2025-03-10,Shanghai,0.4264,2,35.3,True
+2025-03-10,Singapore,0.5954,5,45.1,True
+2025-03-10,Rotterdam,0.6311,8,78.5,True
+2025-03-10,Los Angeles,0.6097,4,51.7,True
+2025-03-11,Shanghai,0.5556,5,60.2,True
+2025-03-11,Singapore,0.6941,7,69.8,True
+2025-03-11,Rotterdam,0.5245,4,53.9,True
+2025-03-11,Los Angeles,0.2724,3,40.4,True
+2025-03-12,Shanghai,0.5016,4,51.4,True
+2025-03-12,Singapore,0.6203,5,63.4,True
+2025-03-12,Rotterdam,0.3876,3,42.4,True
+2025-03-12,Los Angeles,0.4721,3,33.7,True
+2025-03-13,Shanghai,0.6303,5,56.0,True
+2025-03-13,Singapore,0.5632,5,53.8,True
+2025-03-13,Rotterdam,0.5099,3,41.1,True
+2025-03-13,Los Angeles,0.422,3,42.2,True
+2025-03-14,Shanghai,0.6165,8,71.6,True
+2025-03-14,Singapore,0.4391,4,49.5,True
+2025-03-14,Rotterdam,0.505,6,65.7,True
+2025-03-14,Los Angeles,0.656,5,56.7,True
+2025-03-15,Shanghai,0.7117,10,92.7,True
+2025-03-15,Singapore,0.6722,5,53.8,True
+2025-03-15,Rotterdam,0.5094,2,40.0,True
+2025-03-15,Los Angeles,0.5791,6,60.8,True
+2025-03-16,Shanghai,0.6581,6,68.9,True
+2025-03-16,Singapore,0.6099,7,71.4,True
+2025-03-16,Rotterdam,0.544,5,68.9,True
+2025-03-16,Los Angeles,0.5405,5,57.9,True
+2025-03-17,Shanghai,0.5305,5,59.0,True
+2025-03-17,Singapore,0.53,6,55.0,True
+2025-03-17,Rotterdam,0.587,4,56.7,True
+2025-03-17,Los Angeles,0.3978,5,46.6,True
+2025-03-18,Shanghai,0.6409,7,71.4,True
+2025-03-18,Singapore,0.469,5,47.1,True
+2025-03-18,Rotterdam,0.5079,6,60.6,True
+2025-03-18,Los Angeles,0.4323,3,45.5,True
+2025-03-19,Shanghai,0.6859,7,73.2,True
+2025-03-19,Singapore,0.5791,6,65.0,True
+2025-03-19,Rotterdam,0.5167,6,65.3,True
+2025-03-19,Los Angeles,0.4042,5,57.1,True
+2025-03-20,Shanghai,0.5007,5,50.6,True
+2025-03-20,Singapore,0.8261,10,105.3,True
+2025-03-20,Rotterdam,0.6435,6,55.5,True
+2025-03-20,Los Angeles,0.4588,5,55.5,True
+2025-03-21,Shanghai,0.5741,5,64.7,True
+2025-03-21,Singapore,0.667,9,88.1,True
+2025-03-21,Rotterdam,0.5624,7,62.3,True
+2025-03-21,Los Angeles,0.5466,3,32.9,True
+2025-03-22,Shanghai,0.6573,5,51.8,True
+2025-03-22,Singapore,0.6588,7,75.3,True
+2025-03-22,Rotterdam,0.5638,5,43.8,True
+2025-03-22,Los Angeles,0.3468,5,42.3,True
+2025-03-23,Shanghai,0.631,7,62.9,True
+2025-03-23,Singapore,0.7853,8,84.8,True
+2025-03-23,Rotterdam,0.4828,5,54.6,True
+2025-03-23,Los Angeles,0.5534,5,57.0,True
+2025-03-24,Shanghai,0.4889,2,20.6,True
+2025-03-24,Singapore,0.662,7,66.2,True
+2025-03-24,Rotterdam,0.5187,2,39.4,True
+2025-03-24,Los Angeles,0.4946,6,70.4,True
+2025-03-25,Shanghai,0.7093,7,68.8,True
+2025-03-25,Singapore,0.7156,7,79.3,True
+2025-03-25,Rotterdam,0.728,5,63.5,True
+2025-03-25,Los Angeles,0.5028,4,50.9,True
+2025-03-26,Shanghai,0.5288,6,56.6,True
+2025-03-26,Singapore,0.6364,3,48.8,True
+2025-03-26,Rotterdam,0.4889,2,31.9,True
+2025-03-26,Los Angeles,0.4343,3,37.0,True
+2025-03-27,Shanghai,0.6132,6,65.1,True
+2025-03-27,Singapore,0.5892,6,58.7,True
+2025-03-27,Rotterdam,0.4713,5,51.6,True
+2025-03-27,Los Angeles,0.5222,6,52.0,True
+2025-03-28,Shanghai,0.4583,4,55.3,True
+2025-03-28,Singapore,0.5234,4,55.4,True
+2025-03-28,Rotterdam,0.4338,3,49.6,True
+2025-03-28,Los Angeles,0.4238,1,20.5,True
+2025-03-29,Shanghai,0.5181,5,62.3,True
+2025-03-29,Singapore,0.4261,4,31.1,True
+2025-03-29,Rotterdam,0.4771,4,37.6,True
+2025-03-29,Los Angeles,0.5591,3,42.1,True
+2025-03-30,Shanghai,0.6178,5,43.7,True
+2025-03-30,Singapore,0.5238,6,52.8,True
+2025-03-30,Rotterdam,0.5153,2,20.4,True
+2025-03-30,Los Angeles,0.5871,7,64.0,True
+2025-03-31,Shanghai,0.4785,5,43.0,True
+2025-03-31,Singapore,0.5185,4,45.3,True
+2025-03-31,Rotterdam,0.5286,1,27.7,True
+2025-03-31,Los Angeles,0.4624,3,40.8,True
+2025-04-01,Shanghai,0.6767,5,53.3,True
+2025-04-01,Singapore,0.5606,6,50.9,True
+2025-04-01,Rotterdam,0.6026,7,72.1,True
+2025-04-01,Los Angeles,0.3497,2,34.6,True
+2025-04-02,Shanghai,0.6279,3,41.9,True
+2025-04-02,Singapore,0.4864,3,49.8,True
+2025-04-02,Rotterdam,0.4985,6,52.8,True
+2025-04-02,Los Angeles,0.563,2,39.5,True
+2025-04-03,Shanghai,0.6169,7,75.1,True
+2025-04-03,Singapore,0.7395,8,74.6,True
+2025-04-03,Rotterdam,0.4497,6,53.2,True
+2025-04-03,Los Angeles,0.3425,3,22.2,True
+2025-04-04,Shanghai,0.6031,5,62.5,True
+2025-04-04,Singapore,0.6335,8,93.9,True
+2025-04-04,Rotterdam,0.6915,7,69.4,True
+2025-04-04,Los Angeles,0.4464,2,31.7,True
+2025-04-05,Shanghai,0.5547,5,49.9,True
+2025-04-05,Singapore,0.4015,2,29.3,True
+2025-04-05,Rotterdam,0.4351,6,50.4,True
+2025-04-05,Los Angeles,0.4342,4,37.7,True
+2025-04-06,Shanghai,0.5206,4,57.0,True
+2025-04-06,Singapore,0.5062,4,50.2,True
+2025-04-06,Rotterdam,0.4196,4,48.1,True
+2025-04-06,Los Angeles,0.5771,4,53.0,True
+2025-04-07,Shanghai,0.617,6,50.4,True
+2025-04-07,Singapore,0.6976,6,59.1,True
+2025-04-07,Rotterdam,0.3359,5,41.1,True
+2025-04-07,Los Angeles,0.4459,4,43.6,True
+2025-04-08,Shanghai,0.6844,4,49.7,True
+2025-04-08,Singapore,0.4868,3,38.7,True
+2025-04-08,Rotterdam,0.539,5,42.4,True
+2025-04-08,Los Angeles,0.4218,4,42.0,True
+2025-04-09,Shanghai,0.6486,6,54.7,True
+2025-04-09,Singapore,0.3999,6,51.0,True
+2025-04-09,Rotterdam,0.5184,4,49.9,True
+2025-04-09,Los Angeles,0.5219,4,45.7,True
+2025-04-10,Shanghai,0.6423,7,67.9,True
+2025-04-10,Singapore,0.6266,6,56.6,True
+2025-04-10,Rotterdam,0.4744,7,64.3,True
+2025-04-10,Los Angeles,0.4919,5,43.7,True
+2025-04-11,Shanghai,0.6442,8,74.3,True
+2025-04-11,Singapore,0.5585,4,56.8,True
+2025-04-11,Rotterdam,0.3843,5,45.1,True
+2025-04-11,Los Angeles,0.5912,3,32.2,True
+2025-04-12,Shanghai,0.4694,3,24.5,True
+2025-04-12,Singapore,0.7531,7,61.2,True
+2025-04-12,Rotterdam,0.6898,6,60.0,True
+2025-04-12,Los Angeles,0.4985,4,48.7,True
+2025-04-13,Shanghai,0.675,6,59.6,True
+2025-04-13,Singapore,0.7535,5,67.3,True
+2025-04-13,Rotterdam,0.5691,4,53.8,True
+2025-04-13,Los Angeles,0.4523,4,50.1,True
+2025-04-14,Shanghai,0.632,5,64.9,True
+2025-04-14,Singapore,0.4684,4,30.8,True
+2025-04-14,Rotterdam,0.3584,2,39.1,True
+2025-04-14,Los Angeles,0.4911,5,54.3,True
+2025-04-15,Shanghai,0.7505,6,76.5,True
+2025-04-15,Singapore,0.5055,4,49.4,True
+2025-04-15,Rotterdam,0.4947,4,52.7,True
+2025-04-15,Los Angeles,0.4827,4,47.6,True
+2025-04-16,Shanghai,0.5469,5,49.8,True
+2025-04-16,Singapore,0.5745,6,67.4,True
+2025-04-16,Rotterdam,0.6124,7,62.2,True
+2025-04-16,Los Angeles,0.2931,1,16.3,True
+2025-04-17,Shanghai,0.6022,7,63.3,True
+2025-04-17,Singapore,0.6531,6,59.8,True
+2025-04-17,Rotterdam,0.518,6,58.3,True
+2025-04-17,Los Angeles,0.3873,3,28.8,True
+2025-04-18,Shanghai,0.6566,8,72.9,True
+2025-04-18,Singapore,0.3806,3,47.2,True
+2025-04-18,Rotterdam,0.6497,7,64.7,True
+2025-04-18,Los Angeles,0.4263,4,33.5,True
+2025-04-19,Shanghai,0.6367,7,61.9,True
+2025-04-19,Singapore,0.6626,6,51.2,True
+2025-04-19,Rotterdam,0.5958,4,53.2,True
+2025-04-19,Los Angeles,0.4951,4,38.5,True
+2025-04-20,Shanghai,0.4438,5,43.2,True
+2025-04-20,Singapore,0.626,3,46.9,True
+2025-04-20,Rotterdam,0.5562,3,45.0,True
+2025-04-20,Los Angeles,0.4519,6,64.7,True
+2025-04-21,Shanghai,0.4957,6,52.9,True
+2025-04-21,Singapore,0.6393,6,66.6,True
+2025-04-21,Rotterdam,0.5637,4,38.8,True
+2025-04-21,Los Angeles,0.5477,6,51.5,True
+2025-04-22,Shanghai,0.7348,9,100.5,True
+2025-04-22,Singapore,0.6501,4,53.8,True
+2025-04-22,Rotterdam,0.5347,5,46.0,True
+2025-04-22,Los Angeles,0.4637,3,41.9,True
+2025-04-23,Shanghai,0.4992,4,43.7,True
+2025-04-23,Singapore,0.5984,5,43.8,True
+2025-04-23,Rotterdam,0.452,2,38.0,True
+2025-04-23,Los Angeles,0.5093,5,45.9,True
+2025-04-24,Shanghai,0.6083,6,54.9,True
+2025-04-24,Singapore,0.4324,5,43.4,True
+2025-04-24,Rotterdam,0.5182,5,46.6,True
+2025-04-24,Los Angeles,0.4901,2,31.1,True
+2025-04-25,Shanghai,0.4927,3,46.7,True
+2025-04-25,Singapore,0.5736,6,74.4,True
+2025-04-25,Rotterdam,0.4002,3,31.6,True
+2025-04-25,Los Angeles,0.4933,4,51.3,True
+2025-04-26,Shanghai,0.4362,3,49.0,True
+2025-04-26,Singapore,0.5498,4,50.5,True
+2025-04-26,Rotterdam,0.5188,7,64.5,True
+2025-04-26,Los Angeles,0.718,6,68.4,True
+2025-04-27,Shanghai,0.4856,5,60.6,True
+2025-04-27,Singapore,0.4727,5,42.0,True
+2025-04-27,Rotterdam,0.3884,2,26.1,True
+2025-04-27,Los Angeles,0.4041,3,37.9,True
+2025-04-28,Shanghai,0.4591,3,42.1,True
+2025-04-28,Singapore,0.5162,4,51.0,True
+2025-04-28,Rotterdam,0.5756,6,51.3,True
+2025-04-28,Los Angeles,0.5747,5,40.2,True
+2025-04-29,Shanghai,0.5844,6,74.1,True
+2025-04-29,Singapore,0.4414,3,43.3,True
+2025-04-29,Rotterdam,0.6779,7,68.7,True
+2025-04-29,Los Angeles,0.4267,4,39.0,True
+2025-04-30,Shanghai,0.4801,6,65.9,True
+2025-04-30,Singapore,0.5851,5,66.0,True
+2025-04-30,Rotterdam,0.646,4,54.0,True
+2025-04-30,Los Angeles,0.4928,4,41.7,True
+2025-05-01,Shanghai,0.4961,5,56.2,True
+2025-05-01,Singapore,0.6625,5,57.9,True
+2025-05-01,Rotterdam,0.5032,6,73.3,True
+2025-05-01,Los Angeles,0.4592,4,42.7,True
+2025-05-02,Shanghai,0.5923,3,47.5,True
+2025-05-02,Singapore,0.6671,6,77.0,True
+2025-05-02,Rotterdam,0.6656,6,65.4,True
+2025-05-02,Los Angeles,0.4159,3,37.9,True
+2025-05-03,Shanghai,0.69,8,88.1,True
+2025-05-03,Singapore,0.5904,6,64.9,True
+2025-05-03,Rotterdam,0.4874,3,41.3,True
+2025-05-03,Los Angeles,0.4753,4,53.2,True
+2025-05-04,Shanghai,0.6397,8,85.3,True
+2025-05-04,Singapore,0.6708,5,64.3,True
+2025-05-04,Rotterdam,0.4847,4,40.6,True
+2025-05-04,Los Angeles,0.5493,5,50.2,True
+2025-05-05,Shanghai,0.6332,4,48.7,True
+2025-05-05,Singapore,0.689,4,54.4,True
+2025-05-05,Rotterdam,0.5213,5,41.7,True
+2025-05-05,Los Angeles,0.5076,4,54.6,True
+2025-05-06,Shanghai,0.521,6,60.7,True
+2025-05-06,Singapore,0.5953,6,69.5,True
+2025-05-06,Rotterdam,0.6572,5,61.8,True
+2025-05-06,Los Angeles,0.3847,0,18.8,True
+2025-05-07,Shanghai,0.8633,5,62.9,True
+2025-05-07,Singapore,0.519,3,46.9,True
+2025-05-07,Rotterdam,0.5271,3,47.7,True
+2025-05-07,Los Angeles,0.4338,2,33.8,True
+2025-05-08,Shanghai,0.6323,5,54.8,True
+2025-05-08,Singapore,0.5719,4,56.7,True
+2025-05-08,Rotterdam,0.3748,3,33.1,True
+2025-05-08,Los Angeles,0.5085,5,50.6,True
+2025-05-09,Shanghai,0.4096,8,72.0,True
+2025-05-09,Singapore,0.7424,6,79.3,True
+2025-05-09,Rotterdam,0.5905,5,43.5,True
+2025-05-09,Los Angeles,0.4976,5,62.1,True
+2025-05-10,Shanghai,0.6,4,54.4,True
+2025-05-10,Singapore,0.6128,7,75.7,True
+2025-05-10,Rotterdam,0.772,7,67.0,True
+2025-05-10,Los Angeles,0.3243,3,25.5,True
+2025-05-11,Shanghai,0.6037,6,59.9,True
+2025-05-11,Singapore,0.6527,7,70.7,True
+2025-05-11,Rotterdam,0.5595,3,46.6,True
+2025-05-11,Los Angeles,0.4665,3,46.1,True
+2025-05-12,Shanghai,0.6505,7,69.9,True
+2025-05-12,Singapore,0.7026,7,63.1,True
+2025-05-12,Rotterdam,0.5758,4,54.2,True
+2025-05-12,Los Angeles,0.356,4,37.4,True
+2025-05-13,Shanghai,0.6235,6,66.3,True
+2025-05-13,Singapore,0.494,4,37.1,True
+2025-05-13,Rotterdam,0.646,6,74.9,True
+2025-05-13,Los Angeles,0.5656,5,54.7,True
+2025-05-14,Shanghai,0.5654,6,53.8,True
+2025-05-14,Singapore,0.4761,4,48.6,True
+2025-05-14,Rotterdam,0.6605,5,66.7,True
+2025-05-14,Los Angeles,0.6521,6,64.9,True
+2025-05-15,Shanghai,0.5613,7,64.7,True
+2025-05-15,Singapore,0.6467,4,58.6,True
+2025-05-15,Rotterdam,0.4863,2,33.3,True
+2025-05-15,Los Angeles,0.4166,4,37.8,True
+2025-05-16,Shanghai,0.7594,7,78.2,True
+2025-05-16,Singapore,0.574,4,34.9,True
+2025-05-16,Rotterdam,0.6527,9,88.0,True
+2025-05-16,Los Angeles,0.5574,3,44.8,True
+2025-05-17,Shanghai,0.7873,7,68.8,True
+2025-05-17,Singapore,0.407,3,44.0,True
+2025-05-17,Rotterdam,0.7491,5,68.6,True
+2025-05-17,Los Angeles,0.4571,4,47.9,True
+2025-05-18,Shanghai,0.5926,4,48.8,True
+2025-05-18,Singapore,0.7332,4,53.1,True
+2025-05-18,Rotterdam,0.5452,6,64.8,True
+2025-05-18,Los Angeles,0.3995,6,60.4,True
+2025-05-19,Shanghai,0.622,4,49.0,True
+2025-05-19,Singapore,0.5821,6,69.0,True
+2025-05-19,Rotterdam,0.625,8,75.3,True
+2025-05-19,Los Angeles,0.3734,5,41.7,True
+2025-05-20,Shanghai,0.506,4,37.3,True
+2025-05-20,Singapore,0.398,2,36.3,True
+2025-05-20,Rotterdam,0.6207,6,66.4,True
+2025-05-20,Los Angeles,0.516,6,66.1,True
+2025-05-21,Shanghai,0.5232,7,67.4,True
+2025-05-21,Singapore,0.3936,3,38.7,True
+2025-05-21,Rotterdam,0.5887,5,69.3,True
+2025-05-21,Los Angeles,0.4114,3,34.2,True
+2025-05-22,Shanghai,0.7983,6,64.2,True
+2025-05-22,Singapore,0.3845,5,51.6,True
+2025-05-22,Rotterdam,0.5173,4,38.8,True
+2025-05-22,Los Angeles,0.6584,3,43.2,True
+2025-05-23,Shanghai,0.6666,7,89.0,True
+2025-05-23,Singapore,0.4084,5,55.9,True
+2025-05-23,Rotterdam,0.4363,4,41.4,True
+2025-05-23,Los Angeles,0.4196,6,51.9,True
+2025-05-24,Shanghai,0.62,6,57.0,True
+2025-05-24,Singapore,0.5734,5,62.6,True
+2025-05-24,Rotterdam,0.4787,2,38.5,True
+2025-05-24,Los Angeles,0.3929,4,37.3,True
+2025-05-25,Shanghai,0.4177,4,37.1,True
+2025-05-25,Singapore,0.4279,5,48.6,True
+2025-05-25,Rotterdam,0.563,5,49.2,True
+2025-05-25,Los Angeles,0.5022,5,44.9,True
+2025-05-26,Shanghai,0.5145,2,27.1,True
+2025-05-26,Singapore,0.4682,4,47.5,True
+2025-05-26,Rotterdam,0.3413,2,38.2,True
+2025-05-26,Los Angeles,0.5693,5,67.0,True
+2025-05-27,Shanghai,0.6564,7,77.4,True
+2025-05-27,Singapore,0.5452,6,62.0,True
+2025-05-27,Rotterdam,0.5827,5,65.4,True
+2025-05-27,Los Angeles,0.5905,3,37.5,True
+2025-05-28,Shanghai,0.6275,5,49.0,True
+2025-05-28,Singapore,0.5149,2,33.1,True
+2025-05-28,Rotterdam,0.7328,8,83.9,True
+2025-05-28,Los Angeles,0.4195,4,41.5,True
+2025-05-29,Shanghai,0.8126,9,96.3,True
+2025-05-29,Singapore,0.7635,6,64.0,True
+2025-05-29,Rotterdam,0.6165,5,55.7,True
+2025-05-29,Los Angeles,0.5872,6,67.6,True
+2025-05-30,Shanghai,0.7096,5,58.4,True
+2025-05-30,Singapore,0.6578,10,91.1,True
+2025-05-30,Rotterdam,0.6546,6,69.6,True
+2025-05-30,Los Angeles,0.6173,6,63.2,True
+2025-05-31,Shanghai,0.6923,6,72.4,True
+2025-05-31,Singapore,0.4038,4,38.9,True
+2025-05-31,Rotterdam,0.5665,4,33.7,True
+2025-05-31,Los Angeles,0.5435,4,37.9,True
+2025-06-01,Shanghai,0.7427,6,70.1,True
+2025-06-01,Singapore,0.7972,8,78.7,True
+2025-06-01,Rotterdam,0.6493,7,60.1,True
+2025-06-01,Los Angeles,0.6623,6,66.3,True
+2025-06-02,Shanghai,0.6222,7,66.0,True
+2025-06-02,Singapore,0.7553,7,60.7,True
+2025-06-02,Rotterdam,0.3834,4,34.0,True
+2025-06-02,Los Angeles,0.5664,5,54.5,True
+2025-06-03,Shanghai,0.6643,4,49.0,True
+2025-06-03,Singapore,0.812,8,85.2,True
+2025-06-03,Rotterdam,0.7922,10,91.8,True
+2025-06-03,Los Angeles,0.6525,5,51.2,True
+2025-06-04,Shanghai,0.7483,6,75.5,True
+2025-06-04,Singapore,0.7877,3,48.2,True
+2025-06-04,Rotterdam,0.6664,6,68.8,True
+2025-06-04,Los Angeles,0.7094,9,96.0,True
+2025-06-05,Shanghai,0.7281,6,74.1,True
+2025-06-05,Singapore,0.7216,6,67.2,True
+2025-06-05,Rotterdam,0.6889,6,71.9,True
+2025-06-05,Los Angeles,0.6651,5,67.7,True
+2025-06-06,Shanghai,0.7294,5,54.3,True
+2025-06-06,Singapore,0.722,6,64.9,True
+2025-06-06,Rotterdam,0.8243,7,88.1,True
+2025-06-06,Los Angeles,0.6559,7,78.8,True
+2025-06-07,Shanghai,0.6204,7,65.5,True
+2025-06-07,Singapore,0.86,11,104.0,True
+2025-06-07,Rotterdam,0.5523,4,52.1,True
+2025-06-07,Los Angeles,0.6995,7,76.0,True
+2025-06-08,Shanghai,0.6427,8,88.6,True
+2025-06-08,Singapore,0.7395,9,97.4,True
+2025-06-08,Rotterdam,0.933,8,77.2,True
+2025-06-08,Los Angeles,0.6835,7,76.6,True
+2025-06-09,Shanghai,0.7566,5,67.7,True
+2025-06-09,Singapore,1.0,8,88.6,True
+2025-06-09,Rotterdam,0.6308,7,69.7,True
+2025-06-09,Los Angeles,0.7202,5,54.5,True
+2025-06-10,Shanghai,0.8022,8,71.2,True
+2025-06-10,Singapore,0.8532,9,82.2,True
+2025-06-10,Rotterdam,0.6133,6,68.4,True
+2025-06-10,Los Angeles,0.7415,6,65.4,True
+2025-06-11,Shanghai,0.742,6,57.5,True
+2025-06-11,Singapore,0.7001,4,59.5,True
+2025-06-11,Rotterdam,0.581,4,48.3,True
+2025-06-11,Los Angeles,0.6268,7,82.4,True
+2025-06-12,Shanghai,0.8453,7,74.5,True
+2025-06-12,Singapore,0.6995,6,58.2,True
+2025-06-12,Rotterdam,0.736,8,73.0,True
+2025-06-12,Los Angeles,0.6055,6,50.7,True
+2025-06-13,Shanghai,0.7903,4,56.5,True
+2025-06-13,Singapore,0.6337,5,43.4,True
+2025-06-13,Rotterdam,0.5255,3,40.3,True
+2025-06-13,Los Angeles,0.8596,8,90.9,True
+2025-06-14,Shanghai,0.7731,6,68.1,True
+2025-06-14,Singapore,0.7464,7,66.7,True
+2025-06-14,Rotterdam,0.6846,8,78.9,True
+2025-06-14,Los Angeles,0.6164,6,63.0,True
+2025-06-15,Shanghai,0.7336,6,77.8,True
+2025-06-15,Singapore,0.6111,7,62.7,True
+2025-06-15,Rotterdam,0.7305,8,79.6,True
+2025-06-15,Los Angeles,0.7219,5,55.2,True
+2025-06-16,Shanghai,0.6643,7,72.9,True
+2025-06-16,Singapore,0.7699,8,93.1,True
+2025-06-16,Rotterdam,0.7717,6,62.4,True
+2025-06-16,Los Angeles,0.6157,7,75.3,True
+2025-06-17,Shanghai,0.6673,2,37.8,True
+2025-06-17,Singapore,0.6045,3,47.7,True
+2025-06-17,Rotterdam,0.5688,4,45.3,True
+2025-06-17,Los Angeles,0.6761,6,64.9,True
+2025-06-18,Shanghai,0.8795,7,74.9,True
+2025-06-18,Singapore,0.6776,8,70.5,True
+2025-06-18,Rotterdam,0.62,6,76.9,True
+2025-06-18,Los Angeles,0.4808,5,44.3,True
+2025-06-19,Shanghai,0.9891,8,85.0,True
+2025-06-19,Singapore,0.8384,8,88.8,True
+2025-06-19,Rotterdam,0.676,6,73.3,True
+2025-06-19,Los Angeles,0.6933,5,48.7,True
+2025-06-20,Shanghai,0.7778,8,83.7,True
+2025-06-20,Singapore,0.6639,6,74.1,True
+2025-06-20,Rotterdam,0.6787,5,62.9,True
+2025-06-20,Los Angeles,0.7673,9,80.9,True
+2025-06-21,Shanghai,0.7164,9,80.5,True
+2025-06-21,Singapore,0.6934,5,48.6,True
+2025-06-21,Rotterdam,0.5079,4,33.5,True
+2025-06-21,Los Angeles,0.7054,8,70.7,True
+2025-06-22,Shanghai,0.8392,9,97.8,True
+2025-06-22,Singapore,0.8238,5,59.9,True
+2025-06-22,Rotterdam,0.8412,9,85.1,True
+2025-06-22,Los Angeles,0.6362,7,69.8,True
+2025-06-23,Shanghai,0.8072,8,83.5,True
+2025-06-23,Singapore,0.6386,5,53.2,True
+2025-06-23,Rotterdam,0.599,8,80.7,True
+2025-06-23,Los Angeles,0.563,6,68.9,True
+2025-06-24,Shanghai,0.7841,6,78.6,True
+2025-06-24,Singapore,0.8549,8,82.6,True
+2025-06-24,Rotterdam,0.5485,3,43.6,True
+2025-06-24,Los Angeles,0.6356,8,88.3,True
+2025-06-25,Shanghai,0.7958,6,72.4,True
+2025-06-25,Singapore,0.709,6,59.3,True
+2025-06-25,Rotterdam,0.8498,11,108.0,True
+2025-06-25,Los Angeles,0.7076,8,78.1,True
+2025-06-26,Shanghai,0.8567,8,77.9,True
+2025-06-26,Singapore,0.913,9,84.2,True
+2025-06-26,Rotterdam,0.8123,6,75.9,True
+2025-06-26,Los Angeles,0.5005,5,52.4,True
+2025-06-27,Shanghai,0.6551,8,82.8,True
+2025-06-27,Singapore,0.672,8,79.0,True
+2025-06-27,Rotterdam,0.5721,6,69.7,True
+2025-06-27,Los Angeles,0.7243,9,83.3,True
+2025-06-28,Shanghai,0.6939,8,73.3,True
+2025-06-28,Singapore,0.7341,9,82.4,True
+2025-06-28,Rotterdam,0.6345,9,81.6,True
+2025-06-28,Los Angeles,0.5515,5,68.3,True
+2025-06-29,Shanghai,0.8347,6,74.1,True
+2025-06-29,Singapore,0.7158,5,61.3,True
+2025-06-29,Rotterdam,0.6218,6,64.9,True
+2025-06-29,Los Angeles,0.6573,4,55.8,True
+2025-06-30,Shanghai,0.8121,11,100.9,True
+2025-06-30,Singapore,0.6067,7,62.9,True
+2025-06-30,Rotterdam,0.6535,9,80.8,True
+2025-06-30,Los Angeles,0.5116,5,47.0,True
+2025-07-01,Shanghai,0.7554,8,82.6,True
+2025-07-01,Singapore,0.8696,8,80.1,True
+2025-07-01,Rotterdam,0.5686,5,56.2,True
+2025-07-01,Los Angeles,0.549,6,53.2,True
+2025-07-02,Shanghai,0.7757,6,59.6,True
+2025-07-02,Singapore,0.6694,6,60.9,True
+2025-07-02,Rotterdam,0.5578,3,32.4,True
+2025-07-02,Los Angeles,0.6332,5,59.6,True
+2025-07-03,Shanghai,0.6481,4,56.2,True
+2025-07-03,Singapore,0.6205,6,51.6,True
+2025-07-03,Rotterdam,0.7136,7,62.3,True
+2025-07-03,Los Angeles,0.7476,6,79.0,True
+2025-07-04,Shanghai,0.6566,4,54.4,True
+2025-07-04,Singapore,0.7089,6,62.5,True
+2025-07-04,Rotterdam,0.6567,7,66.3,True
+2025-07-04,Los Angeles,0.5491,6,63.8,True
+2025-07-05,Shanghai,0.7599,7,60.2,True
+2025-07-05,Singapore,0.7966,7,78.6,True
+2025-07-05,Rotterdam,0.6377,7,65.3,True
+2025-07-05,Los Angeles,0.7929,6,77.0,True
+2025-07-06,Shanghai,0.8677,9,90.3,True
+2025-07-06,Singapore,0.6525,7,60.7,True
+2025-07-06,Rotterdam,0.7396,8,72.8,True
+2025-07-06,Los Angeles,0.5632,8,72.6,True
+2025-07-07,Shanghai,0.8285,10,96.8,True
+2025-07-07,Singapore,0.6871,6,54.8,True
+2025-07-07,Rotterdam,0.7831,7,72.1,True
+2025-07-07,Los Angeles,0.6045,5,44.9,True
+2025-07-08,Shanghai,0.836,7,85.8,True
+2025-07-08,Singapore,0.6816,5,58.8,True
+2025-07-08,Rotterdam,0.6302,7,63.2,True
+2025-07-08,Los Angeles,0.642,4,36.8,True
+2025-07-09,Shanghai,0.6269,7,65.3,True
+2025-07-09,Singapore,0.794,10,94.6,True
+2025-07-09,Rotterdam,0.7451,7,74.7,True
+2025-07-09,Los Angeles,0.6098,6,60.1,True
+2025-07-10,Shanghai,0.6799,5,62.0,True
+2025-07-10,Singapore,0.6979,5,69.7,True
+2025-07-10,Rotterdam,0.7241,8,74.8,True
+2025-07-10,Los Angeles,0.5804,6,68.1,True
+2025-07-11,Shanghai,0.7699,6,53.9,True
+2025-07-11,Singapore,0.569,7,61.2,True
+2025-07-11,Rotterdam,0.5885,8,72.9,True
+2025-07-11,Los Angeles,0.7258,7,63.5,True
+2025-07-12,Shanghai,0.6351,5,52.0,True
+2025-07-12,Singapore,0.6861,7,80.5,True
+2025-07-12,Rotterdam,0.6433,6,74.3,True
+2025-07-12,Los Angeles,0.6369,7,80.8,True
+2025-07-13,Shanghai,0.4905,7,68.9,True
+2025-07-13,Singapore,0.4809,4,46.9,True
+2025-07-13,Rotterdam,0.6024,6,72.0,True
+2025-07-13,Los Angeles,0.5142,3,43.8,True
+2025-07-14,Shanghai,0.744,8,74.9,True
+2025-07-14,Singapore,0.823,5,61.4,True
+2025-07-14,Rotterdam,0.6951,3,45.3,True
+2025-07-14,Los Angeles,0.6199,5,66.3,True
+2025-07-15,Shanghai,0.8109,7,86.9,True
+2025-07-15,Singapore,1.0,9,91.2,True
+2025-07-15,Rotterdam,0.7071,8,85.2,True
+2025-07-15,Los Angeles,0.7813,8,96.2,True
+2025-07-16,Shanghai,0.943,7,81.0,True
+2025-07-16,Singapore,0.6883,6,78.0,True
+2025-07-16,Rotterdam,0.5553,6,54.5,True
+2025-07-16,Los Angeles,0.6703,8,77.0,True
+2025-07-17,Shanghai,0.688,5,67.6,True
+2025-07-17,Singapore,0.7487,8,71.3,True
+2025-07-17,Rotterdam,0.7686,5,51.5,True
+2025-07-17,Los Angeles,0.7143,5,60.5,True
+2025-07-18,Shanghai,0.8301,6,65.8,True
+2025-07-18,Singapore,0.7175,4,51.7,True
+2025-07-18,Rotterdam,0.4167,5,45.8,True
+2025-07-18,Los Angeles,0.4408,6,50.7,True
+2025-07-19,Shanghai,0.6168,3,40.3,True
+2025-07-19,Singapore,0.8113,8,76.7,True
+2025-07-19,Rotterdam,0.794,8,86.0,True
+2025-07-19,Los Angeles,0.4794,5,45.0,True
+2025-07-20,Shanghai,0.7843,5,65.2,True
+2025-07-20,Singapore,0.6056,5,56.4,True
+2025-07-20,Rotterdam,0.5857,5,50.4,True
+2025-07-20,Los Angeles,0.5768,5,52.8,True
+2025-07-21,Shanghai,0.8252,5,64.1,True
+2025-07-21,Singapore,0.8216,7,72.9,True
+2025-07-21,Rotterdam,0.7778,5,68.4,True
+2025-07-21,Los Angeles,0.6128,4,46.3,True
+2025-07-22,Shanghai,0.573,5,49.5,True
+2025-07-22,Singapore,0.594,8,73.0,True
+2025-07-22,Rotterdam,0.7732,7,78.7,True
+2025-07-22,Los Angeles,0.6095,6,70.6,True
+2025-07-23,Shanghai,0.7536,7,89.4,True
+2025-07-23,Singapore,0.8462,4,58.1,True
+2025-07-23,Rotterdam,0.6229,2,31.1,True
+2025-07-23,Los Angeles,0.5839,6,51.4,True
+2025-07-24,Shanghai,0.8547,9,102.0,True
+2025-07-24,Singapore,0.9236,8,92.0,True
+2025-07-24,Rotterdam,0.6554,7,67.1,True
+2025-07-24,Los Angeles,0.7371,7,65.3,True
+2025-07-25,Shanghai,0.8134,7,89.6,True
+2025-07-25,Singapore,0.8022,6,78.5,True
+2025-07-25,Rotterdam,0.6115,7,76.1,True
+2025-07-25,Los Angeles,0.6961,9,83.3,True
+2025-07-26,Shanghai,0.794,6,71.2,True
+2025-07-26,Singapore,0.7609,7,71.8,True
+2025-07-26,Rotterdam,0.6071,5,67.8,True
+2025-07-26,Los Angeles,0.5693,6,62.2,True
+2025-07-27,Shanghai,0.8254,7,82.9,True
+2025-07-27,Singapore,0.8185,7,62.0,True
+2025-07-27,Rotterdam,0.7179,9,81.6,True
+2025-07-27,Los Angeles,0.6042,4,51.9,True
+2025-07-28,Shanghai,0.5911,6,66.5,True
+2025-07-28,Singapore,0.6827,6,67.0,True
+2025-07-28,Rotterdam,0.745,8,72.0,True
+2025-07-28,Los Angeles,0.7318,6,79.2,True
+2025-07-29,Shanghai,0.8639,9,82.8,True
+2025-07-29,Singapore,0.7118,7,78.6,True
+2025-07-29,Rotterdam,0.6924,6,65.4,True
+2025-07-29,Los Angeles,0.5246,4,57.0,True
+2025-07-30,Shanghai,0.4946,4,35.4,True
+2025-07-30,Singapore,0.6897,5,68.7,True
+2025-07-30,Rotterdam,0.7073,3,50.0,True
+2025-07-30,Los Angeles,0.5979,5,55.6,True
+2025-07-31,Shanghai,0.5722,8,72.1,True
+2025-07-31,Singapore,0.8701,6,63.1,True
+2025-07-31,Rotterdam,0.7818,10,98.7,True
+2025-07-31,Los Angeles,0.4752,2,39.2,True
+2025-08-01,Shanghai,0.5662,7,63.3,True
+2025-08-01,Singapore,0.8746,8,75.0,True
+2025-08-01,Rotterdam,0.6866,8,79.6,True
+2025-08-01,Los Angeles,0.8318,8,91.7,True
+2025-08-02,Shanghai,0.8494,9,104.0,True
+2025-08-02,Singapore,0.739,6,73.5,True
+2025-08-02,Rotterdam,0.8175,9,95.9,True
+2025-08-02,Los Angeles,0.5598,4,40.0,True
+2025-08-03,Shanghai,0.6926,7,62.1,True
+2025-08-03,Singapore,0.6264,4,49.7,True
+2025-08-03,Rotterdam,0.7358,8,97.2,True
+2025-08-03,Los Angeles,0.54,4,40.1,True
+2025-08-04,Shanghai,0.8089,7,73.8,True
+2025-08-04,Singapore,0.6813,4,54.9,True
+2025-08-04,Rotterdam,0.5396,4,47.1,True
+2025-08-04,Los Angeles,0.4901,2,33.7,True
+2025-08-05,Shanghai,0.8094,8,81.8,True
+2025-08-05,Singapore,0.6548,6,77.8,True
+2025-08-05,Rotterdam,0.6588,3,42.2,True
+2025-08-05,Los Angeles,0.6668,6,76.8,True
+2025-08-06,Shanghai,0.7666,7,86.6,True
+2025-08-06,Singapore,0.5679,5,53.5,True
+2025-08-06,Rotterdam,0.5933,6,52.6,True
+2025-08-06,Los Angeles,0.67,5,40.6,True
+2025-08-07,Shanghai,0.6925,6,64.8,True
+2025-08-07,Singapore,0.7601,5,67.1,True
+2025-08-07,Rotterdam,0.6837,7,78.4,True
+2025-08-07,Los Angeles,0.5549,3,46.2,True
+2025-08-08,Shanghai,0.6931,8,70.9,True
+2025-08-08,Singapore,0.4347,4,39.6,True
+2025-08-08,Rotterdam,0.6435,5,40.9,True
+2025-08-08,Los Angeles,0.6598,6,61.3,True
+2025-08-09,Shanghai,0.894,9,84.2,True
+2025-08-09,Singapore,0.7275,7,74.0,True
+2025-08-09,Rotterdam,0.6301,7,70.9,True
+2025-08-09,Los Angeles,0.6887,8,77.4,True
+2025-08-10,Shanghai,0.7668,4,59.1,True
+2025-08-10,Singapore,0.6962,6,76.5,True
+2025-08-10,Rotterdam,0.7791,6,70.7,True
+2025-08-10,Los Angeles,0.4676,6,55.6,True
+2025-08-11,Shanghai,0.694,8,79.1,True
+2025-08-11,Singapore,0.5658,6,57.1,True
+2025-08-11,Rotterdam,0.7279,8,80.7,True
+2025-08-11,Los Angeles,0.7167,5,58.5,True
+2025-08-12,Shanghai,0.7078,6,72.3,True
+2025-08-12,Singapore,0.7626,6,50.2,True
+2025-08-12,Rotterdam,0.5396,5,55.7,True
+2025-08-12,Los Angeles,0.4703,4,56.0,True
+2025-08-13,Shanghai,0.7263,7,64.0,True
+2025-08-13,Singapore,0.8674,7,78.0,True
+2025-08-13,Rotterdam,0.7189,9,91.1,True
+2025-08-13,Los Angeles,0.4935,5,45.1,True
+2025-08-14,Shanghai,0.824,7,88.0,True
+2025-08-14,Singapore,0.6156,6,59.8,True
+2025-08-14,Rotterdam,0.6303,7,71.5,True
+2025-08-14,Los Angeles,0.768,6,66.1,True
+2025-08-15,Shanghai,0.7419,7,75.7,True
+2025-08-15,Singapore,0.7554,8,88.5,True
+2025-08-15,Rotterdam,0.7254,9,83.1,True
+2025-08-15,Los Angeles,0.6028,6,53.4,True
+2025-08-16,Shanghai,0.6833,7,75.1,True
+2025-08-16,Singapore,0.7291,8,86.3,True
+2025-08-16,Rotterdam,0.6632,6,66.6,True
+2025-08-16,Los Angeles,0.6932,7,70.0,True
+2025-08-17,Shanghai,0.5959,7,72.1,True
+2025-08-17,Singapore,0.7283,5,68.2,True
+2025-08-17,Rotterdam,0.5648,2,29.1,True
+2025-08-17,Los Angeles,0.4561,3,35.4,True
+2025-08-18,Shanghai,1.0,8,90.9,True
+2025-08-18,Singapore,0.7808,6,65.3,True
+2025-08-18,Rotterdam,0.7134,7,75.4,True
+2025-08-18,Los Angeles,0.5833,4,60.0,True
+2025-08-19,Shanghai,0.7326,6,53.8,True
+2025-08-19,Singapore,0.6029,6,68.2,True
+2025-08-19,Rotterdam,0.6631,4,53.3,True
+2025-08-19,Los Angeles,0.5829,5,64.9,True
+2025-08-20,Shanghai,0.6281,3,48.6,True
+2025-08-20,Singapore,0.7428,9,84.8,True
+2025-08-20,Rotterdam,0.7172,9,81.2,True
+2025-08-20,Los Angeles,0.6736,7,62.3,True
+2025-08-21,Shanghai,0.665,9,85.2,True
+2025-08-21,Singapore,0.9683,10,105.7,True
+2025-08-21,Rotterdam,0.6379,5,63.1,True
+2025-08-21,Los Angeles,0.6678,4,39.4,True
+2025-08-22,Shanghai,0.8128,6,57.5,True
+2025-08-22,Singapore,0.7349,5,60.5,True
+2025-08-22,Rotterdam,0.6298,5,60.7,True
+2025-08-22,Los Angeles,0.6512,6,61.4,True
+2025-08-23,Shanghai,0.748,8,78.0,True
+2025-08-23,Singapore,0.6811,7,71.0,True
+2025-08-23,Rotterdam,0.736,6,63.6,True
+2025-08-23,Los Angeles,0.7299,8,84.4,True
+2025-08-24,Shanghai,0.6439,3,49.2,True
+2025-08-24,Singapore,0.9517,8,92.3,True
+2025-08-24,Rotterdam,0.8616,6,78.5,True
+2025-08-24,Los Angeles,0.7893,9,84.1,True
+2025-08-25,Shanghai,0.7145,8,79.5,True
+2025-08-25,Singapore,0.7241,7,66.9,True
+2025-08-25,Rotterdam,0.7204,5,45.2,True
+2025-08-25,Los Angeles,0.6452,7,76.0,True
+2025-08-26,Shanghai,0.8557,10,101.7,True
+2025-08-26,Singapore,0.6879,5,51.8,True
+2025-08-26,Rotterdam,0.6809,7,66.6,True
+2025-08-26,Los Angeles,0.6654,5,55.7,True
+2025-08-27,Shanghai,0.8023,7,85.5,True
+2025-08-27,Singapore,0.86,8,80.3,True
+2025-08-27,Rotterdam,0.8072,9,91.4,True
+2025-08-27,Los Angeles,0.715,5,58.0,True
+2025-08-28,Shanghai,0.8776,10,100.8,True
+2025-08-28,Singapore,0.8692,8,89.3,True
+2025-08-28,Rotterdam,0.5462,7,80.3,True
+2025-08-28,Los Angeles,0.6741,5,60.8,True
+2025-08-29,Shanghai,0.593,3,45.9,True
+2025-08-29,Singapore,0.6363,6,79.6,True
+2025-08-29,Rotterdam,0.625,6,75.5,True
+2025-08-29,Los Angeles,0.567,7,61.4,True
+2025-08-30,Shanghai,0.9342,10,104.8,True
+2025-08-30,Singapore,0.8243,7,70.5,True
+2025-08-30,Rotterdam,0.7795,9,87.1,True
+2025-08-30,Los Angeles,0.6836,6,58.8,True
+2025-08-31,Shanghai,0.873,9,98.8,True
+2025-08-31,Singapore,0.4355,4,39.6,True
+2025-08-31,Rotterdam,0.6956,8,72.9,True
+2025-08-31,Los Angeles,0.5828,7,74.8,True
+2025-09-01,Shanghai,0.6841,3,47.6,True
+2025-09-01,Singapore,0.6472,5,64.5,True
+2025-09-01,Rotterdam,0.8203,7,82.0,True
+2025-09-01,Los Angeles,0.4774,4,50.7,True
+2025-09-02,Shanghai,0.7595,7,72.4,True
+2025-09-02,Singapore,0.6556,4,43.9,True
+2025-09-02,Rotterdam,0.5695,5,67.9,True
+2025-09-02,Los Angeles,0.5222,5,47.2,True
+2025-09-03,Shanghai,0.6502,2,23.4,True
+2025-09-03,Singapore,0.7604,8,98.5,True
+2025-09-03,Rotterdam,0.731,8,75.1,True
+2025-09-03,Los Angeles,0.4054,4,33.6,True
+2025-09-04,Shanghai,0.859,8,71.3,True
+2025-09-04,Singapore,0.7577,8,73.0,True
+2025-09-04,Rotterdam,0.5073,4,42.6,True
+2025-09-04,Los Angeles,0.5478,3,38.7,True
+2025-09-05,Shanghai,0.8125,7,85.1,True
+2025-09-05,Singapore,0.7078,7,75.5,True
+2025-09-05,Rotterdam,0.648,5,68.0,True
+2025-09-05,Los Angeles,0.5499,6,62.7,True
+2025-09-06,Shanghai,0.8059,9,83.6,True
+2025-09-06,Singapore,0.6983,4,59.0,True
+2025-09-06,Rotterdam,0.769,8,79.4,True
+2025-09-06,Los Angeles,0.5215,5,47.6,True
+2025-09-07,Shanghai,0.6538,5,66.8,True
+2025-09-07,Singapore,0.6211,8,71.7,True
+2025-09-07,Rotterdam,0.7102,7,67.1,True
+2025-09-07,Los Angeles,0.7087,7,74.8,True
+2025-09-08,Shanghai,0.8323,7,86.3,True
+2025-09-08,Singapore,0.8209,7,73.0,True
+2025-09-08,Rotterdam,0.6512,7,84.1,True
+2025-09-08,Los Angeles,0.7172,9,82.0,True
+2025-09-09,Shanghai,0.7499,9,84.8,True
+2025-09-09,Singapore,0.7488,6,72.3,True
+2025-09-09,Rotterdam,0.6719,7,71.1,True
+2025-09-09,Los Angeles,0.5361,6,58.7,True
+2025-09-10,Shanghai,0.8568,10,91.6,True
+2025-09-10,Singapore,0.743,7,68.9,True
+2025-09-10,Rotterdam,0.5425,5,46.3,True
+2025-09-10,Los Angeles,0.6738,6,72.5,True
+2025-09-11,Shanghai,0.7309,4,47.4,True
+2025-09-11,Singapore,0.6085,5,65.7,True
+2025-09-11,Rotterdam,0.6904,10,93.5,True
+2025-09-11,Los Angeles,0.5905,4,31.0,True
+2025-09-12,Shanghai,0.7851,10,92.8,True
+2025-09-12,Singapore,0.6581,6,62.6,True
+2025-09-12,Rotterdam,0.7067,6,79.3,True
+2025-09-12,Los Angeles,0.7242,5,55.9,True
+2025-09-13,Shanghai,0.6971,7,72.3,True
+2025-09-13,Singapore,0.6765,8,71.4,True
+2025-09-13,Rotterdam,0.6063,6,60.7,True
+2025-09-13,Los Angeles,0.6588,3,42.0,True
+2025-09-14,Shanghai,0.7861,8,73.4,True
+2025-09-14,Singapore,0.7679,9,96.5,True
+2025-09-14,Rotterdam,0.6785,7,88.4,True
+2025-09-14,Los Angeles,0.6628,8,86.6,True
+2025-09-15,Shanghai,0.6126,6,67.7,True
+2025-09-15,Singapore,0.5844,5,51.2,True
+2025-09-15,Rotterdam,0.6419,2,39.1,True
+2025-09-15,Los Angeles,0.6568,4,49.5,True
+2025-09-16,Shanghai,0.6962,8,77.9,True
+2025-09-16,Singapore,0.601,6,51.1,True
+2025-09-16,Rotterdam,0.6159,6,73.8,True
+2025-09-16,Los Angeles,0.6932,6,68.6,True
+2025-09-17,Shanghai,0.8446,8,98.2,True
+2025-09-17,Singapore,0.7635,10,93.5,True
+2025-09-17,Rotterdam,0.7161,8,82.3,True
+2025-09-17,Los Angeles,0.6784,10,90.6,True
+2025-09-18,Shanghai,0.774,5,52.2,True
+2025-09-18,Singapore,0.8986,9,106.0,True
+2025-09-18,Rotterdam,0.5862,6,56.5,True
+2025-09-18,Los Angeles,0.66,7,67.7,True
+2025-09-19,Shanghai,0.955,7,86.2,True
+2025-09-19,Singapore,0.7692,5,64.1,True
+2025-09-19,Rotterdam,0.4699,2,36.5,True
+2025-09-19,Los Angeles,0.5851,6,66.6,True
+2025-09-20,Shanghai,0.6665,8,70.6,True
+2025-09-20,Singapore,0.6564,5,55.3,True
+2025-09-20,Rotterdam,0.7595,8,79.3,True
+2025-09-20,Los Angeles,0.4873,4,48.9,True
+2025-09-21,Shanghai,0.7832,8,82.3,True
+2025-09-21,Singapore,0.7222,6,63.0,True
+2025-09-21,Rotterdam,0.6803,8,78.5,True
+2025-09-21,Los Angeles,0.7801,6,73.2,True
+2025-09-22,Shanghai,0.6727,7,86.7,True
+2025-09-22,Singapore,0.7413,7,76.9,True
+2025-09-22,Rotterdam,0.6848,7,71.6,True
+2025-09-22,Los Angeles,0.6642,8,81.7,True
+2025-09-23,Shanghai,0.7301,9,84.1,True
+2025-09-23,Singapore,0.7575,6,71.6,True
+2025-09-23,Rotterdam,0.8069,8,73.9,True
+2025-09-23,Los Angeles,0.8669,7,87.1,True
+2025-09-24,Shanghai,0.5227,5,67.9,True
+2025-09-24,Singapore,0.6294,8,89.6,True
+2025-09-24,Rotterdam,0.5847,4,59.2,True
+2025-09-24,Los Angeles,0.5546,3,48.8,True
+2025-09-25,Shanghai,0.8426,7,81.1,True
+2025-09-25,Singapore,0.795,7,73.4,True
+2025-09-25,Rotterdam,0.537,6,54.3,True
+2025-09-25,Los Angeles,0.6085,9,80.2,True
+2025-09-26,Shanghai,0.677,8,82.1,True
+2025-09-26,Singapore,0.6134,4,48.8,True
+2025-09-26,Rotterdam,0.665,7,89.9,True
+2025-09-26,Los Angeles,0.6497,5,48.4,True
+2025-09-27,Shanghai,0.8041,7,74.5,True
+2025-09-27,Singapore,0.7676,7,69.5,True
+2025-09-27,Rotterdam,0.6065,6,68.4,True
+2025-09-27,Los Angeles,0.6173,3,41.7,True
+2025-09-28,Shanghai,0.7909,7,70.3,True
+2025-09-28,Singapore,0.9683,8,85.2,True
+2025-09-28,Rotterdam,0.8324,8,96.9,True
+2025-09-28,Los Angeles,0.6249,7,61.4,True
+2025-09-29,Shanghai,0.7928,12,110.8,True
+2025-09-29,Singapore,0.7092,4,55.3,True
+2025-09-29,Rotterdam,0.8261,8,81.5,True
+2025-09-29,Los Angeles,0.5078,5,43.4,True
+2025-09-30,Shanghai,0.9621,8,97.5,True
+2025-09-30,Singapore,0.6749,5,55.2,True
+2025-09-30,Rotterdam,0.7237,9,80.1,True
+2025-09-30,Los Angeles,0.6498,7,71.7,True
+2025-10-01,Shanghai,0.4531,4,55.7,True
+2025-10-01,Singapore,0.6225,6,72.5,True
+2025-10-01,Rotterdam,0.5312,8,74.2,True
+2025-10-01,Los Angeles,0.2837,5,52.2,True
+2025-10-02,Shanghai,0.5709,6,67.3,True
+2025-10-02,Singapore,0.5452,6,56.5,True
+2025-10-02,Rotterdam,0.4887,5,41.7,True
+2025-10-02,Los Angeles,0.4823,5,45.9,True
+2025-10-03,Shanghai,0.602,7,64.4,True
+2025-10-03,Singapore,0.6142,6,73.4,True
+2025-10-03,Rotterdam,0.6223,4,54.3,True
+2025-10-03,Los Angeles,0.3418,3,42.4,True
+2025-10-04,Shanghai,0.5647,7,65.9,True
+2025-10-04,Singapore,0.5711,4,47.9,True
+2025-10-04,Rotterdam,0.6702,7,67.9,True
+2025-10-04,Los Angeles,0.5383,6,51.0,True
+2025-10-05,Shanghai,0.5105,3,48.5,True
+2025-10-05,Singapore,0.5133,2,24.8,True
+2025-10-05,Rotterdam,0.6929,5,61.5,True
+2025-10-05,Los Angeles,0.485,4,55.9,True
+2025-10-06,Shanghai,0.4532,5,50.4,True
+2025-10-06,Singapore,0.678,6,69.9,True
+2025-10-06,Rotterdam,0.5051,6,58.0,True
+2025-10-06,Los Angeles,0.5873,6,62.4,True
+2025-10-07,Shanghai,0.4158,1,29.4,True
+2025-10-07,Singapore,0.5397,5,59.4,True
+2025-10-07,Rotterdam,0.6799,6,75.4,True
+2025-10-07,Los Angeles,0.5466,6,51.4,True
+2025-10-08,Shanghai,0.7398,5,60.4,True
+2025-10-08,Singapore,0.495,5,42.7,True
+2025-10-08,Rotterdam,0.4389,7,71.8,True
+2025-10-08,Los Angeles,0.3589,0,11.1,True
+2025-10-09,Shanghai,0.6555,6,59.7,True
+2025-10-09,Singapore,0.5305,4,58.5,True
+2025-10-09,Rotterdam,0.6238,3,49.3,True
+2025-10-09,Los Angeles,0.5111,9,80.4,True
+2025-10-10,Shanghai,0.608,7,67.0,True
+2025-10-10,Singapore,0.3898,3,34.6,True
+2025-10-10,Rotterdam,0.6247,4,44.2,True
+2025-10-10,Los Angeles,0.4416,2,21.5,True
+2025-10-11,Shanghai,0.4725,6,52.5,True
+2025-10-11,Singapore,0.5481,4,49.2,True
+2025-10-11,Rotterdam,0.5638,5,53.6,True
+2025-10-11,Los Angeles,0.811,7,75.5,True
+2025-10-12,Shanghai,0.6073,6,73.3,True
+2025-10-12,Singapore,0.5182,6,61.2,True
+2025-10-12,Rotterdam,0.6696,5,44.5,True
+2025-10-12,Los Angeles,0.5056,4,55.8,True
+2025-10-13,Shanghai,0.5035,4,51.4,True
+2025-10-13,Singapore,0.6023,8,73.9,True
+2025-10-13,Rotterdam,0.4682,3,37.6,True
+2025-10-13,Los Angeles,0.4563,3,38.5,True
+2025-10-14,Shanghai,0.7591,7,66.5,True
+2025-10-14,Singapore,0.48,4,33.3,True
+2025-10-14,Rotterdam,0.5081,5,49.2,True
+2025-10-14,Los Angeles,0.3418,3,34.8,True
+2025-10-15,Shanghai,0.5468,6,60.5,True
+2025-10-15,Singapore,0.6262,3,49.0,True
+2025-10-15,Rotterdam,0.5287,5,47.8,True
+2025-10-15,Los Angeles,0.3206,2,23.3,True
+2025-10-16,Shanghai,0.5883,6,53.6,True
+2025-10-16,Singapore,0.7296,7,60.5,True
+2025-10-16,Rotterdam,0.8077,8,70.5,True
+2025-10-16,Los Angeles,0.2401,4,38.8,True
+2025-10-17,Shanghai,0.5658,7,74.8,True
+2025-10-17,Singapore,0.5493,9,88.6,True
+2025-10-17,Rotterdam,0.3842,5,55.3,True
+2025-10-17,Los Angeles,0.333,3,37.8,True
+2025-10-18,Shanghai,0.4995,4,44.5,True
+2025-10-18,Singapore,0.6267,3,48.8,True
+2025-10-18,Rotterdam,0.6041,7,66.3,True
+2025-10-18,Los Angeles,0.4157,5,52.1,True
+2025-10-19,Shanghai,0.7969,6,70.3,True
+2025-10-19,Singapore,0.4597,2,32.2,True
+2025-10-19,Rotterdam,0.4583,2,31.7,True
+2025-10-19,Los Angeles,0.7009,6,63.8,True
+2025-10-20,Shanghai,0.6606,7,82.7,True
+2025-10-20,Singapore,0.575,6,50.8,True
+2025-10-20,Rotterdam,0.4572,2,35.6,True
+2025-10-20,Los Angeles,0.445,2,33.6,True
+2025-10-21,Shanghai,0.6775,6,67.5,True
+2025-10-21,Singapore,0.5507,4,50.9,True
+2025-10-21,Rotterdam,0.5497,6,69.9,True
+2025-10-21,Los Angeles,0.437,5,47.4,True
+2025-10-22,Shanghai,0.6593,6,73.8,True
+2025-10-22,Singapore,0.623,5,62.7,True
+2025-10-22,Rotterdam,0.5826,6,62.7,True
+2025-10-22,Los Angeles,0.5686,4,49.6,True
+2025-10-23,Shanghai,0.6419,5,69.6,True
+2025-10-23,Singapore,0.4396,2,34.6,True
+2025-10-23,Rotterdam,0.4964,3,43.0,True
+2025-10-23,Los Angeles,0.5001,6,51.1,True
+2025-10-24,Shanghai,0.6344,4,50.7,True
+2025-10-24,Singapore,0.4833,3,39.0,True
+2025-10-24,Rotterdam,0.4293,5,61.6,True
+2025-10-24,Los Angeles,0.6722,6,68.1,True
+2025-10-25,Shanghai,0.4675,3,27.5,True
+2025-10-25,Singapore,0.728,6,62.4,True
+2025-10-25,Rotterdam,0.7453,6,64.2,True
+2025-10-25,Los Angeles,0.5252,2,38.2,True
+2025-10-26,Shanghai,0.7745,8,86.3,True
+2025-10-26,Singapore,0.4942,4,53.4,True
+2025-10-26,Rotterdam,0.3679,3,32.5,True
+2025-10-26,Los Angeles,0.422,4,56.7,True
+2025-10-27,Shanghai,0.5068,6,60.1,True
+2025-10-27,Singapore,0.5645,6,56.0,True
+2025-10-27,Rotterdam,0.4996,5,44.7,True
+2025-10-27,Los Angeles,0.4725,3,45.9,True
+2025-10-28,Shanghai,0.5317,4,49.7,True
+2025-10-28,Singapore,0.4783,2,36.6,True
+2025-10-28,Rotterdam,0.5075,2,33.7,True
+2025-10-28,Los Angeles,0.5697,3,44.5,True
+2025-10-29,Shanghai,0.4552,5,59.7,True
+2025-10-29,Singapore,0.4799,5,42.2,True
+2025-10-29,Rotterdam,0.5789,4,37.9,True
+2025-10-29,Los Angeles,0.5251,6,68.3,True
+2025-10-30,Shanghai,0.8441,7,71.8,True
+2025-10-30,Singapore,0.6774,6,73.5,True
+2025-10-30,Rotterdam,0.6509,8,72.0,True
+2025-10-30,Los Angeles,0.5288,7,62.8,True
+2025-10-31,Shanghai,0.4246,4,41.4,True
+2025-10-31,Singapore,0.5581,7,75.4,True
+2025-10-31,Rotterdam,0.419,3,21.0,True
+2025-10-31,Los Angeles,0.4645,4,43.7,True
+2025-11-01,Shanghai,0.5178,4,58.2,True
+2025-11-01,Singapore,0.5629,3,44.2,True
+2025-11-01,Rotterdam,0.495,4,43.8,True
+2025-11-01,Los Angeles,0.585,6,52.9,True
+2025-11-02,Shanghai,0.6016,5,54.6,True
+2025-11-02,Singapore,0.5056,4,46.6,True
+2025-11-02,Rotterdam,0.5666,7,75.4,True
+2025-11-02,Los Angeles,0.5643,7,77.1,True
+2025-11-03,Shanghai,0.5743,5,66.4,True
+2025-11-03,Singapore,0.442,7,63.6,True
+2025-11-03,Rotterdam,0.5579,4,59.2,True
+2025-11-03,Los Angeles,0.569,4,55.1,True
+2025-11-04,Shanghai,0.5994,4,55.1,True
+2025-11-04,Singapore,0.6661,7,60.6,True
+2025-11-04,Rotterdam,0.6427,5,50.0,True
+2025-11-04,Los Angeles,0.3571,3,34.2,True
+2025-11-05,Shanghai,0.5895,4,42.8,True
+2025-11-05,Singapore,0.6256,5,47.3,True
+2025-11-05,Rotterdam,0.708,7,69.8,True
+2025-11-05,Los Angeles,0.587,3,44.4,True
+2025-11-06,Shanghai,0.6554,4,52.5,True
+2025-11-06,Singapore,0.6795,9,83.4,True
+2025-11-06,Rotterdam,0.5828,4,51.5,True
+2025-11-06,Los Angeles,0.5276,6,64.5,True
+2025-11-07,Shanghai,0.4673,4,39.6,True
+2025-11-07,Singapore,0.5346,2,20.6,True
+2025-11-07,Rotterdam,0.6802,4,48.2,True
+2025-11-07,Los Angeles,0.2974,1,23.4,True
+2025-11-08,Shanghai,0.6174,5,68.3,True
+2025-11-08,Singapore,0.4676,4,54.1,True
+2025-11-08,Rotterdam,0.3554,3,39.3,True
+2025-11-08,Los Angeles,0.5586,7,68.1,True
+2025-11-09,Shanghai,0.5694,6,75.3,True
+2025-11-09,Singapore,0.4399,2,34.7,True
+2025-11-09,Rotterdam,0.5927,7,62.1,True
+2025-11-09,Los Angeles,0.6381,6,73.9,True
+2025-11-10,Shanghai,0.5641,4,45.8,True
+2025-11-10,Singapore,0.6027,4,58.7,True
+2025-11-10,Rotterdam,0.5504,5,65.0,True
+2025-11-10,Los Angeles,0.3877,6,59.3,True
+2025-11-11,Shanghai,0.5592,6,69.3,True
+2025-11-11,Singapore,0.5545,2,39.6,True
+2025-11-11,Rotterdam,0.3579,0,0.3,True
+2025-11-11,Los Angeles,0.5895,7,64.4,True
+2025-11-12,Shanghai,0.668,6,50.5,True
+2025-11-12,Singapore,0.4613,5,49.9,True
+2025-11-12,Rotterdam,0.6309,5,59.4,True
+2025-11-12,Los Angeles,0.5745,4,36.8,True
+2025-11-13,Shanghai,0.6753,3,49.4,True
+2025-11-13,Singapore,0.3827,2,21.6,True
+2025-11-13,Rotterdam,0.5627,6,54.6,True
+2025-11-13,Los Angeles,0.4852,7,69.5,True
+2025-11-14,Shanghai,0.6084,4,57.7,True
+2025-11-14,Singapore,0.5557,7,88.6,True
+2025-11-14,Rotterdam,0.5656,4,50.8,True
+2025-11-14,Los Angeles,0.611,4,39.8,True
+2025-11-15,Shanghai,0.6499,6,64.5,True
+2025-11-15,Singapore,0.5489,3,49.9,True
+2025-11-15,Rotterdam,0.6991,9,81.7,True
+2025-11-15,Los Angeles,0.4073,5,41.7,True
+2025-11-16,Shanghai,0.6884,5,52.3,True
+2025-11-16,Singapore,0.6814,6,63.7,True
+2025-11-16,Rotterdam,0.5458,6,69.7,True
+2025-11-16,Los Angeles,0.6395,9,101.8,True
+2025-11-17,Shanghai,0.7246,7,69.4,True
+2025-11-17,Singapore,0.7159,5,66.5,True
+2025-11-17,Rotterdam,0.6477,8,74.9,True
+2025-11-17,Los Angeles,0.2663,4,46.0,True
+2025-11-18,Shanghai,0.5309,5,57.9,True
+2025-11-18,Singapore,0.5258,5,44.1,True
+2025-11-18,Rotterdam,0.3707,3,49.1,True
+2025-11-18,Los Angeles,0.3393,3,33.6,True
+2025-11-19,Shanghai,0.6863,8,70.5,True
+2025-11-19,Singapore,0.5805,7,69.3,True
+2025-11-19,Rotterdam,0.5443,7,70.2,True
+2025-11-19,Los Angeles,0.6669,5,56.8,True
+2025-11-20,Shanghai,0.5875,4,50.4,True
+2025-11-20,Singapore,0.1867,3,20.3,True
+2025-11-20,Rotterdam,0.5475,5,47.2,True
+2025-11-20,Los Angeles,0.5452,6,73.1,True
+2025-11-21,Shanghai,0.5171,7,60.7,True
+2025-11-21,Singapore,0.681,4,59.3,True
+2025-11-21,Rotterdam,0.5155,5,42.0,True
+2025-11-21,Los Angeles,0.3372,3,25.2,True
+2025-11-22,Shanghai,0.4378,4,45.3,True
+2025-11-22,Singapore,0.5616,4,55.8,True
+2025-11-22,Rotterdam,0.4746,4,40.5,True
+2025-11-22,Los Angeles,0.7394,7,76.1,True
+2025-11-23,Shanghai,0.6128,4,49.8,True
+2025-11-23,Singapore,0.566,6,63.0,True
+2025-11-23,Rotterdam,0.5294,4,39.1,True
+2025-11-23,Los Angeles,0.4836,3,42.8,True
+2025-11-24,Shanghai,0.6851,8,83.5,True
+2025-11-24,Singapore,0.4461,4,49.7,True
+2025-11-24,Rotterdam,0.6286,6,54.8,True
+2025-11-24,Los Angeles,0.4439,7,64.7,True
+2025-11-25,Shanghai,0.7381,7,83.4,True
+2025-11-25,Singapore,0.475,4,47.5,True
+2025-11-25,Rotterdam,0.7351,8,80.3,True
+2025-11-25,Los Angeles,0.424,3,22.1,True
+2025-11-26,Shanghai,0.4936,5,41.9,True
+2025-11-26,Singapore,0.649,6,61.8,True
+2025-11-26,Rotterdam,0.3801,5,55.3,True
+2025-11-26,Los Angeles,0.4945,5,61.2,True
+2025-11-27,Shanghai,0.6489,8,92.9,True
+2025-11-27,Singapore,0.6087,5,68.4,True
+2025-11-27,Rotterdam,0.6295,4,59.4,True
+2025-11-27,Los Angeles,0.3906,4,56.6,True
+2025-11-28,Shanghai,0.5959,7,72.6,True
+2025-11-28,Singapore,0.4868,5,44.8,True
+2025-11-28,Rotterdam,0.4666,4,52.3,True
+2025-11-28,Los Angeles,0.5626,4,43.8,True
+2025-11-29,Shanghai,0.7108,6,64.5,True
+2025-11-29,Singapore,0.6082,7,88.9,True
+2025-11-29,Rotterdam,0.4203,6,53.1,True
+2025-11-29,Los Angeles,0.4679,3,42.1,True
+2025-11-30,Shanghai,0.7148,7,76.7,True
+2025-11-30,Singapore,0.3474,1,26.1,True
+2025-11-30,Rotterdam,0.6389,6,62.5,True
+2025-11-30,Los Angeles,0.6027,6,62.4,True
+2025-12-01,Shanghai,0.4171,0,19.2,True
+2025-12-01,Singapore,0.4469,6,52.8,True
+2025-12-01,Rotterdam,0.6042,5,65.8,True
+2025-12-01,Los Angeles,0.3932,4,37.3,True
+2025-12-02,Shanghai,0.5162,4,42.0,True
+2025-12-02,Singapore,0.4164,5,56.8,True
+2025-12-02,Rotterdam,0.655,7,68.2,True
+2025-12-02,Los Angeles,0.4713,4,38.9,True
+2025-12-03,Shanghai,0.634,3,44.9,True
+2025-12-03,Singapore,0.6437,6,61.8,True
+2025-12-03,Rotterdam,0.5944,7,84.2,True
+2025-12-03,Los Angeles,0.3515,5,46.8,True
+2025-12-04,Shanghai,0.6222,5,59.7,True
+2025-12-04,Singapore,0.7748,7,76.6,True
+2025-12-04,Rotterdam,0.5708,7,66.4,True
+2025-12-04,Los Angeles,0.278,2,36.4,True
+2025-12-05,Shanghai,0.614,6,54.8,True
+2025-12-05,Singapore,0.55,4,51.6,True
+2025-12-05,Rotterdam,0.71,5,58.0,True
+2025-12-05,Los Angeles,0.7009,7,63.3,True
+2025-12-06,Shanghai,0.4649,3,48.1,True
+2025-12-06,Singapore,0.5282,2,34.4,True
+2025-12-06,Rotterdam,0.6864,8,70.6,True
+2025-12-06,Los Angeles,0.4342,4,58.7,True
+2025-12-07,Shanghai,0.77,6,70.3,True
+2025-12-07,Singapore,0.5264,2,38.8,True
+2025-12-07,Rotterdam,0.345,1,5.4,True
+2025-12-07,Los Angeles,0.4742,7,73.8,True
+2025-12-08,Shanghai,0.6396,6,63.6,True
+2025-12-08,Singapore,0.3818,2,31.2,True
+2025-12-08,Rotterdam,0.5853,6,55.0,True
+2025-12-08,Los Angeles,0.5523,5,44.5,True
+2025-12-09,Shanghai,0.5738,4,56.9,True
+2025-12-09,Singapore,0.5459,7,62.5,True
+2025-12-09,Rotterdam,0.3699,4,42.1,True
+2025-12-09,Los Angeles,0.4829,7,66.1,True
+2025-12-10,Shanghai,0.4974,4,36.4,True
+2025-12-10,Singapore,0.6793,7,72.4,True
+2025-12-10,Rotterdam,0.6181,5,67.7,True
+2025-12-10,Los Angeles,0.517,4,57.5,True
+2025-12-11,Shanghai,0.6545,4,44.6,True
+2025-12-11,Singapore,0.6028,4,48.3,True
+2025-12-11,Rotterdam,0.5106,2,36.0,True
+2025-12-11,Los Angeles,0.5624,5,42.8,True
+2025-12-12,Shanghai,0.4381,5,53.6,True
+2025-12-12,Singapore,0.6952,6,77.3,True
+2025-12-12,Rotterdam,0.6351,7,81.2,True
+2025-12-12,Los Angeles,0.4857,4,42.9,True
+2025-12-13,Shanghai,0.5645,5,54.4,True
+2025-12-13,Singapore,0.5797,3,39.6,True
+2025-12-13,Rotterdam,0.5584,4,32.4,True
+2025-12-13,Los Angeles,0.3374,2,31.1,True
+2025-12-14,Shanghai,0.5697,5,52.1,True
+2025-12-14,Singapore,0.6129,6,59.1,True
+2025-12-14,Rotterdam,0.7046,6,73.7,True
+2025-12-14,Los Angeles,0.4653,5,40.4,True
+2025-12-15,Shanghai,0.6292,5,67.4,True
+2025-12-15,Singapore,0.5972,8,71.6,True
+2025-12-15,Rotterdam,0.3701,7,64.7,True
+2025-12-15,Los Angeles,0.5349,7,61.3,True
+2025-12-16,Shanghai,0.7016,7,63.7,True
+2025-12-16,Singapore,0.6393,4,48.5,True
+2025-12-16,Rotterdam,0.4364,2,30.7,True
+2025-12-16,Los Angeles,0.4369,4,53.9,True
+2025-12-17,Shanghai,0.6158,5,53.5,True
+2025-12-17,Singapore,0.5386,6,75.4,True
+2025-12-17,Rotterdam,0.4924,1,15.6,True
+2025-12-17,Los Angeles,0.4712,6,56.4,True
+2025-12-18,Shanghai,0.6418,4,52.0,True
+2025-12-18,Singapore,0.6036,5,63.2,True
+2025-12-18,Rotterdam,0.268,0,13.7,True
+2025-12-18,Los Angeles,0.4121,5,52.2,True
+2025-12-19,Shanghai,0.6488,6,63.9,True
+2025-12-19,Singapore,0.6999,7,86.6,True
+2025-12-19,Rotterdam,0.6687,7,72.5,True
+2025-12-19,Los Angeles,0.4764,1,28.6,True
+2025-12-20,Shanghai,0.3816,6,64.9,True
+2025-12-20,Singapore,0.6118,8,84.3,True
+2025-12-20,Rotterdam,0.6309,6,54.1,True
+2025-12-20,Los Angeles,0.5448,4,56.5,True
+2025-12-21,Shanghai,0.531,6,52.1,True
+2025-12-21,Singapore,0.8072,9,80.7,True
+2025-12-21,Rotterdam,0.5573,3,49.7,True
+2025-12-21,Los Angeles,0.4208,3,42.8,True
+2025-12-22,Shanghai,0.5488,2,39.9,True
+2025-12-22,Singapore,0.5159,5,50.9,True
+2025-12-22,Rotterdam,0.4552,5,68.4,True
+2025-12-22,Los Angeles,0.3036,3,46.7,True
+2025-12-23,Shanghai,0.7152,7,86.3,True
+2025-12-23,Singapore,0.4732,7,65.4,True
+2025-12-23,Rotterdam,0.4845,6,63.9,True
+2025-12-23,Los Angeles,0.5732,5,46.3,True
+2025-12-24,Shanghai,0.7571,6,74.4,True
+2025-12-24,Singapore,0.5215,6,68.2,True
+2025-12-24,Rotterdam,0.6327,7,78.7,True
+2025-12-24,Los Angeles,0.6175,5,57.4,True
+2025-12-25,Shanghai,0.4552,4,47.9,True
+2025-12-25,Singapore,0.6324,6,72.0,True
+2025-12-25,Rotterdam,0.7823,8,97.6,True
+2025-12-25,Los Angeles,0.5475,6,50.3,True
+2025-12-26,Shanghai,0.7495,8,72.0,True
+2025-12-26,Singapore,0.5904,8,71.2,True
+2025-12-26,Rotterdam,0.3317,2,21.3,True
+2025-12-26,Los Angeles,0.5521,5,61.4,True
+2025-12-27,Shanghai,0.5002,4,51.4,True
+2025-12-27,Singapore,0.5071,3,45.8,True
+2025-12-27,Rotterdam,0.5559,4,58.8,True
+2025-12-27,Los Angeles,0.5175,5,50.1,True
+2025-12-28,Shanghai,0.6973,5,64.9,True
+2025-12-28,Singapore,0.3281,2,30.9,True
+2025-12-28,Rotterdam,0.4247,1,28.4,True
+2025-12-28,Los Angeles,0.6089,6,56.6,True
+2025-12-29,Shanghai,0.6099,7,72.2,True
+2025-12-29,Singapore,0.6033,5,66.0,True
+2025-12-29,Rotterdam,0.4874,8,70.7,True
+2025-12-29,Los Angeles,0.4075,3,34.1,True
+2025-12-30,Shanghai,0.5428,6,57.4,True
+2025-12-30,Singapore,0.5997,7,62.4,True
+2025-12-30,Rotterdam,0.6365,6,55.0,True
+2025-12-30,Los Angeles,0.4929,6,61.9,True
+2025-12-31,Shanghai,0.5253,2,31.7,True
+2025-12-31,Singapore,0.6551,9,81.1,True
+2025-12-31,Rotterdam,0.5537,7,71.5,True
+2025-12-31,Los Angeles,0.6096,7,68.5,True
+2026-01-01,Shanghai,0.6408,6,68.0,True
+2026-01-01,Singapore,0.5918,6,51.1,True
+2026-01-01,Rotterdam,0.6152,4,30.9,True
+2026-01-01,Los Angeles,0.5701,5,41.4,True
+2026-01-02,Shanghai,0.5828,3,28.6,True
+2026-01-02,Singapore,0.6427,5,63.6,True
+2026-01-02,Rotterdam,0.5736,4,39.2,True
+2026-01-02,Los Angeles,0.4704,3,42.3,True
+2026-01-03,Shanghai,0.5334,6,71.7,True
+2026-01-03,Singapore,0.5741,4,40.4,True
+2026-01-03,Rotterdam,0.3662,3,24.1,True
+2026-01-03,Los Angeles,0.5296,6,68.7,True
+2026-01-04,Shanghai,0.3969,6,60.5,True
+2026-01-04,Singapore,0.63,6,71.2,True
+2026-01-04,Rotterdam,0.5943,3,49.5,True
+2026-01-04,Los Angeles,0.7247,7,64.7,True
+2026-01-05,Shanghai,0.6601,5,67.4,True
+2026-01-05,Singapore,0.467,4,50.5,True
+2026-01-05,Rotterdam,0.526,5,46.3,True
+2026-01-05,Los Angeles,0.3907,6,50.5,True
+2026-01-06,Shanghai,0.6481,6,54.4,True
+2026-01-06,Singapore,0.5092,4,46.6,True
+2026-01-06,Rotterdam,0.5895,6,52.6,True
+2026-01-06,Los Angeles,0.5752,7,68.2,True
+2026-01-07,Shanghai,0.6717,8,73.5,True
+2026-01-07,Singapore,0.5563,5,48.0,True
+2026-01-07,Rotterdam,0.4454,5,42.1,True
+2026-01-07,Los Angeles,0.4668,3,41.1,True
+2026-01-08,Shanghai,0.7251,10,93.6,True
+2026-01-08,Singapore,0.5937,6,56.7,True
+2026-01-08,Rotterdam,0.6195,7,67.9,True
+2026-01-08,Los Angeles,0.5843,5,49.1,True
+2026-01-09,Shanghai,0.6867,7,82.8,True
+2026-01-09,Singapore,0.6195,3,47.8,True
+2026-01-09,Rotterdam,0.5976,6,59.1,True
+2026-01-09,Los Angeles,0.4697,4,54.4,True
+2026-01-10,Shanghai,0.7091,8,78.3,True
+2026-01-10,Singapore,0.7301,7,78.6,True
+2026-01-10,Rotterdam,0.7162,8,72.6,True
+2026-01-10,Los Angeles,0.5489,5,52.4,True
+2026-01-11,Shanghai,0.7138,8,79.9,True
+2026-01-11,Singapore,0.6451,3,44.0,True
+2026-01-11,Rotterdam,0.65,4,48.3,True
+2026-01-11,Los Angeles,0.4412,4,46.0,True
+2026-01-12,Shanghai,0.7522,4,58.5,True
+2026-01-12,Singapore,0.4668,2,32.6,True
+2026-01-12,Rotterdam,0.5825,5,51.6,True
+2026-01-12,Los Angeles,0.6909,8,77.6,True
+2026-01-13,Shanghai,0.7239,6,69.1,True
+2026-01-13,Singapore,0.7048,7,75.1,True
+2026-01-13,Rotterdam,0.6331,6,58.5,True
+2026-01-13,Los Angeles,0.5052,6,52.5,True
+2026-01-14,Shanghai,0.5968,7,63.9,True
+2026-01-14,Singapore,0.5873,7,74.6,True
+2026-01-14,Rotterdam,0.5456,5,62.4,True
+2026-01-14,Los Angeles,0.5253,5,64.8,True
+2026-01-15,Shanghai,0.3922,1,26.7,True
+2026-01-15,Singapore,0.5323,4,51.4,True
+2026-01-15,Rotterdam,0.4068,4,30.3,True
+2026-01-15,Los Angeles,0.3113,1,9.6,True
+2026-01-16,Shanghai,0.6136,4,51.3,True
+2026-01-16,Singapore,0.7327,6,69.7,True
+2026-01-16,Rotterdam,0.5448,5,51.2,True
+2026-01-16,Los Angeles,0.4934,6,60.8,True
+2026-01-17,Shanghai,0.7614,7,77.2,True
+2026-01-17,Singapore,0.5345,5,48.7,True
+2026-01-17,Rotterdam,0.6774,8,79.2,True
+2026-01-17,Los Angeles,0.4191,2,16.1,True
+2026-01-18,Shanghai,0.6359,6,60.6,True
+2026-01-18,Singapore,0.5445,6,69.6,True
+2026-01-18,Rotterdam,0.5579,7,81.8,True
+2026-01-18,Los Angeles,0.3893,4,38.1,True
+2026-01-19,Shanghai,0.5323,6,60.3,True
+2026-01-19,Singapore,0.7252,8,71.0,True
+2026-01-19,Rotterdam,0.5613,2,37.4,True
+2026-01-19,Los Angeles,0.432,5,67.7,True
+2026-01-20,Shanghai,0.7329,7,66.2,True
+2026-01-20,Singapore,0.5946,6,51.3,True
+2026-01-20,Rotterdam,0.4553,3,33.9,True
+2026-01-20,Los Angeles,0.464,5,40.2,True
+2026-01-21,Shanghai,0.5597,6,61.1,True
+2026-01-21,Singapore,0.5908,3,24.6,True
+2026-01-21,Rotterdam,0.5545,7,65.2,True
+2026-01-21,Los Angeles,0.4214,4,56.5,True
+2026-01-22,Shanghai,0.5506,5,62.2,True
+2026-01-22,Singapore,0.4581,4,35.8,True
+2026-01-22,Rotterdam,0.376,3,34.3,True
+2026-01-22,Los Angeles,0.4899,7,60.6,True
+2026-01-23,Shanghai,0.6267,6,58.7,True
+2026-01-23,Singapore,0.6151,6,51.2,True
+2026-01-23,Rotterdam,0.6193,5,63.1,True
+2026-01-23,Los Angeles,0.3737,0,3.8,True
+2026-01-24,Shanghai,0.6611,7,77.7,True
+2026-01-24,Singapore,0.5176,5,57.9,True
+2026-01-24,Rotterdam,0.4934,5,62.5,True
+2026-01-24,Los Angeles,0.4636,3,43.1,True
+2026-01-25,Shanghai,0.6337,6,58.7,True
+2026-01-25,Singapore,0.6199,8,73.8,True
+2026-01-25,Rotterdam,0.2784,2,31.7,True
+2026-01-25,Los Angeles,0.5835,5,47.8,True
+2026-01-26,Shanghai,0.7626,6,75.2,True
+2026-01-26,Singapore,0.6172,6,52.6,True
+2026-01-26,Rotterdam,0.6605,5,61.0,True
+2026-01-26,Los Angeles,0.5744,4,56.0,True
+2026-01-27,Shanghai,0.7619,6,67.4,True
+2026-01-27,Singapore,0.4508,3,28.3,True
+2026-01-27,Rotterdam,0.4849,4,37.1,True
+2026-01-27,Los Angeles,0.5727,7,62.2,True
+2026-01-28,Shanghai,0.4156,5,45.1,True
+2026-01-28,Singapore,0.4353,4,41.5,True
+2026-01-28,Rotterdam,0.7073,7,81.6,True
+2026-01-28,Los Angeles,0.6443,6,68.4,True
+2026-01-29,Shanghai,0.4505,4,43.0,True
+2026-01-29,Singapore,0.5346,4,50.8,True
+2026-01-29,Rotterdam,0.6767,5,51.6,True
+2026-01-29,Los Angeles,0.5188,5,59.9,True
+2026-01-30,Shanghai,0.5837,5,57.4,True
+2026-01-30,Singapore,0.3073,2,20.0,True
+2026-01-30,Rotterdam,0.6227,7,77.3,True
+2026-01-30,Los Angeles,0.4995,5,45.4,True
+2026-01-31,Shanghai,0.7559,5,65.8,True
+2026-01-31,Singapore,0.5791,5,60.4,True
+2026-01-31,Rotterdam,0.6329,4,52.3,True
+2026-01-31,Los Angeles,0.5659,7,70.1,True
+2026-02-01,Shanghai,0.714,6,69.3,True
+2026-02-01,Singapore,0.4324,2,32.3,True
+2026-02-01,Rotterdam,0.6629,5,61.2,True
+2026-02-01,Los Angeles,0.4002,5,42.4,True
+2026-02-02,Shanghai,0.7251,6,68.5,True
+2026-02-02,Singapore,0.7343,8,81.1,True
+2026-02-02,Rotterdam,0.5781,3,44.7,True
+2026-02-02,Los Angeles,0.5668,5,58.9,True
+2026-02-03,Shanghai,0.51,6,64.6,True
+2026-02-03,Singapore,0.5156,1,28.9,True
+2026-02-03,Rotterdam,0.4527,5,51.8,True
+2026-02-03,Los Angeles,0.537,8,70.3,True
+2026-02-04,Shanghai,0.7081,6,72.2,True
+2026-02-04,Singapore,0.5451,5,60.0,True
+2026-02-04,Rotterdam,0.3856,4,41.5,True
+2026-02-04,Los Angeles,0.5641,6,74.7,True
+2026-02-05,Shanghai,0.6638,7,73.3,True
+2026-02-05,Singapore,0.5545,4,54.6,True
+2026-02-05,Rotterdam,0.5011,3,35.8,True
+2026-02-05,Los Angeles,0.4787,4,33.6,True
+2026-02-06,Shanghai,0.5048,3,41.9,True
+2026-02-06,Singapore,0.6188,4,54.2,True
+2026-02-06,Rotterdam,0.5678,6,67.3,True
+2026-02-06,Los Angeles,0.4668,4,46.8,True
+2026-02-07,Shanghai,0.6063,4,50.3,True
+2026-02-07,Singapore,0.4386,3,48.4,True
+2026-02-07,Rotterdam,0.4632,2,39.8,True
+2026-02-07,Los Angeles,0.5359,5,52.9,True
+2026-02-08,Shanghai,0.7717,7,84.2,True
+2026-02-08,Singapore,0.6338,5,63.5,True
+2026-02-08,Rotterdam,0.562,5,46.9,True
+2026-02-08,Los Angeles,0.3732,4,44.1,True
+2026-02-09,Shanghai,0.7351,6,62.9,True
+2026-02-09,Singapore,0.6341,5,63.1,True
+2026-02-09,Rotterdam,0.3882,1,23.1,True
+2026-02-09,Los Angeles,0.4666,4,57.9,True
+2026-02-10,Shanghai,0.6153,6,77.4,True
+2026-02-10,Singapore,0.7537,10,106.9,True
+2026-02-10,Rotterdam,0.5594,5,63.7,True
+2026-02-10,Los Angeles,0.3393,1,26.1,True
+2026-02-11,Shanghai,0.7461,7,80.5,True
+2026-02-11,Singapore,0.3949,4,46.4,True
+2026-02-11,Rotterdam,0.4043,3,41.4,True
+2026-02-11,Los Angeles,0.4411,3,43.8,True
+2026-02-12,Shanghai,0.5542,3,48.8,True
+2026-02-12,Singapore,0.6692,7,62.8,True
+2026-02-12,Rotterdam,0.5058,4,49.5,True
+2026-02-12,Los Angeles,0.378,3,25.4,True
+2026-02-13,Shanghai,0.6021,5,68.9,True
+2026-02-13,Singapore,0.5286,4,58.4,True
+2026-02-13,Rotterdam,0.6496,6,61.7,True
+2026-02-13,Los Angeles,0.5283,4,43.7,True
+2026-02-14,Shanghai,0.4515,1,24.9,True
+2026-02-14,Singapore,0.5797,4,56.8,True
+2026-02-14,Rotterdam,0.4412,4,31.5,True
+2026-02-14,Los Angeles,0.4397,4,36.1,True
+2026-02-15,Shanghai,0.7389,6,73.2,True
+2026-02-15,Singapore,0.4828,4,53.3,True
+2026-02-15,Rotterdam,0.5474,5,51.0,True
+2026-02-15,Los Angeles,0.4618,4,35.5,True
+2026-02-16,Shanghai,0.574,5,61.2,True
+2026-02-16,Singapore,0.4595,2,33.6,True
+2026-02-16,Rotterdam,0.584,7,63.7,True
+2026-02-16,Los Angeles,0.458,3,24.9,True
+2026-02-17,Shanghai,0.6159,8,70.6,True
+2026-02-17,Singapore,0.6591,5,69.6,True
+2026-02-17,Rotterdam,0.4022,4,43.1,True
+2026-02-17,Los Angeles,0.4378,3,43.6,True
+2026-02-18,Shanghai,0.5911,8,72.0,True
+2026-02-18,Singapore,0.6064,5,54.8,True
+2026-02-18,Rotterdam,0.3677,2,32.6,True
+2026-02-18,Los Angeles,0.5435,6,55.5,True
+2026-02-19,Shanghai,0.4338,4,47.3,True
+2026-02-19,Singapore,0.4667,5,49.9,True
+2026-02-19,Rotterdam,0.7147,7,75.6,True
+2026-02-19,Los Angeles,0.3855,4,42.1,True
+2026-02-20,Shanghai,0.5861,2,33.2,True
+2026-02-20,Singapore,0.5916,8,85.2,True
+2026-02-20,Rotterdam,0.6483,3,48.4,True
+2026-02-20,Los Angeles,0.6206,5,65.9,True
+2026-02-21,Shanghai,0.4556,2,24.6,True
+2026-02-21,Singapore,0.5219,3,46.9,True
+2026-02-21,Rotterdam,0.4932,4,43.4,True
+2026-02-21,Los Angeles,0.4448,6,50.2,True
+2026-02-22,Shanghai,0.5136,3,46.4,True
+2026-02-22,Singapore,0.582,6,56.7,True
+2026-02-22,Rotterdam,0.5679,5,65.3,True
+2026-02-22,Los Angeles,0.4981,4,58.5,True
+2026-02-23,Shanghai,0.6679,5,48.0,True
+2026-02-23,Singapore,0.4038,3,36.3,True
+2026-02-23,Rotterdam,0.5629,3,43.5,True
+2026-02-23,Los Angeles,0.4465,1,27.1,True
+2026-02-24,Shanghai,0.8013,9,80.4,True
+2026-02-24,Singapore,0.3967,4,46.2,True
+2026-02-24,Rotterdam,0.6812,8,93.5,True
+2026-02-24,Los Angeles,0.396,0,18.6,True
+2026-02-25,Shanghai,0.6497,7,66.0,True
+2026-02-25,Singapore,0.6021,5,48.8,True
+2026-02-25,Rotterdam,0.5592,6,59.1,True
+2026-02-25,Los Angeles,0.4646,5,41.6,True
+2026-02-26,Shanghai,0.4537,2,29.7,True
+2026-02-26,Singapore,0.5605,4,32.7,True
+2026-02-26,Rotterdam,0.5964,7,88.7,True
+2026-02-26,Los Angeles,0.5263,3,47.8,True
+2026-02-27,Shanghai,0.6442,7,60.8,True
+2026-02-27,Singapore,0.4688,2,30.7,True
+2026-02-27,Rotterdam,0.7111,5,69.2,True
+2026-02-27,Los Angeles,0.4978,5,58.5,True
+2026-02-28,Shanghai,0.6896,3,49.4,True
+2026-02-28,Singapore,0.5465,3,49.3,True
+2026-02-28,Rotterdam,0.5477,4,35.5,True
+2026-02-28,Los Angeles,0.5679,5,66.1,True
+2026-03-01,Shanghai,0.5959,7,67.0,True
+2026-03-01,Singapore,0.3668,1,18.4,True
+2026-03-01,Rotterdam,0.6924,7,79.8,True
+2026-03-01,Los Angeles,0.4052,5,47.6,True
+2026-03-02,Shanghai,0.52,5,66.9,True
+2026-03-02,Singapore,0.6601,7,71.6,True
+2026-03-02,Rotterdam,0.4885,1,29.2,True
+2026-03-02,Los Angeles,0.3173,2,38.3,True
+2026-03-03,Shanghai,0.4343,4,42.6,True
+2026-03-03,Singapore,0.6343,4,55.6,True
+2026-03-03,Rotterdam,0.4867,5,44.5,True
+2026-03-03,Los Angeles,0.5633,4,40.2,True
+2026-03-04,Shanghai,0.7026,5,58.1,True
+2026-03-04,Singapore,0.7461,11,105.4,True
+2026-03-04,Rotterdam,0.4781,4,47.3,True
+2026-03-04,Los Angeles,0.5182,5,44.5,True
+2026-03-05,Shanghai,0.6709,5,57.7,True
+2026-03-05,Singapore,0.6735,6,56.2,True
+2026-03-05,Rotterdam,0.4878,2,35.6,True
+2026-03-05,Los Angeles,0.6268,5,67.2,True
+2026-03-06,Shanghai,0.6912,8,70.1,True
+2026-03-06,Singapore,0.65,5,63.8,True
+2026-03-06,Rotterdam,0.427,2,39.9,True
+2026-03-06,Los Angeles,0.687,5,66.8,True
+2026-03-07,Shanghai,0.5763,6,67.5,True
+2026-03-07,Singapore,0.5582,6,51.1,True
+2026-03-07,Rotterdam,0.4865,4,40.4,True
+2026-03-07,Los Angeles,0.4226,2,39.4,True
+2026-03-08,Shanghai,0.5232,7,74.2,True
+2026-03-08,Singapore,0.4121,3,30.6,True
+2026-03-08,Rotterdam,0.6738,7,76.0,True
+2026-03-08,Los Angeles,0.6062,5,46.9,True
+2026-03-09,Shanghai,0.4741,6,67.1,True
+2026-03-09,Singapore,0.6035,4,59.1,True
+2026-03-09,Rotterdam,0.473,4,37.7,True
+2026-03-09,Los Angeles,0.5477,7,62.5,True
+2026-03-10,Shanghai,0.5654,3,37.5,True
+2026-03-10,Singapore,0.6998,6,76.4,True
+2026-03-10,Rotterdam,0.5905,7,61.5,True
+2026-03-10,Los Angeles,0.5,6,59.0,True
+2026-03-11,Shanghai,0.5798,7,64.3,True
+2026-03-11,Singapore,0.3421,5,42.9,True
+2026-03-11,Rotterdam,0.4329,4,45.3,True
+2026-03-11,Los Angeles,0.444,2,36.0,True
+2026-03-12,Shanghai,0.5842,3,43.5,True
+2026-03-12,Singapore,0.6721,6,50.5,True
+2026-03-12,Rotterdam,0.5906,6,58.2,True
+2026-03-12,Los Angeles,0.5189,6,56.5,True
+2026-03-13,Shanghai,0.7795,4,53.5,True
+2026-03-13,Singapore,0.6681,6,79.3,True
+2026-03-13,Rotterdam,0.5533,4,55.1,True
+2026-03-13,Los Angeles,0.3842,2,24.5,True
+2026-03-14,Shanghai,0.7292,8,71.6,True
+2026-03-14,Singapore,0.648,5,67.7,True
+2026-03-14,Rotterdam,0.6521,5,51.5,True
+2026-03-14,Los Angeles,0.544,3,46.8,True
+2026-03-15,Shanghai,0.6375,6,62.6,True
+2026-03-15,Singapore,0.6954,7,69.1,True
+2026-03-15,Rotterdam,0.6791,7,69.4,True
+2026-03-15,Los Angeles,0.3797,3,20.9,True
+2026-03-16,Shanghai,0.4789,3,34.4,True
+2026-03-16,Singapore,0.4371,4,59.2,True
+2026-03-16,Rotterdam,0.4061,3,31.0,True
+2026-03-16,Los Angeles,0.5333,5,40.1,True
+2026-03-17,Shanghai,0.5445,6,71.1,True
+2026-03-17,Singapore,0.4772,4,41.8,True
+2026-03-17,Rotterdam,0.5672,8,79.6,True
+2026-03-17,Los Angeles,0.4361,6,59.0,True
+2026-03-18,Shanghai,0.7261,8,73.5,True
+2026-03-18,Singapore,0.3881,1,27.2,True
+2026-03-18,Rotterdam,0.5366,6,55.1,True
+2026-03-18,Los Angeles,0.4635,5,50.1,True
+2026-03-19,Shanghai,0.6259,5,52.0,True
+2026-03-19,Singapore,0.7559,9,86.8,True
+2026-03-19,Rotterdam,0.6824,5,61.6,True
+2026-03-19,Los Angeles,0.4841,4,50.0,True
+2026-03-20,Shanghai,0.5885,6,57.0,True
+2026-03-20,Singapore,0.6084,6,74.4,True
+2026-03-20,Rotterdam,0.3872,2,35.7,True
+2026-03-20,Los Angeles,0.4945,2,35.0,True
+2026-03-21,Shanghai,0.5401,7,66.8,True
+2026-03-21,Singapore,0.633,6,63.8,True
+2026-03-21,Rotterdam,0.5757,2,30.9,True
+2026-03-21,Los Angeles,0.5119,3,32.8,True
+2026-03-22,Shanghai,0.5227,5,56.7,True
+2026-03-22,Singapore,0.7546,6,52.8,True
+2026-03-22,Rotterdam,0.691,7,62.7,True
+2026-03-22,Los Angeles,0.5063,7,63.2,True
+2026-03-23,Shanghai,0.6989,6,75.2,True
+2026-03-23,Singapore,0.4651,5,50.2,True
+2026-03-23,Rotterdam,0.6721,6,74.1,True
+2026-03-23,Los Angeles,0.521,2,32.2,True
+2026-03-24,Shanghai,0.59,4,39.9,True
+2026-03-24,Singapore,0.4649,1,24.5,True
+2026-03-24,Rotterdam,0.7201,4,59.8,True
+2026-03-24,Los Angeles,0.3018,3,21.7,True
+2026-03-25,Shanghai,0.5906,5,69.6,True
+2026-03-25,Singapore,0.4858,3,27.0,True
+2026-03-25,Rotterdam,0.6792,6,55.2,True
+2026-03-25,Los Angeles,0.4558,2,36.1,True
+2026-03-26,Shanghai,0.7568,4,59.8,True
+2026-03-26,Singapore,0.5136,1,17.9,True
+2026-03-26,Rotterdam,0.4982,6,57.8,True
+2026-03-26,Los Angeles,0.4975,3,39.5,True
+2026-03-27,Shanghai,0.736,6,57.3,True
+2026-03-27,Singapore,0.4826,5,60.7,True
+2026-03-27,Rotterdam,0.3992,5,42.2,True
+2026-03-27,Los Angeles,0.451,2,32.4,True
+2026-03-28,Shanghai,0.6787,7,75.4,True
+2026-03-28,Singapore,0.7093,6,57.9,True
+2026-03-28,Rotterdam,0.4245,5,49.4,True
+2026-03-28,Los Angeles,0.3794,2,27.1,True
+2026-03-29,Shanghai,0.4686,5,68.4,True
+2026-03-29,Singapore,0.5482,6,51.3,True
+2026-03-29,Rotterdam,0.4429,5,49.6,True
+2026-03-29,Los Angeles,0.5312,4,48.5,True
+2026-03-30,Shanghai,0.542,5,55.8,True
+2026-03-30,Singapore,0.5413,5,46.7,True
+2026-03-30,Rotterdam,0.6124,7,67.6,True
+2026-03-30,Los Angeles,0.3983,3,23.7,True
+2026-03-31,Shanghai,0.5553,5,61.6,True
+2026-03-31,Singapore,0.6401,5,69.9,True
+2026-03-31,Rotterdam,0.5271,6,56.3,True
+2026-03-31,Los Angeles,0.6544,4,56.7,True
+2026-04-01,Shanghai,0.3834,3,40.6,True
+2026-04-01,Singapore,0.5793,7,61.4,True
+2026-04-01,Rotterdam,0.435,4,56.6,True
+2026-04-01,Los Angeles,0.5563,5,53.9,True
+2026-04-02,Shanghai,0.5354,4,57.6,True
+2026-04-02,Singapore,0.7085,7,85.0,True
+2026-04-02,Rotterdam,0.4958,5,48.4,True
+2026-04-02,Los Angeles,0.3491,2,23.8,True
+2026-04-03,Shanghai,0.5835,5,53.6,True
+2026-04-03,Singapore,0.5359,5,50.1,True
+2026-04-03,Rotterdam,0.6043,4,49.0,True
+2026-04-03,Los Angeles,0.4291,5,40.2,True
+2026-04-04,Shanghai,0.5633,5,62.7,True
+2026-04-04,Singapore,0.4186,1,29.3,True
+2026-04-04,Rotterdam,0.5828,4,56.8,True
+2026-04-04,Los Angeles,0.5984,5,69.7,True
+2026-04-05,Shanghai,0.6427,6,54.9,True
+2026-04-05,Singapore,0.6455,4,51.1,True
+2026-04-05,Rotterdam,0.6815,6,54.1,True
+2026-04-05,Los Angeles,0.5202,6,53.9,True
+2026-04-06,Shanghai,0.6777,3,43.7,True
+2026-04-06,Singapore,0.3628,2,25.4,True
+2026-04-06,Rotterdam,0.6389,5,62.4,True
+2026-04-06,Los Angeles,0.2535,2,17.9,True
+2026-04-07,Shanghai,0.6815,6,72.7,True
+2026-04-07,Singapore,0.5876,5,57.6,True
+2026-04-07,Rotterdam,0.5972,6,67.8,True
+2026-04-07,Los Angeles,0.1433,0,0.0,True
+2026-04-08,Shanghai,0.5788,4,55.9,True
+2026-04-08,Singapore,0.5585,4,51.0,True
+2026-04-08,Rotterdam,0.673,8,73.4,True
+2026-04-08,Los Angeles,0.4568,2,30.4,True
+2026-04-09,Shanghai,0.5791,5,53.9,True
+2026-04-09,Singapore,0.7886,7,74.2,True
+2026-04-09,Rotterdam,0.6158,7,69.0,True
+2026-04-09,Los Angeles,0.4456,7,73.8,True
+2026-04-10,Shanghai,0.6139,5,54.3,True
+2026-04-10,Singapore,0.573,4,58.2,True
+2026-04-10,Rotterdam,0.5575,5,55.3,True
+2026-04-10,Los Angeles,0.3835,6,62.8,True
+2026-04-11,Shanghai,0.5006,4,37.1,True
+2026-04-11,Singapore,0.7279,5,50.8,True
+2026-04-11,Rotterdam,0.3466,3,25.2,True
+2026-04-11,Los Angeles,0.4135,2,38.8,True
+2026-04-12,Shanghai,0.6878,8,82.5,True
+2026-04-12,Singapore,0.7852,9,81.8,True
+2026-04-12,Rotterdam,0.5932,8,81.4,True
+2026-04-12,Los Angeles,0.3679,2,26.1,True
+2026-04-13,Shanghai,0.5434,4,57.3,True
+2026-04-13,Singapore,0.57,6,69.0,True
+2026-04-13,Rotterdam,0.5661,5,63.7,True
+2026-04-13,Los Angeles,0.408,5,64.3,True
+2026-04-14,Shanghai,0.726,4,49.8,True
+2026-04-14,Singapore,0.5703,4,60.0,True
+2026-04-14,Rotterdam,0.303,0,13.5,True
+2026-04-14,Los Angeles,0.5735,5,54.6,True
+2026-04-15,Shanghai,0.5991,7,71.5,True
+2026-04-15,Singapore,0.6266,6,74.5,True
+2026-04-15,Rotterdam,0.5291,6,52.9,True
+2026-04-15,Los Angeles,0.3267,1,11.1,True
+2026-04-16,Shanghai,0.7105,4,48.0,True
+2026-04-16,Singapore,0.5333,6,51.7,True
+2026-04-16,Rotterdam,0.5248,5,48.3,True
+2026-04-16,Los Angeles,0.5146,2,38.3,True
+2026-04-17,Shanghai,0.5573,6,70.2,True
+2026-04-17,Singapore,0.5828,3,47.1,True
+2026-04-17,Rotterdam,0.3756,4,32.7,True
+2026-04-17,Los Angeles,0.4063,3,25.9,True
+2026-04-18,Shanghai,0.5349,5,45.2,True
+2026-04-18,Singapore,0.5497,5,52.5,True
+2026-04-18,Rotterdam,0.435,3,33.0,True
+2026-04-18,Los Angeles,0.5609,7,78.8,True
+2026-04-19,Shanghai,0.6739,7,74.3,True
+2026-04-19,Singapore,0.7306,6,74.7,True
+2026-04-19,Rotterdam,0.5432,4,50.2,True
+2026-04-19,Los Angeles,0.2817,1,9.2,True
+2026-04-20,Shanghai,0.5814,6,50.3,True
+2026-04-20,Singapore,0.5727,7,62.3,True
+2026-04-20,Rotterdam,0.2503,0,15.5,True
+2026-04-20,Los Angeles,0.5947,7,66.8,True
+2026-04-21,Shanghai,0.4172,4,31.6,True
+2026-04-21,Singapore,0.5866,6,64.6,True
+2026-04-21,Rotterdam,0.5235,5,56.0,True
+2026-04-21,Los Angeles,0.503,7,69.9,True
+2026-04-22,Shanghai,0.51,3,32.1,True
+2026-04-22,Singapore,0.6112,4,34.8,True
+2026-04-22,Rotterdam,0.5963,6,64.6,True
+2026-04-22,Los Angeles,0.3922,2,25.5,True
+2026-04-23,Shanghai,0.4886,4,40.0,True
+2026-04-23,Singapore,0.5703,5,60.2,True
+2026-04-23,Rotterdam,0.6986,6,66.1,True
+2026-04-23,Los Angeles,0.3708,0,19.3,True
+2026-04-24,Shanghai,0.7244,6,56.1,True
+2026-04-24,Singapore,0.6317,5,55.8,True
+2026-04-24,Rotterdam,0.54,4,47.5,True
+2026-04-24,Los Angeles,0.5017,4,45.6,True
+2026-04-25,Shanghai,0.4174,6,63.3,True
+2026-04-25,Singapore,0.7113,5,54.0,True
+2026-04-25,Rotterdam,0.5524,4,49.2,True
+2026-04-25,Los Angeles,0.4647,3,47.8,True
+2026-04-26,Shanghai,0.5274,5,46.8,True
+2026-04-26,Singapore,0.5811,4,55.9,True
+2026-04-26,Rotterdam,0.845,7,88.5,True
+2026-04-26,Los Angeles,0.5871,6,61.3,True
+2026-04-27,Shanghai,0.5421,5,67.9,True
+2026-04-27,Singapore,0.5333,5,55.1,True
+2026-04-27,Rotterdam,0.5126,7,80.0,True
+2026-04-27,Los Angeles,0.5008,7,73.7,True
+2026-04-28,Shanghai,0.6541,5,58.4,True
+2026-04-28,Singapore,0.6015,4,44.3,True
+2026-04-28,Rotterdam,0.6326,7,73.4,True
+2026-04-28,Los Angeles,0.5363,4,37.9,True
+2026-04-29,Shanghai,0.5668,3,45.5,True
+2026-04-29,Singapore,0.4918,4,47.5,True
+2026-04-29,Rotterdam,0.47,5,48.8,True
+2026-04-29,Los Angeles,0.5344,4,47.3,True
+2026-04-30,Shanghai,0.5635,5,59.8,True
+2026-04-30,Singapore,0.537,5,57.8,True
+2026-04-30,Rotterdam,0.5513,3,41.9,True
+2026-04-30,Los Angeles,0.5247,4,58.3,True
+2026-05-01,Shanghai,0.5448,3,47.3,True
+2026-05-01,Singapore,0.4852,4,42.9,True
+2026-05-01,Rotterdam,0.5446,3,48.0,True
+2026-05-01,Los Angeles,0.4307,5,44.5,True
+2026-05-02,Shanghai,0.6947,6,78.3,True
+2026-05-02,Singapore,0.5498,4,58.8,True
+2026-05-02,Rotterdam,0.5303,4,60.0,True
+2026-05-02,Los Angeles,0.6103,8,75.3,True
+2026-05-03,Shanghai,0.6544,8,70.9,True
+2026-05-03,Singapore,0.5545,5,44.5,True
+2026-05-03,Rotterdam,0.5314,3,33.9,True
+2026-05-03,Los Angeles,0.2353,0,9.8,True
+2026-05-04,Shanghai,0.4492,4,42.7,True
+2026-05-04,Singapore,0.5247,6,63.9,True
+2026-05-04,Rotterdam,0.4868,3,43.2,True
+2026-05-04,Los Angeles,0.6135,5,65.8,True
+2026-05-05,Shanghai,0.6263,7,67.6,True
+2026-05-05,Singapore,0.5702,6,63.7,True
+2026-05-05,Rotterdam,0.5906,6,69.8,True
+2026-05-05,Los Angeles,0.4726,5,62.0,True
+2026-05-06,Shanghai,0.4692,5,42.8,True
+2026-05-06,Singapore,0.5011,3,44.6,True
+2026-05-06,Rotterdam,0.5875,3,46.9,True
+2026-05-06,Los Angeles,0.6436,6,76.9,True
+2026-05-07,Shanghai,0.623,5,65.7,True
+2026-05-07,Singapore,0.516,5,47.3,True
+2026-05-07,Rotterdam,0.4687,6,52.1,True
+2026-05-07,Los Angeles,0.406,4,33.6,True
+2026-05-08,Shanghai,0.6459,5,52.7,True
+2026-05-08,Singapore,0.6441,7,68.5,True
+2026-05-08,Rotterdam,0.5681,5,44.1,True
+2026-05-08,Los Angeles,0.5273,4,50.7,True
+2026-05-09,Shanghai,0.7159,6,73.3,True
+2026-05-09,Singapore,0.5435,4,58.0,True
+2026-05-09,Rotterdam,0.3465,3,27.9,True
+2026-05-09,Los Angeles,0.4431,6,58.3,True
+2026-05-10,Shanghai,0.6321,5,60.1,True
+2026-05-10,Singapore,0.3956,0,14.8,True
+2026-05-10,Rotterdam,0.4666,4,37.4,True
+2026-05-10,Los Angeles,0.4954,3,32.5,True
+2026-05-11,Shanghai,0.6753,5,69.4,True
+2026-05-11,Singapore,0.8136,7,85.8,True
+2026-05-11,Rotterdam,0.4853,5,51.4,True
+2026-05-11,Los Angeles,0.4714,4,53.3,True
+2026-05-12,Shanghai,0.5604,7,69.2,True
+2026-05-12,Singapore,0.4088,6,60.8,True
+2026-05-12,Rotterdam,0.5717,5,49.2,True
+2026-05-12,Los Angeles,0.6033,7,67.4,True
+2026-05-13,Shanghai,0.6736,5,45.9,True
+2026-05-13,Singapore,0.5621,4,44.3,True
+2026-05-13,Rotterdam,0.4675,3,43.5,True
+2026-05-13,Los Angeles,0.5949,6,76.8,True
+2026-05-14,Shanghai,0.5431,5,43.6,True
+2026-05-14,Singapore,0.5592,5,46.6,True
+2026-05-14,Rotterdam,0.4479,4,38.2,True
+2026-05-14,Los Angeles,0.5233,7,68.5,True
+2026-05-15,Shanghai,0.4725,3,45.3,True
+2026-05-15,Singapore,0.5434,7,70.2,True
+2026-05-15,Rotterdam,0.6248,6,52.1,True
+2026-05-15,Los Angeles,0.5733,6,60.3,True
+2026-05-16,Shanghai,0.4566,5,41.1,True
+2026-05-16,Singapore,0.5903,7,61.9,True
+2026-05-16,Rotterdam,0.556,7,71.9,True
+2026-05-16,Los Angeles,0.4761,7,64.9,True
+2026-05-17,Shanghai,0.6074,6,66.2,True
+2026-05-17,Singapore,0.6694,7,61.9,True
+2026-05-17,Rotterdam,0.4881,3,37.8,True
+2026-05-17,Los Angeles,0.5745,4,33.6,True
+2026-05-18,Shanghai,0.6932,7,68.7,True
+2026-05-18,Singapore,0.56,7,68.3,True
+2026-05-18,Rotterdam,0.665,7,63.5,True
+2026-05-18,Los Angeles,0.2608,3,41.8,True
+2026-05-19,Shanghai,0.6154,5,63.8,True
+2026-05-19,Singapore,0.5386,1,29.5,True
+2026-05-19,Rotterdam,0.563,3,48.6,True
+2026-05-19,Los Angeles,0.5751,3,42.2,True
+2026-05-20,Shanghai,0.5216,6,51.4,True
+2026-05-20,Singapore,0.6953,5,49.7,True
+2026-05-20,Rotterdam,0.6171,4,44.5,True
+2026-05-20,Los Angeles,0.5045,5,47.8,True
+2026-05-21,Shanghai,0.8754,8,86.8,True
+2026-05-21,Singapore,0.5765,9,84.5,True
+2026-05-21,Rotterdam,0.4996,7,75.0,True
+2026-05-21,Los Angeles,0.3776,5,54.6,True
+2026-05-22,Shanghai,0.7152,7,75.7,True
+2026-05-22,Singapore,0.7505,6,62.5,True
+2026-05-22,Rotterdam,0.6857,5,50.3,True
+2026-05-22,Los Angeles,0.4895,6,52.1,True
+2026-05-23,Shanghai,0.5894,3,45.2,True
+2026-05-23,Singapore,0.6311,5,53.4,True
+2026-05-23,Rotterdam,0.5519,5,58.0,True
+2026-05-23,Los Angeles,0.5499,3,48.8,True
+2026-05-24,Shanghai,0.767,5,59.1,True
+2026-05-24,Singapore,0.523,7,67.0,True
+2026-05-24,Rotterdam,0.8016,6,73.8,True
+2026-05-24,Los Angeles,0.3286,1,26.2,True
+2026-05-25,Shanghai,0.5323,3,41.6,True
+2026-05-25,Singapore,0.5626,6,74.8,True
+2026-05-25,Rotterdam,0.5629,4,44.4,True
+2026-05-25,Los Angeles,0.3929,2,39.3,True
+2026-05-26,Shanghai,0.6882,6,59.8,True
+2026-05-26,Singapore,0.5799,4,58.0,True
+2026-05-26,Rotterdam,0.5069,7,66.6,True
+2026-05-26,Los Angeles,0.4301,6,59.1,True
+2026-05-27,Shanghai,0.5422,7,60.5,True
+2026-05-27,Singapore,0.6617,3,46.9,True
+2026-05-27,Rotterdam,0.6,5,53.6,True
+2026-05-27,Los Angeles,0.5569,6,70.2,True
+2026-05-28,Shanghai,0.5208,6,59.1,True
+2026-05-28,Singapore,0.5161,5,43.5,True
+2026-05-28,Rotterdam,0.6111,4,49.3,True
+2026-05-28,Los Angeles,0.4016,5,58.6,True
+2026-05-29,Shanghai,0.5044,4,48.5,True
+2026-05-29,Singapore,0.5131,7,61.3,True
+2026-05-29,Rotterdam,0.4767,4,32.6,True
+2026-05-29,Los Angeles,0.4885,3,34.5,True
+2026-05-30,Shanghai,0.6106,5,46.4,True
+2026-05-30,Singapore,0.66,7,62.5,True
+2026-05-30,Rotterdam,0.5668,6,50.4,True
+2026-05-30,Los Angeles,0.5378,5,65.9,True
+2026-05-31,Shanghai,0.4934,6,60.4,True
+2026-05-31,Singapore,0.548,4,58.0,True
+2026-05-31,Rotterdam,0.5628,5,54.3,True
+2026-05-31,Los Angeles,0.4167,4,49.1,True
+2026-06-01,Shanghai,0.7125,9,80.8,True
+2026-06-01,Singapore,0.5627,3,23.5,True
+2026-06-01,Rotterdam,0.8191,8,97.8,True
+2026-06-01,Los Angeles,0.7903,8,95.4,True
+2026-06-02,Shanghai,0.7729,7,84.4,True
+2026-06-02,Singapore,0.7303,8,87.1,True
+2026-06-02,Rotterdam,0.6484,7,67.5,True
+2026-06-02,Los Angeles,0.4955,4,47.6,True
+2026-06-03,Shanghai,0.8886,8,72.9,True
+2026-06-03,Singapore,0.5917,5,66.4,True
+2026-06-03,Rotterdam,0.6877,7,73.6,True
+2026-06-03,Los Angeles,0.6054,6,76.8,True
+2026-06-04,Shanghai,0.6859,7,71.7,True
+2026-06-04,Singapore,0.7706,8,76.8,True
+2026-06-04,Rotterdam,0.7273,5,50.0,True
+2026-06-04,Los Angeles,0.6631,6,56.5,True
+2026-06-05,Shanghai,0.7288,6,73.6,True
+2026-06-05,Singapore,0.7843,9,93.7,True
+2026-06-05,Rotterdam,0.8312,8,88.9,True
+2026-06-05,Los Angeles,0.7304,6,68.2,True
+2026-06-06,Shanghai,0.7685,6,70.5,True
+2026-06-06,Singapore,0.7026,7,67.1,True
+2026-06-06,Rotterdam,0.8459,7,82.6,True
+2026-06-06,Los Angeles,0.5658,5,58.8,True
+2026-06-07,Shanghai,0.7266,7,71.7,True
+2026-06-07,Singapore,0.6454,7,79.6,True
+2026-06-07,Rotterdam,0.6805,7,76.5,True
+2026-06-07,Los Angeles,0.7544,7,63.7,True
+2026-06-08,Shanghai,0.866,7,67.5,True
+2026-06-08,Singapore,0.8795,5,66.8,True
+2026-06-08,Rotterdam,0.5898,7,74.2,True
+2026-06-08,Los Angeles,0.5901,5,43.3,True
+2026-06-09,Shanghai,0.5995,9,85.3,True
+2026-06-09,Singapore,0.7452,4,51.5,True
+2026-06-09,Rotterdam,0.886,8,74.7,True
+2026-06-09,Los Angeles,0.8392,6,69.1,True
+2026-06-10,Shanghai,0.7325,6,69.7,True
+2026-06-10,Singapore,0.5844,4,52.5,True
+2026-06-10,Rotterdam,0.7429,8,85.4,True
+2026-06-10,Los Angeles,0.4626,4,58.4,True
+2026-06-11,Shanghai,0.7693,6,68.6,True
+2026-06-11,Singapore,0.6781,7,71.9,True
+2026-06-11,Rotterdam,0.4446,5,49.1,True
+2026-06-11,Los Angeles,0.4533,5,40.7,True
+2026-06-12,Shanghai,0.7842,8,73.4,True
+2026-06-12,Singapore,0.6598,4,54.1,True
+2026-06-12,Rotterdam,0.7596,5,52.4,True
+2026-06-12,Los Angeles,0.7383,4,59.5,True
+2026-06-13,Shanghai,0.9133,11,101.4,True
+2026-06-13,Singapore,0.6723,5,61.1,True
+2026-06-13,Rotterdam,0.7984,5,64.2,True
+2026-06-13,Los Angeles,0.6243,5,41.9,True
+2026-06-14,Shanghai,0.7958,7,65.9,True
+2026-06-14,Singapore,0.5872,3,44.3,True
+2026-06-14,Rotterdam,0.6921,4,53.1,True
+2026-06-14,Los Angeles,0.7041,5,56.7,True
+2026-06-15,Shanghai,0.7763,10,97.5,True
+2026-06-15,Singapore,0.6746,6,63.8,True
+2026-06-15,Rotterdam,0.6371,6,67.6,True
+2026-06-15,Los Angeles,0.5156,3,45.4,True
+2026-06-16,Shanghai,0.8198,9,91.0,True
+2026-06-16,Singapore,0.7624,8,88.7,True
+2026-06-16,Rotterdam,0.6888,5,61.1,True
+2026-06-16,Los Angeles,0.7328,7,63.7,True
+2026-06-17,Shanghai,0.7707,7,87.1,True
+2026-06-17,Singapore,0.633,5,56.6,True
+2026-06-17,Rotterdam,0.9364,7,87.8,True
+2026-06-17,Los Angeles,0.4607,3,34.4,True
+2026-06-18,Shanghai,0.7624,6,69.4,True
+2026-06-18,Singapore,0.7907,7,60.4,True
+2026-06-18,Rotterdam,0.7502,6,68.3,True
+2026-06-18,Los Angeles,0.5787,6,52.2,True
+2026-06-19,Shanghai,0.7222,5,62.1,True
+2026-06-19,Singapore,0.7109,7,79.2,True
+2026-06-19,Rotterdam,0.62,8,71.2,True
+2026-06-19,Los Angeles,0.5805,3,40.4,True
+2026-06-20,Shanghai,0.6367,8,80.0,True
+2026-06-20,Singapore,0.554,2,27.2,True
+2026-06-20,Rotterdam,0.8,8,86.1,True
+2026-06-20,Los Angeles,0.6574,9,88.0,True
+2026-06-21,Shanghai,0.6863,6,58.2,True
+2026-06-21,Singapore,0.8598,10,99.4,True
+2026-06-21,Rotterdam,0.746,7,78.4,True
+2026-06-21,Los Angeles,0.7513,7,88.7,True
+2026-06-22,Shanghai,0.7915,7,85.9,True
+2026-06-22,Singapore,0.6199,2,39.4,True
+2026-06-22,Rotterdam,0.9655,8,91.2,True
+2026-06-22,Los Angeles,0.7394,6,79.7,True
+2026-06-23,Shanghai,0.8816,8,84.6,True
+2026-06-23,Singapore,0.8161,7,74.8,True
+2026-06-23,Rotterdam,0.4807,6,50.5,True
+2026-06-23,Los Angeles,0.7,9,82.9,True
+2026-06-24,Shanghai,0.7933,7,85.1,True
+2026-06-24,Singapore,0.7148,7,64.8,True
+2026-06-24,Rotterdam,0.6828,5,59.6,True
+2026-06-24,Los Angeles,0.5657,5,66.9,True
+2026-06-25,Shanghai,0.5734,4,40.8,True
+2026-06-25,Singapore,0.833,8,86.8,True
+2026-06-25,Rotterdam,0.7806,8,72.8,True
+2026-06-25,Los Angeles,0.7162,6,56.1,True
+2026-06-26,Shanghai,0.5088,5,53.8,True
+2026-06-26,Singapore,0.784,7,82.4,True
+2026-06-26,Rotterdam,0.8473,6,78.3,True
+2026-06-26,Los Angeles,0.5157,6,64.0,True
+2026-06-27,Shanghai,0.7335,7,69.1,True
+2026-06-27,Singapore,0.738,5,59.7,True
+2026-06-27,Rotterdam,0.7205,5,68.5,True
+2026-06-27,Los Angeles,0.5526,4,45.2,True
+2026-06-28,Shanghai,0.7665,4,50.2,True
+2026-06-28,Singapore,0.7338,8,89.8,True
+2026-06-28,Rotterdam,0.8342,7,89.9,True
+2026-06-28,Los Angeles,0.7316,7,69.6,True
+2026-06-29,Shanghai,0.649,6,58.0,True
+2026-06-29,Singapore,0.7542,8,88.0,True
+2026-06-29,Rotterdam,0.7298,8,79.7,True
+2026-06-29,Los Angeles,0.669,5,53.6,True
+2026-06-30,Shanghai,0.6883,6,62.7,True
+2026-06-30,Singapore,0.5902,7,69.3,True
+2026-06-30,Rotterdam,0.8136,7,71.7,True
+2026-06-30,Los Angeles,0.5261,3,47.0,True
+2026-07-01,Shanghai,1.0,7,85.8,True
+2026-07-01,Singapore,0.5489,3,38.0,True
+2026-07-01,Rotterdam,0.8386,10,102.6,True
+2026-07-01,Los Angeles,0.6848,7,65.5,True
+2026-07-02,Shanghai,0.7226,3,48.0,True
+2026-07-02,Singapore,0.7658,10,102.9,True
+2026-07-02,Rotterdam,0.7298,3,49.5,True
+2026-07-02,Los Angeles,0.6056,5,67.4,True
+2026-07-03,Shanghai,0.8334,9,104.3,True
+2026-07-03,Singapore,0.7114,6,60.9,True
+2026-07-03,Rotterdam,0.6918,6,74.6,True
+2026-07-03,Los Angeles,0.6865,7,74.9,True
+2026-07-04,Shanghai,0.7087,8,78.3,True
+2026-07-04,Singapore,0.7513,6,70.0,True
+2026-07-04,Rotterdam,0.678,9,86.3,True
+2026-07-04,Los Angeles,0.6573,6,66.9,True
+2026-07-05,Shanghai,0.6691,6,58.1,True
+2026-07-05,Singapore,0.7432,7,61.9,True
+2026-07-05,Rotterdam,0.731,5,62.7,True
+2026-07-05,Los Angeles,0.3805,3,42.2,True
+2026-07-06,Shanghai,0.5853,5,60.1,True
+2026-07-06,Singapore,0.7093,4,54.8,True
+2026-07-06,Rotterdam,0.7403,6,71.5,True
+2026-07-06,Los Angeles,0.5969,5,55.8,True
+2026-07-07,Shanghai,0.7117,4,52.6,True
+2026-07-07,Singapore,0.8196,7,80.0,True
+2026-07-07,Rotterdam,0.7394,7,87.7,True
+2026-07-07,Los Angeles,0.6312,5,52.0,True
+2026-07-08,Shanghai,0.777,6,78.4,True
+2026-07-08,Singapore,0.6047,8,79.3,True
+2026-07-08,Rotterdam,0.78,10,94.6,True
+2026-07-08,Los Angeles,0.6481,5,63.8,True
+2026-07-09,Shanghai,0.7946,8,85.6,True
+2026-07-09,Singapore,0.776,10,96.1,True
+2026-07-09,Rotterdam,0.7678,7,78.0,True
+2026-07-09,Los Angeles,0.5861,5,61.6,True
+2026-07-10,Shanghai,0.7397,8,76.2,True
+2026-07-10,Singapore,0.6216,8,77.0,True
+2026-07-10,Rotterdam,0.709,6,78.5,True
+2026-07-10,Los Angeles,0.6733,5,69.4,True
+2026-07-11,Shanghai,0.7878,8,71.9,True
+2026-07-11,Singapore,0.7611,10,92.8,True
+2026-07-11,Rotterdam,0.6347,4,44.0,True
+2026-07-11,Los Angeles,0.7649,7,70.5,True
+2026-07-12,Shanghai,0.765,8,76.6,True
+2026-07-12,Singapore,0.8462,8,85.3,True
+2026-07-12,Rotterdam,0.7049,7,67.5,True
+2026-07-12,Los Angeles,0.8138,9,99.4,True
+2026-07-13,Shanghai,0.6217,5,62.7,True
+2026-07-13,Singapore,0.6918,8,87.0,True
+2026-07-13,Rotterdam,0.8094,9,85.4,True
+2026-07-13,Los Angeles,0.7556,11,101.4,True
+2026-07-14,Shanghai,0.6014,5,43.8,True
+2026-07-14,Singapore,0.6903,8,83.4,True
+2026-07-14,Rotterdam,0.6935,5,56.3,True
+2026-07-14,Los Angeles,0.7363,7,71.0,True
+2026-07-15,Shanghai,0.8489,10,111.9,True
+2026-07-15,Singapore,0.6394,6,60.9,True
+2026-07-15,Rotterdam,0.7211,7,65.9,True
+2026-07-15,Los Angeles,0.6937,6,70.7,True
+2026-07-16,Shanghai,0.7664,6,77.6,True
+2026-07-16,Singapore,0.7082,6,77.2,True
+2026-07-16,Rotterdam,0.7629,8,91.6,True
+2026-07-16,Los Angeles,0.4334,4,43.8,True
+2026-07-17,Shanghai,0.7924,7,82.9,True
+2026-07-17,Singapore,0.7636,7,79.4,True
+2026-07-17,Rotterdam,0.8984,9,83.2,True
+2026-07-17,Los Angeles,0.6289,3,45.6,True
+2026-07-18,Shanghai,0.8201,7,77.2,True
+2026-07-18,Singapore,0.5424,5,49.7,True
+2026-07-18,Rotterdam,0.797,9,85.3,True
+2026-07-18,Los Angeles,0.6339,4,43.6,True
+2026-07-19,Shanghai,0.5741,7,66.5,True
+2026-07-19,Singapore,0.8639,7,76.2,True
+2026-07-19,Rotterdam,0.715,7,71.6,True
+2026-07-19,Los Angeles,0.8134,5,64.5,True
+2026-07-20,Shanghai,0.6951,4,58.6,True
+2026-07-20,Singapore,0.5587,4,48.1,True
+2026-07-20,Rotterdam,0.765,7,79.3,True
+2026-07-20,Los Angeles,0.4916,3,30.2,True
+2026-07-21,Shanghai,0.7276,4,50.0,True
+2026-07-21,Singapore,0.567,5,66.4,True
+2026-07-21,Rotterdam,0.6163,6,69.6,True
+2026-07-21,Los Angeles,0.471,2,31.1,True
+2026-07-22,Shanghai,0.6994,5,67.6,True
+2026-07-22,Singapore,0.822,10,103.9,True
+2026-07-22,Rotterdam,0.9125,7,88.3,True
+2026-07-22,Los Angeles,0.5055,7,67.7,True
+2026-07-23,Shanghai,0.8167,7,78.0,True
+2026-07-23,Singapore,0.7051,8,72.2,True
+2026-07-23,Rotterdam,0.7811,8,82.0,True
+2026-07-23,Los Angeles,0.5883,4,32.7,True
+2026-07-24,Shanghai,0.8083,6,63.6,True
+2026-07-24,Singapore,0.5957,5,54.8,True
+2026-07-24,Rotterdam,0.5095,3,33.2,True
+2026-07-24,Los Angeles,0.6236,6,69.7,True
+2026-07-25,Shanghai,0.6931,8,84.8,True
+2026-07-25,Singapore,0.5793,5,45.2,True
+2026-07-25,Rotterdam,0.8239,8,88.6,True
+2026-07-25,Los Angeles,0.4634,2,35.9,True
+2026-07-26,Shanghai,0.8145,9,81.6,True
+2026-07-26,Singapore,0.7772,6,72.3,True
+2026-07-26,Rotterdam,0.6502,7,74.3,True
+2026-07-26,Los Angeles,0.7789,6,71.0,True
+2026-07-27,Shanghai,0.715,8,78.6,True
+2026-07-27,Singapore,0.7918,6,78.2,True
+2026-07-27,Rotterdam,0.6366,6,63.8,True
+2026-07-27,Los Angeles,0.4959,5,63.2,True
+2026-07-28,Shanghai,0.7749,8,91.0,True
+2026-07-28,Singapore,0.8428,8,90.6,True
+2026-07-28,Rotterdam,0.6314,5,67.0,True
+2026-07-28,Los Angeles,0.5738,8,73.2,True
+2026-07-29,Shanghai,0.8484,6,69.9,True
+2026-07-29,Singapore,0.7716,6,75.5,True
+2026-07-29,Rotterdam,0.5611,6,51.7,True
+2026-07-29,Los Angeles,0.7576,8,90.4,True
+2026-07-30,Shanghai,0.7434,6,76.7,True
+2026-07-30,Singapore,0.7345,5,68.4,True
+2026-07-30,Rotterdam,0.5886,4,44.5,True
+2026-07-30,Los Angeles,0.5371,8,76.5,True
+2026-07-31,Shanghai,0.6714,4,49.5,True
+2026-07-31,Singapore,0.7416,7,70.4,True
+2026-07-31,Rotterdam,0.651,5,51.0,True
+2026-07-31,Los Angeles,0.5092,3,40.2,True
+2026-08-01,Shanghai,0.7809,8,89.0,True
+2026-08-01,Singapore,0.6155,5,68.2,True
+2026-08-01,Rotterdam,0.6461,6,53.9,True
+2026-08-01,Los Angeles,0.7437,5,66.1,True
+2026-08-02,Shanghai,0.8017,8,71.7,True
+2026-08-02,Singapore,0.6147,7,69.0,True
+2026-08-02,Rotterdam,0.8328,8,73.3,True
+2026-08-02,Los Angeles,0.6851,5,66.0,True
+2026-08-03,Shanghai,0.9584,11,107.8,True
+2026-08-03,Singapore,0.8616,9,89.3,True
+2026-08-03,Rotterdam,0.6306,5,50.7,True
+2026-08-03,Los Angeles,0.3982,3,38.0,True
+2026-08-04,Shanghai,0.7141,5,66.1,True
+2026-08-04,Singapore,0.6728,6,66.2,True
+2026-08-04,Rotterdam,0.8316,8,87.3,True
+2026-08-04,Los Angeles,0.6662,7,68.2,True
+2026-08-05,Shanghai,0.8219,7,69.7,True
+2026-08-05,Singapore,0.6097,4,47.5,True
+2026-08-05,Rotterdam,0.783,6,59.5,True
+2026-08-05,Los Angeles,0.5674,5,59.3,True
+2026-08-06,Shanghai,0.743,7,75.4,True
+2026-08-06,Singapore,0.6978,7,72.0,True
+2026-08-06,Rotterdam,0.817,9,88.2,True
+2026-08-06,Los Angeles,0.8224,7,70.3,True
+2026-08-07,Shanghai,0.8608,7,84.1,True
+2026-08-07,Singapore,0.5576,5,60.9,True
+2026-08-07,Rotterdam,0.6801,6,60.8,True
+2026-08-07,Los Angeles,0.5794,6,59.3,True
+2026-08-08,Shanghai,0.5927,6,65.3,True
+2026-08-08,Singapore,0.8079,7,67.5,True
+2026-08-08,Rotterdam,0.6224,6,58.7,True
+2026-08-08,Los Angeles,0.7045,9,86.8,True
+2026-08-09,Shanghai,0.9223,7,84.8,True
+2026-08-09,Singapore,0.7156,8,79.8,True
+2026-08-09,Rotterdam,0.6316,6,77.2,True
+2026-08-09,Los Angeles,0.6412,6,61.1,True
+2026-08-10,Shanghai,0.8835,7,74.4,True
+2026-08-10,Singapore,0.6157,4,35.3,True
+2026-08-10,Rotterdam,0.6062,4,44.9,True
+2026-08-10,Los Angeles,0.5833,4,53.4,True
+2026-08-11,Shanghai,0.8494,8,79.4,True
+2026-08-11,Singapore,0.7224,6,61.6,True
+2026-08-11,Rotterdam,0.6686,5,60.4,True
+2026-08-11,Los Angeles,0.5552,5,65.6,True
+2026-08-12,Shanghai,0.9192,8,91.2,True
+2026-08-12,Singapore,0.6849,5,56.4,True
+2026-08-12,Rotterdam,0.6526,6,62.1,True
+2026-08-12,Los Angeles,0.6132,4,50.4,True
+2026-08-13,Shanghai,0.6678,8,72.8,True
+2026-08-13,Singapore,0.8563,7,70.2,True
+2026-08-13,Rotterdam,0.7544,7,69.3,True
+2026-08-13,Los Angeles,0.6098,4,54.9,True
+2026-08-14,Shanghai,0.6913,6,78.0,True
+2026-08-14,Singapore,0.7766,7,81.5,True
+2026-08-14,Rotterdam,0.6846,5,68.9,True
+2026-08-14,Los Angeles,0.5141,7,71.6,True
+2026-08-15,Shanghai,0.7601,5,66.1,True
+2026-08-15,Singapore,0.7477,9,80.8,True
+2026-08-15,Rotterdam,0.574,4,39.0,True
+2026-08-15,Los Angeles,0.5374,3,39.8,True
+2026-08-16,Shanghai,0.7741,8,84.2,True
+2026-08-16,Singapore,0.6224,7,78.4,True
+2026-08-16,Rotterdam,0.6565,2,38.2,True
+2026-08-16,Los Angeles,0.5945,4,39.4,True
+2026-08-17,Shanghai,0.6218,7,75.9,True
+2026-08-17,Singapore,0.8576,11,126.8,True
+2026-08-17,Rotterdam,0.7991,5,67.9,True
+2026-08-17,Los Angeles,0.58,4,41.3,True
+2026-08-18,Shanghai,0.6854,7,61.0,True
+2026-08-18,Singapore,0.6837,9,80.1,True
+2026-08-18,Rotterdam,0.6504,7,62.8,True
+2026-08-18,Los Angeles,0.7347,8,93.5,True
+2026-08-19,Shanghai,0.7106,6,76.8,True
+2026-08-19,Singapore,0.5418,7,61.4,True
+2026-08-19,Rotterdam,0.5863,6,59.5,True
+2026-08-19,Los Angeles,0.7106,6,70.5,True
+2026-08-20,Shanghai,1.0,9,90.6,True
+2026-08-20,Singapore,0.6386,6,67.9,True
+2026-08-20,Rotterdam,0.7143,3,40.1,True
+2026-08-20,Los Angeles,0.7064,5,67.4,True
+2026-08-21,Shanghai,0.6926,5,56.0,True
+2026-08-21,Singapore,0.8114,7,72.0,True
+2026-08-21,Rotterdam,0.6124,3,45.9,True
+2026-08-21,Los Angeles,0.4583,5,40.2,True
+2026-08-22,Shanghai,0.9703,8,91.1,True
+2026-08-22,Singapore,0.7209,8,74.8,True
+2026-08-22,Rotterdam,0.6779,6,61.8,True
+2026-08-22,Los Angeles,0.8629,6,58.4,True
+2026-08-23,Shanghai,0.9288,9,97.3,True
+2026-08-23,Singapore,0.7024,5,57.1,True
+2026-08-23,Rotterdam,0.704,7,63.8,True
+2026-08-23,Los Angeles,0.5911,6,58.8,True
+2026-08-24,Shanghai,0.5372,7,64.2,True
+2026-08-24,Singapore,0.6501,7,66.5,True
+2026-08-24,Rotterdam,0.7507,8,77.7,True
+2026-08-24,Los Angeles,0.5396,7,75.9,True
+2026-08-25,Shanghai,0.7239,7,82.0,True
+2026-08-25,Singapore,0.6882,6,66.9,True
+2026-08-25,Rotterdam,0.7917,5,61.4,True
+2026-08-25,Los Angeles,0.6038,5,61.3,True
+2026-08-26,Shanghai,0.7042,6,67.4,True
+2026-08-26,Singapore,0.641,8,71.1,True
+2026-08-26,Rotterdam,0.7823,7,89.9,True
+2026-08-26,Los Angeles,0.4692,2,28.7,True
+2026-08-27,Shanghai,0.6622,4,58.8,True
+2026-08-27,Singapore,0.7973,8,78.3,True
+2026-08-27,Rotterdam,0.7456,6,72.5,True
+2026-08-27,Los Angeles,0.5737,5,63.1,True
+2026-08-28,Shanghai,0.8236,9,82.0,True
+2026-08-28,Singapore,0.717,6,74.0,True
+2026-08-28,Rotterdam,0.7883,8,74.8,True
+2026-08-28,Los Angeles,0.6079,5,57.3,True
+2026-08-29,Shanghai,0.7632,10,92.1,True
+2026-08-29,Singapore,0.7794,7,63.5,True
+2026-08-29,Rotterdam,0.6252,4,54.1,True
+2026-08-29,Los Angeles,0.4865,4,34.7,True
+2026-08-30,Shanghai,0.7658,6,66.0,True
+2026-08-30,Singapore,0.7731,8,88.0,True
+2026-08-30,Rotterdam,0.5674,8,75.4,True
+2026-08-30,Los Angeles,0.395,4,43.3,True
+2026-08-31,Shanghai,0.8213,10,109.0,True
+2026-08-31,Singapore,0.6471,7,74.0,True
+2026-08-31,Rotterdam,0.6955,7,61.2,True
+2026-08-31,Los Angeles,0.7693,7,68.5,True
+2026-09-01,Shanghai,0.709,6,71.0,True
+2026-09-01,Singapore,0.6959,8,72.3,True
+2026-09-01,Rotterdam,0.8859,9,89.3,True
+2026-09-01,Los Angeles,0.6924,6,60.6,True
+2026-09-02,Shanghai,0.881,6,79.9,True
+2026-09-02,Singapore,0.7659,6,67.6,True
+2026-09-02,Rotterdam,0.6572,6,67.5,True
+2026-09-02,Los Angeles,0.7124,6,76.2,True
+2026-09-03,Shanghai,0.6358,7,65.4,True
+2026-09-03,Singapore,0.5488,4,49.1,True
+2026-09-03,Rotterdam,0.5951,5,69.9,True
+2026-09-03,Los Angeles,0.5694,5,48.0,True
+2026-09-04,Shanghai,0.769,8,84.6,True
+2026-09-04,Singapore,0.899,9,96.7,True
+2026-09-04,Rotterdam,0.8047,6,68.7,True
+2026-09-04,Los Angeles,0.5109,8,75.4,True
+2026-09-05,Shanghai,0.8327,8,91.3,True
+2026-09-05,Singapore,0.7767,6,65.9,True
+2026-09-05,Rotterdam,0.765,5,66.4,True
+2026-09-05,Los Angeles,0.6889,5,69.6,True
+2026-09-06,Shanghai,0.8293,9,92.0,True
+2026-09-06,Singapore,0.7811,9,80.9,True
+2026-09-06,Rotterdam,0.8236,6,72.3,True
+2026-09-06,Los Angeles,0.5768,3,42.7,True
+2026-09-07,Shanghai,0.8448,6,73.5,True
+2026-09-07,Singapore,0.5994,4,45.5,True
+2026-09-07,Rotterdam,0.6121,5,49.9,True
+2026-09-07,Los Angeles,0.8278,7,69.7,True
+2026-09-08,Shanghai,0.8198,8,73.6,True
+2026-09-08,Singapore,0.7981,7,85.9,True
+2026-09-08,Rotterdam,0.6557,6,75.8,True
+2026-09-08,Los Angeles,0.5819,7,75.9,True
+2026-09-09,Shanghai,0.8896,7,75.2,True
+2026-09-09,Singapore,0.5075,6,60.0,True
+2026-09-09,Rotterdam,0.5368,4,32.2,True
+2026-09-09,Los Angeles,0.7387,7,84.8,True
+2026-09-10,Shanghai,0.7098,7,79.1,True
+2026-09-10,Singapore,0.7961,6,72.7,True
+2026-09-10,Rotterdam,0.7001,7,68.7,True
+2026-09-10,Los Angeles,0.6183,6,75.4,True
+2026-09-11,Shanghai,0.6797,5,69.7,True
+2026-09-11,Singapore,0.7895,7,68.3,True
+2026-09-11,Rotterdam,0.7124,9,84.1,True
+2026-09-11,Los Angeles,0.591,6,50.3,True
+2026-09-12,Shanghai,0.5371,4,47.8,True
+2026-09-12,Singapore,0.5531,7,68.6,True
+2026-09-12,Rotterdam,0.7418,8,91.8,True
+2026-09-12,Los Angeles,0.5967,6,73.2,True
+2026-09-13,Shanghai,0.7225,5,69.1,True
+2026-09-13,Singapore,0.8254,5,65.0,True
+2026-09-13,Rotterdam,0.712,6,60.6,True
+2026-09-13,Los Angeles,0.6407,5,68.1,True
+2026-09-14,Shanghai,0.7223,10,90.9,True
+2026-09-14,Singapore,0.6907,6,67.3,True
+2026-09-14,Rotterdam,0.7958,7,71.5,True
+2026-09-14,Los Angeles,0.8451,9,87.7,True
+2026-09-15,Shanghai,0.6135,5,69.4,True
+2026-09-15,Singapore,0.485,5,41.2,True
+2026-09-15,Rotterdam,0.5611,4,40.2,True
+2026-09-15,Los Angeles,0.5186,2,36.4,True

@@ -1,4 +1,0 @@
-vessel_class,draft_m,loa_m,beam_m,capacity_t,daily_opex_usd,typical_port_fee_usd
-Capesize,18.0,290.0,45.0,150000,10000,50000
-Panamax,12.0,220.0,32.0,65000,8000,35000
-Supramax,10.0,190.0,30.0,50000,6000,25000

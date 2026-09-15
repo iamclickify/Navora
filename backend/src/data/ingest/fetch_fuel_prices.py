@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 
 def main():
-    project_root = Path(__file__).resolve().parent.parent.parent.parent
+    project_root = Path(__file__).resolve().parent.parent.parent.parent.parent
     load_dotenv(project_root / '.env')
     
     api_key = os.getenv('EIA_API_KEY')
