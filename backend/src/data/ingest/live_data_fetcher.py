@@ -155,11 +155,14 @@ def fetch_port_forecast(port_name: str, days: int = 7) -> list:
     return result
 
 
+import time
+
 def fetch_live_weather() -> dict:
     """Fetches live weather from Open-Meteo for all ports (today only, for risk scoring)."""
     weather_cache = {}
 
     for port, coords in PORT_COORDS.items():
+        time.sleep(0.5) # Prevent 429 Too Many Requests on Open-Meteo free tier
         url = (f"https://api.open-meteo.com/v1/forecast"
                f"?latitude={coords['lat']}&longitude={coords['lon']}"
                f"&daily=wind_speed_10m_max,precipitation_sum"

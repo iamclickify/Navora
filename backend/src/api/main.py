@@ -128,6 +128,10 @@ class SensitivityAnalysisRequest(BaseModel):
 
 # --- Endpoints ---
 
+@app.get("/")
+def health_check():
+    return {"status": "ok", "message": "Navora API is running"}
+
 @app.get("/api/v1/historical-rates")
 def get_historical_rates(limit: int = 30):
     historical_path = data_dir / 'historical_freight_data.csv'
