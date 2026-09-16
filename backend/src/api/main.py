@@ -18,14 +18,11 @@ project_root = Path(__file__).resolve().parent.parent.parent.parent
 data_dir = project_root / 'data'
 models_dir = project_root / 'backend' / 'models'
 
-# Add src to path for absolute imports if needed
-sys.path.append(str(project_root / 'backend' / 'src'))
 from data.ingest.live_data_fetcher import refresh_live_data, fetch_live_weather, fetch_port_forecast, PORT_COORDS
-sys.path.insert(0, str(project_root))
 
-from src.optimization.vessel_ranking import rank_vessels
-from src.optimization.voyage_scheduler import schedule_voyages
-from src.optimization.sensitivity import analyze_sensitivity
+from backend.src.optimization.vessel_ranking import rank_vessels
+from backend.src.optimization.voyage_scheduler import schedule_voyages
+from backend.src.optimization.sensitivity import analyze_sensitivity
 
 app = FastAPI(
     title="Navora Optimization API", 
