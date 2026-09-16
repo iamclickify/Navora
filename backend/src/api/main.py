@@ -128,7 +128,7 @@ class SensitivityAnalysisRequest(BaseModel):
 
 # --- Endpoints ---
 
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 def health_check():
     return {"status": "ok", "message": "Navora API is running"}
 

@@ -158,39 +158,50 @@ def fetch_port_forecast(port_name: str, days: int = 7) -> list:
 import time
 
 def fetch_live_weather() -> dict:
-    """Fetches live weather from Open-Meteo for all ports (today only, for risk scoring)."""
+    """Fetches live weather from Open-Meteo for all ports in a single batch request."""
     weather_cache = {}
+    ports = list(PORT_COORDS.items())
 
-    for port, coords in PORT_COORDS.items():
-        time.sleep(0.5) # Prevent 429 Too Many Requests on Open-Meteo free tier
-        url = (f"https://api.open-meteo.com/v1/forecast"
-               f"?latitude={coords['lat']}&longitude={coords['lon']}"
-               f"&daily=wind_speed_10m_max,precipitation_sum"
-               f"&timezone=Asia%2FKolkata&forecast_days=1")
+    # Build a single batch URL with all lat/lon pairs
+    lats = ",".join(str(c["lat"]) for _, c in ports)
+    lons = ",".join(str(c["lon"]) for _, c in ports)
+    url = (
+        f"https://api.open-meteo.com/v1/forecast"
+        f"?latitude={lats}&longitude={lons}"
+        f"&daily=wind_speed_10m_max,precipitation_sum"
+        f"&timezone=Asia%2FKolkata&forecast_days=1"
+    )
 
-        try:
-            res = requests.get(url, timeout=10, verify=False)
-            res.raise_for_status()
-            data = res.json()
+    try:
+        res = requests.get(url, timeout=30, verify=False)
+        res.raise_for_status()
+        results = res.json()
 
-            daily = data.get("daily", {})
-            wind_speed = daily.get("wind_speed_10m_max", [0])[0] or 0.0
-            precip = daily.get("precipitation_sum", [0])[0] or 0.0
+        # Open-Meteo returns a list when multiple locations are requested
+        if isinstance(results, dict):
+            results = [results]  # Single location fallback
 
-            risk = get_risk_score(wind_speed, precip)
+        for i, (port, _) in enumerate(ports):
+            if i >= len(results):
+                break
+            try:
+                daily = results[i].get("daily", {})
+                wind_speed = daily.get("wind_speed_10m_max", [0])[0] or 0.0
+                precip = daily.get("precipitation_sum", [0])[0] or 0.0
+                risk = get_risk_score(wind_speed, precip)
+                weather_cache[port] = {
+                    "wind_speed_max_kmh": float(wind_speed),
+                    "precipitation_sum_mm": float(precip),
+                    "risk_score": risk
+                }
+            except Exception as e:
+                logging.error(f"Failed to parse weather for {port}: {e}")
+                weather_cache[port] = {"wind_speed_max_kmh": 0.0, "precipitation_sum_mm": 0.0, "risk_score": "Low"}
 
-            weather_cache[port] = {
-                "wind_speed_max_kmh": float(wind_speed),
-                "precipitation_sum_mm": float(precip),
-                "risk_score": risk
-            }
-        except Exception as e:
-            logging.error(f"Failed to fetch weather for {port}: {e}")
-            weather_cache[port] = {
-                "wind_speed_max_kmh": 0.0,
-                "precipitation_sum_mm": 0.0,
-                "risk_score": "Low"
-            }
+    except Exception as e:
+        logging.error(f"Batch weather fetch failed: {e}. Defaulting all ports to Low risk.")
+        for port, _ in ports:
+            weather_cache[port] = {"wind_speed_max_kmh": 0.0, "precipitation_sum_mm": 0.0, "risk_score": "Low"}
 
     return weather_cache
 
