@@ -80,13 +80,23 @@ def load_models():
             print(f"Live data refreshed: BDI={bdi}, Fuel={fuel}")
         else:
             print("Live data refresh did not return new values.")
-            
-        logging.info("Fetching live weather risk...")
-        live_weather_cache = fetch_live_weather()
     except Exception as e:
         print(f"Error during live data refresh: {e}")
-        
+
+    # Weather is fetched lazily on first request to avoid Open-Meteo rate limits at startup.
     print("API Startup Complete.")
+
+
+def get_weather_cache():
+    """Lazy-load the weather cache on first use, not at startup."""
+    global live_weather_cache
+    if not live_weather_cache:
+        logging.info("Fetching live weather risk (lazy load)...")
+        try:
+            live_weather_cache = fetch_live_weather()
+        except Exception as e:
+            logging.error(f"Lazy weather fetch failed: {e}")
+    return live_weather_cache
 
 # --- Pydantic Schemas ---
 
@@ -194,7 +204,7 @@ def get_port_constraints():
 
 @app.get("/api/v1/weather-risk")
 def get_weather_risk():
-    return {"weather_risk": live_weather_cache}
+    return {"weather_risk": get_weather_cache()}
 
 @app.get("/api/v1/weather-forecast")
 def get_weather_forecast(port: str = "Paradip"):
@@ -562,10 +572,11 @@ def get_multi_horizon_forecast(
     wind_speed = 0.0
     precip = 0.0
     weather_risk = "Low"
-    if port and port in live_weather_cache:
-        weather_risk = live_weather_cache[port].get("risk_score", "Low")
-        wind_speed = live_weather_cache[port].get("wind_speed_max_kmh", 0.0)
-        precip = live_weather_cache[port].get("precipitation_sum_mm", 0.0)
+    if port and port in get_weather_cache():
+        _wc = get_weather_cache()
+        weather_risk = _wc[port].get("risk_score", "Low")
+        wind_speed = _wc[port].get("wind_speed_max_kmh", 0.0)
+        precip = _wc[port].get("precipitation_sum_mm", 0.0)
     
     # Max horizon is 90
     horizon = 90
@@ -759,8 +770,8 @@ def vessel_recommendation(req: VesselRecommendationRequest):
             
         # Get weather risk
         weather_risk_score = "Low"
-        if req.port_name in live_weather_cache:
-            weather_risk_score = live_weather_cache[req.port_name].get('risk_score', 'Low')
+        if req.port_name in get_weather_cache():
+            weather_risk_score = get_weather_cache()[req.port_name].get('risk_score', 'Low')
             
         feasible, infeasible = rank_vessels(
             req.port_name, 
