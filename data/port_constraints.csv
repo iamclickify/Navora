@@ -1,8 +1,18 @@
-port,draft_m,max_loa_m,beam_m,cargo_cap_t
-Paradip,13,240,32.2,140000
-Vizag,12.5,238,32.2,120000
-Gangavaram,12,200,32,80000
-Gopalpur,10.5,180,30,60000
-Dhamra,11,210,32,100000
-Sagar-Sandheads,9.5,170,28,50000
-Haldia,8.5,160,27.5,40000
+port,draft_m,max_loa_m,beam_m,cargo_cap_t,congestion_score
+Paradip,13,240,32.2,140000,0.6
+Vizag,12.5,238,32.2,120000,0.8
+Gangavaram,12,200,32,80000,0.4
+Gopalpur,10.5,180,30,60000,0.2
+Dhamra,11,210,32,100000,0.5
+Sagar-Sandheads,9.5,170,28,50000,0.7
+Haldia,8.5,160,27.5,40000,0.9
+Chennai (Ennore),16.5,300,45.0,180000,0.7
+Kamarajar (Ennore),18.0,300,45.0,200000,0.6
+Kolkata (KoPT),7.5,150,25.0,30000,0.8
+Krishnapatnam,18.5,320,46.0,220000,0.5
+Kattupalli,14.5,280,40.0,150000,0.4
+Tuticorin (V.O.C.),14.2,250,38.0,140000,0.6
+Cuddalore,9.0,160,28.0,45000,0.3
+Kakinada,11.5,220,32.0,80000,0.5
+Machilipatnam,10.0,180,30.0,60000,0.3
+Ennore Creek,14.0,260,38.0,130000,0.4

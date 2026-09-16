@@ -1,5 +1,7 @@
 import os
 import requests
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 import pandas as pd
 import logging
 from pathlib import Path
@@ -17,7 +19,17 @@ PORT_COORDS = {
     "Gopalpur": {"lat": 19.300, "lon": 84.978},
     "Dhamra": {"lat": 20.796, "lon": 86.953},
     "Sagar-Sandheads": {"lat": 21.650, "lon": 88.050},
-    "Haldia": {"lat": 22.025, "lon": 88.058}
+    "Haldia": {"lat": 22.025, "lon": 88.058},
+    "Chennai (Ennore)": {"lat": 13.217, "lon": 80.325},
+    "Kamarajar (Ennore)": {"lat": 13.281, "lon": 80.326},
+    "Kolkata (KoPT)": {"lat": 22.555, "lon": 88.348},
+    "Krishnapatnam": {"lat": 14.250, "lon": 80.124},
+    "Kattupalli": {"lat": 13.523, "lon": 80.302},
+    "Tuticorin (V.O.C.)": {"lat": 8.789, "lon": 78.175},
+    "Cuddalore": {"lat": 11.747, "lon": 79.768},
+    "Kakinada": {"lat": 16.950, "lon": 82.247},
+    "Machilipatnam": {"lat": 16.189, "lon": 81.139},
+    "Ennore Creek": {"lat": 13.254, "lon": 80.319}
 }
 
 
@@ -81,7 +93,7 @@ def fetch_port_forecast(port_name: str, days: int = 7) -> list:
     }
 
     try:
-        atmo_resp = requests.get(atmo_url, params=atmo_params, timeout=10)
+        atmo_resp = requests.get(atmo_url, params=atmo_params, timeout=10, verify=False)
         atmo_resp.raise_for_status()
         atmo_data = atmo_resp.json().get("daily", {})
     except Exception as e:
@@ -109,7 +121,7 @@ def fetch_port_forecast(port_name: str, days: int = 7) -> list:
             "timezone": "Asia/Kolkata",
             "forecast_days": forecast_days,
         }
-        marine_resp = requests.get(marine_url, params=marine_params, timeout=10)
+        marine_resp = requests.get(marine_url, params=marine_params, timeout=10, verify=False)
         marine_resp.raise_for_status()
         marine_daily = marine_resp.json().get("daily", {})
         wave_times = marine_daily.get("time", [])
@@ -154,7 +166,7 @@ def fetch_live_weather() -> dict:
                f"&timezone=Asia%2FKolkata&forecast_days=1")
 
         try:
-            res = requests.get(url, timeout=10)
+            res = requests.get(url, timeout=10, verify=False)
             res.raise_for_status()
             data = res.json()
 
@@ -216,7 +228,7 @@ def fetch_live_fuel(api_key=None) -> pd.DataFrame:
     # FRED - completely free, no API key
     try:
         fred_url = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILWTICO"
-        response = requests.get(fred_url, timeout=10)
+        response = requests.get(fred_url, timeout=10, verify=False)
         response.raise_for_status()
 
         if 'DATE' in response.text[:100].upper() or 'observation_date' in response.text[:100]:
@@ -247,7 +259,7 @@ def fetch_live_fuel(api_key=None) -> pd.DataFrame:
             'length': 100
         }
         try:
-            response = requests.get(url, params=params, timeout=10)
+            response = requests.get(url, params=params, timeout=10, verify=False)
             response.raise_for_status()
             data = response.json()
             records = data.get('response', {}).get('data', [])

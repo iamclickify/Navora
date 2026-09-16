@@ -7,6 +7,16 @@ export const portSpecs = {
   "Dhamra": { draft_m: 11.0, max_loa_m: 210, beam_m: 32.0, cargo_cap_t: 100000, congestion_score: 0.5 },
   "Sagar-Sandheads": { draft_m: 9.5, max_loa_m: 170, beam_m: 28.0, cargo_cap_t: 50000, congestion_score: 0.7 },
   "Haldia": { draft_m: 8.5, max_loa_m: 160, beam_m: 27.5, cargo_cap_t: 40000, congestion_score: 0.9 },
+  "Chennai (Ennore)": { draft_m: 16.5, max_loa_m: 300, beam_m: 45.0, cargo_cap_t: 180000, congestion_score: 0.7 },
+  "Kamarajar (Ennore)": { draft_m: 18.0, max_loa_m: 300, beam_m: 45.0, cargo_cap_t: 200000, congestion_score: 0.6 },
+  "Kolkata (KoPT)": { draft_m: 7.5, max_loa_m: 150, beam_m: 25.0, cargo_cap_t: 30000, congestion_score: 0.8 },
+  "Krishnapatnam": { draft_m: 18.5, max_loa_m: 320, beam_m: 46.0, cargo_cap_t: 220000, congestion_score: 0.5 },
+  "Kattupalli": { draft_m: 14.5, max_loa_m: 280, beam_m: 40.0, cargo_cap_t: 150000, congestion_score: 0.4 },
+  "Tuticorin (V.O.C.)": { draft_m: 14.2, max_loa_m: 250, beam_m: 38.0, cargo_cap_t: 140000, congestion_score: 0.6 },
+  "Cuddalore": { draft_m: 9.0, max_loa_m: 160, beam_m: 28.0, cargo_cap_t: 45000, congestion_score: 0.3 },
+  "Kakinada": { draft_m: 11.5, max_loa_m: 220, beam_m: 32.0, cargo_cap_t: 80000, congestion_score: 0.5 },
+  "Machilipatnam": { draft_m: 10.0, max_loa_m: 180, beam_m: 30.0, cargo_cap_t: 60000, congestion_score: 0.3 },
+  "Ennore Creek": { draft_m: 14.0, max_loa_m: 260, beam_m: 38.0, cargo_cap_t: 130000, congestion_score: 0.4 }
 };
 
 // Standard vessel specifications
@@ -52,5 +62,20 @@ export const mockScenarios = {
     routeInfo: { origin: "Indonesia", destination: "Haldia" },
     validCommodities: ["Coal"],
     volumes: { "Coal": 40000 }
+  },
+  "Australia - Chennai": {
+    routeInfo: { origin: "Australia", destination: "Chennai (Ennore)" },
+    validCommodities: ["Coal", "Iron Ore"],
+    volumes: { "Coal": 120000, "Iron Ore": 150000 }
+  },
+  "Indonesia - Kakinada": {
+    routeInfo: { origin: "Indonesia", destination: "Kakinada" },
+    validCommodities: ["Coal"],
+    volumes: { "Coal": 80000 }
+  },
+  "South Africa - Krishnapatnam": {
+    routeInfo: { origin: "South Africa", destination: "Krishnapatnam" },
+    validCommodities: ["Coal"],
+    volumes: { "Coal": 160000 }
   }
 };

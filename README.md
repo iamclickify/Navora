@@ -84,9 +84,14 @@ Our core forecasting engine is an ensemble of two distinct algorithms, designed 
 
 ### Pillar B: Vessel Feasibility & Cost Ranking
 Before a vessel is recommended, it must physically fit the port.
-* **Approach:** A deterministic constraint filter. We filter vessels based on strict physical limits: `vessel_draft <= port_draft`, `vessel_loa <= port_max_loa`.
-* **Ranking:** Surviving vessels are ranked via a transparent cost function: `Total Cost = (Capacity * Predicted Freight Rate) + Port Fees + (Daily Opex * Transit Days)`.
-* **Why not ML here?:** Physical constraints are absolute. An ML model "guessing" if a Capesize fits into a shallow port is dangerous and unnecessary. Deterministic logic is faster and safer.
+* **Approach:** A deterministic constraint filter. We filter vessels based on strict physical limits: `vessel_draft <= port_draft`, `vessel_loa <= port_max_loa`, `vessel_beam <= port_beam`, and `vessel_capacity >= cargo_volume`.
+* **Ranking:** Surviving vessels are ranked via a transparent cost function. The total voyage cost is calculated as the sum of:
+  1. **Freight Cost:** `Cargo Volume × Predicted Freight Rate` (Scales dynamically with the user's cargo size)
+  2. **Fuel Cost:** `Vessel Fuel Burn Rate × Fuel Price × Transit Days`
+  3. **OpEx:** `Vessel Daily OpEx × Transit Days`
+  4. **Port Fees:** `Vessel-specific Flat Docking Fee`
+  5. **Weather Risk Penalty:** A dynamic penalty (5-10% of base cost) applied if the destination port has adverse weather. This penalty is scaled by vessel size (e.g., Handysize takes a 1.5x penalty modifier, while Capesize takes a 0.3x modifier as they handle rough seas better).
+* **Why not ML here?:** Physical constraints and financial formulas are absolute. An ML model "guessing" if a Capesize fits into a shallow port or estimating a direct arithmetic cost is dangerous and unnecessary. Deterministic logic is faster and safer.
 
 ### Pillar C: Multi-Voyage Optimization (Minimizing Idle Time)
 * **Approach:** Greedy Dynamic Programming (DP) Scheduler.

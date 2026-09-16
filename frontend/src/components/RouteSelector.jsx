@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Package } from 'lucide-react';
+import { Package, Menu } from 'lucide-react';
+import NavoraLogo from '../assets/Navora_logo_transparent.png';
 
 // Cargo volume options in tonnes
 const CARGO_OPTIONS = [
@@ -18,10 +19,9 @@ export default function RouteSelector({
   scenarios,
   selectedRoute,
   onSelectRoute,
-  selectedCommodity,
-  onSelectCommodity,
   cargoVolume,
   onSelectCargoVolume,
+  onToggleSidebar
 }) {
   const routes = Object.keys(scenarios);
   const currentScenario = scenarios[selectedRoute];
@@ -29,8 +29,15 @@ export default function RouteSelector({
   return (
     <div className="bg-slate-900 border-b border-slate-800 px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-md">
       <div className="flex items-center space-x-4">
-        <Link to="/" className="font-bold text-2xl text-white tracking-tight hover:text-blue-400 transition-colors cursor-pointer">
-          Navora
+        <button
+          onClick={onToggleSidebar}
+          className="text-slate-300 hover:text-white transition-colors p-1"
+        >
+          <Menu size={24} />
+        </button>
+        <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer">
+          <img src={NavoraLogo} alt="Navora Logo" className="h-8" />
+          <span className="font-bold text-xl text-white tracking-tight">Navora</span>
         </Link>
       </div>
 
@@ -49,21 +56,7 @@ export default function RouteSelector({
           </select>
         </div>
 
-        {/* Commodity Selector */}
-        {currentScenario && (
-          <div className="flex items-center space-x-2 bg-slate-800 p-1.5 rounded-lg border border-slate-700">
-            <label className="text-xs font-semibold text-slate-400 uppercase ml-2 tracking-wide">Commodity</label>
-            <select
-              value={selectedCommodity}
-              onChange={(e) => onSelectCommodity(e.target.value)}
-              className="bg-slate-900 border-none rounded py-1 px-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              {currentScenario.validCommodities.map(comm => (
-                <option key={comm} value={comm}>{comm}</option>
-              ))}
-            </select>
-          </div>
-        )}
+
 
         {/* Cargo Volume Selector */}
         <div className="flex items-center space-x-2 bg-slate-800 p-1.5 rounded-lg border border-slate-700">

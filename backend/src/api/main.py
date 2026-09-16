@@ -10,6 +10,8 @@ from pathlib import Path
 import sys
 import asyncio
 import logging
+import math
+from concurrent.futures import ThreadPoolExecutor
 
 # Setup paths
 project_root = Path(__file__).resolve().parent.parent.parent.parent
@@ -195,7 +197,7 @@ def get_weather_risk():
 
 @app.get("/api/v1/weather-forecast")
 def get_weather_forecast(port: str = "Paradip"):
-    forecast = fetch_port_forecast(port, days=7)
+    forecast = fetch_port_forecast(port, days=15)
     if not forecast:
         raise HTTPException(status_code=404, detail=f"Weather forecast not found or failed for port: {port}")
     
@@ -210,15 +212,169 @@ def get_weather_forecast(port: str = "Paradip"):
 @app.get("/api/v1/weather-forecast/all")
 def get_all_weather_forecasts():
     all_forecasts = []
-    for port, coords in PORT_COORDS.items():
+    
+    def fetch_for_port(port, coords):
         forecast = fetch_port_forecast(port, days=7)
-        all_forecasts.append({
+        return {
             "port": port,
             "lat": coords["lat"],
             "lon": coords["lon"],
             "forecast": forecast
-        })
+        }
+
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        futures = [executor.submit(fetch_for_port, p, c) for p, c in PORT_COORDS.items()]
+        for future in futures:
+            try:
+                all_forecasts.append(future.result())
+            except Exception as e:
+                logging.error(f"Error fetching for port in ThreadPool: {e}")
+
     return {"ports": all_forecasts}
+
+@app.get("/api/v1/port-optimization")
+def port_optimization(port: str, cargo_volume: float = 50000):
+    if port not in PORT_COORDS:
+        raise HTTPException(status_code=404, detail="Primary port not found in system")
+        
+    primary_forecast = fetch_port_forecast(port, days=1)
+    if not primary_forecast:
+        primary_risk = "Low"
+        primary_wind = 0.0
+    else:
+        primary_risk = primary_forecast[0].get("risk", "Low")
+        primary_wind = primary_forecast[0].get("wind", 0.0)
+        
+    primary_status = "infeasible" if primary_risk == "High" else "feasible"
+    
+    primary_coords = PORT_COORDS[port]
+    
+    # Load port constraints to check capacity
+    port_path = data_dir / 'port_constraints.csv'
+    port_constraints = {}
+    if port_path.exists():
+        df = pd.read_csv(port_path)
+        for _, row in df.iterrows():
+            port_constraints[row['port']] = row.to_dict()
+            
+    # If not found in CSV, define default reasonable caps
+    def get_cargo_cap(p_name):
+        if p_name in port_constraints:
+            return float(port_constraints[p_name].get('cargo_cap_t', 100000))
+        # Default capacity mapping from mockData if missing in CSV
+        default_caps = {
+            "Paradip": 140000, "Vizag": 120000, "Gangavaram": 80000,
+            "Gopalpur": 60000, "Dhamra": 100000, "Sagar-Sandheads": 50000,
+            "Haldia": 40000, "Chennai (Ennore)": 180000, "Kamarajar (Ennore)": 200000,
+            "Kolkata (KoPT)": 30000, "Krishnapatnam": 220000, "Kattupalli": 150000,
+            "Tuticorin (V.O.C.)": 140000, "Cuddalore": 45000, "Kakinada": 80000,
+            "Machilipatnam": 60000, "Ennore Creek": 130000
+        }
+        return default_caps.get(p_name, 50000)
+
+    def get_congestion(p_name):
+        """Get per-port congestion score from CSV, with fallback defaults."""
+        if p_name in port_constraints:
+            return float(port_constraints[p_name].get('congestion_score', 0.5))
+        # Fallback defaults matching portSpecs in mockData.js
+        default_congestion = {
+            "Paradip": 0.6, "Vizag": 0.8, "Gangavaram": 0.4,
+            "Gopalpur": 0.2, "Dhamra": 0.5, "Sagar-Sandheads": 0.7,
+            "Haldia": 0.9, "Chennai (Ennore)": 0.7, "Kamarajar (Ennore)": 0.6,
+            "Kolkata (KoPT)": 0.8, "Krishnapatnam": 0.5, "Kattupalli": 0.4,
+            "Tuticorin (V.O.C.)": 0.6, "Cuddalore": 0.3, "Kakinada": 0.5,
+            "Machilipatnam": 0.3, "Ennore Creek": 0.4
+        }
+        return default_congestion.get(p_name, 0.5)
+
+    alternatives = []
+    
+    # Function for haversine distance
+    def haversine(lat1, lon1, lat2, lon2):
+        R = 6371.0 # Earth radius in km
+        dlat = math.radians(lat2 - lat1)
+        dlon = math.radians(lon2 - lon1)
+        a = math.sin(dlat / 2)**2 + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon / 2)**2
+        c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+        return R * c
+        
+    def fetch_alt_forecast(alt_port):
+        return alt_port, fetch_port_forecast(alt_port, days=1)
+
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        alt_ports_to_fetch = [p for p in PORT_COORDS.keys() if p != port]
+        futures = [executor.submit(fetch_alt_forecast, p) for p in alt_ports_to_fetch]
+        
+        for future in futures:
+            alt_port, alt_forecast = future.result()
+            coords = PORT_COORDS[alt_port]
+            
+            alt_risk = alt_forecast[0].get("risk", "Low") if alt_forecast else "Low"
+            
+            # 1. Weather check
+            if alt_risk == "High":
+                continue
+                
+            # 2. Feasibility matching check
+            capacity = get_cargo_cap(alt_port)
+            if cargo_volume > capacity:
+                # Infeasible due to cargo size vs port capacity
+                continue
+                
+            dist_km = haversine(primary_coords["lat"], primary_coords["lon"], coords["lat"], coords["lon"])
+            
+            wind_kmh = alt_forecast[0].get("wind", 0.0) if alt_forecast else 0.0
+            wave_m = alt_forecast[0].get("wave", 0.0) if alt_forecast else 0.0
+            rain_mm = alt_forecast[0].get("rain", 0.0) if alt_forecast else 0.0
+            
+            congestion = get_congestion(alt_port)
+            
+            # Base score (lower is better, we want to rank 1 as best)
+            # Distance penalty (1 point per 100km)
+            score = dist_km / 100.0
+            
+            # Weather penalty
+            if alt_risk == "Medium":
+                score += 10.0
+                
+            # Congestion penalty (0-1 range * 10)
+            score += congestion * 10.0
+            
+            reason = "Nearest feasible port"
+            if dist_km > 500:
+                reason = "Closest low-risk port available"
+            if congestion < 0.4:
+                reason += ", low congestion"
+                
+            alternatives.append({
+                "port": alt_port,
+                "score": score,
+                "distance_km": round(dist_km, 1),
+                "weather_risk": alt_risk,
+                "wind_kmh": wind_kmh,
+                "wave_m": wave_m,
+                "rain_mm": rain_mm,
+                "congestion": round(congestion, 2),
+                "cargo_cap_t": int(get_cargo_cap(alt_port)),
+                "reason": reason
+            })
+        
+    # Rank them
+    alternatives.sort(key=lambda x: x["score"])
+    
+    # Assign ranks
+    for i, alt in enumerate(alternatives):
+        alt["rank"] = i + 1
+        
+    return {
+        "primary_port": port,
+        "primary_status": primary_status,
+        "primary_risk": primary_risk,
+        "primary_wind_kmh": primary_wind,
+        "alternatives": alternatives[:5] # Top 5
+    }
+
+
 
 @app.post("/api/v1/forecast")
 def forecast_freight_rate(req: ForecastRequest):
@@ -357,7 +513,8 @@ def get_multi_horizon_forecast(
     route: str = None, 
     commodity: str = None,
     fuel_shock_pct: float = 0.0,
-    congestion_shock_pct: float = 0.0
+    congestion_shock_pct: float = 0.0,
+    cargo_volume: float = 50000.0
 ):
     """Generates forecasts for 7, 15, 30, 60, and 90 days in one go."""
     if xgboost_model is None or prophet_model is None:
@@ -503,11 +660,11 @@ def get_multi_horizon_forecast(
         if pct_change > threshold:
             rec = "Buy Now"
             rationale = f"Forecast shows an upward trend ({pct_change:+.1f}% over {h} days vs threshold {threshold:.1f}%). Book early to avoid premium."
-            savings = abs(end_rate - current_rate) * 50000
+            savings = abs(end_rate - current_rate) * cargo_volume
         elif pct_change < -threshold:
             rec = "Wait"
             rationale = f"Forecast shows a downward trend ({pct_change:+.1f}% over {h} days vs threshold {threshold:.1f}%). Delay booking for cheaper rates."
-            savings = abs(current_rate - end_rate) * 50000
+            savings = abs(current_rate - end_rate) * cargo_volume
 
         horizons_dict[str(h)] = {
             "avg_rate": float(avg_rate),

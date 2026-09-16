@@ -3,27 +3,17 @@ import { TrendingUp, TrendingDown, Clock, Activity, Anchor, Fuel, CloudLightning
 
 export default function MarketSummaryBar() {
   const [summary, setSummary] = useState(null);
-  const [weatherRisk, setWeatherRisk] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const [summaryRes, weatherRes] = await Promise.all([
-          fetch('http://127.0.0.1:8000/api/v1/market-summary'),
-          fetch('http://127.0.0.1:8000/api/v1/weather-risk')
-        ]);
-        
+        const summaryRes = await fetch('http://127.0.0.1:8000/api/v1/market-summary');
         if (!summaryRes.ok) throw new Error("Failed to fetch market summary");
         
         const summaryData = await summaryRes.json();
         setSummary(summaryData);
-
-        if (weatherRes.ok) {
-          const weatherData = await weatherRes.json();
-          setWeatherRisk(weatherData.weather_risk);
-        }
       } catch (err) {
         setError(err.message);
       } finally {
@@ -100,37 +90,7 @@ export default function MarketSummaryBar() {
           </span>
         </div>
         
-        {/* Financial Risk Ticker */}
-        {weatherRisk && (
-          <>
-            <div className="w-px h-4 bg-slate-700"></div>
-            <div className="flex items-center space-x-4 animate-[marquee_25s_linear_infinite] overflow-hidden">
-              <div className="flex items-center space-x-2 text-rose-300">
-                <CloudLightning size={14} />
-                <span className="font-semibold">Port Weather Risk:</span>
-              </div>
-              {Object.entries(weatherRisk).map(([port, data]) => {
-                let color = "text-emerald-400";
-                let penaltyText = "No Penalty";
-                if (data.risk_score === "High") {
-                  color = "text-red-400";
-                  penaltyText = "Est. +15% Cost (Demurrage)";
-                } else if (data.risk_score === "Medium") {
-                  color = "text-amber-400";
-                  penaltyText = "Est. +5% Cost";
-                }
-                
-                return (
-                  <div key={port} className="flex items-center space-x-1 bg-slate-800 px-2 py-0.5 rounded text-xs border border-slate-700">
-                    <span className="text-white font-medium">{port}</span>
-                    <span className={color}>({data.risk_score})</span>
-                    {data.risk_score !== "Low" && <span className="text-slate-400 ml-1">- {penaltyText}</span>}
-                  </div>
-                );
-              })}
-            </div>
-          </>
-        )}
+
 
       </div>
 

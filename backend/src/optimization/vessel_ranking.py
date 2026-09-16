@@ -7,7 +7,7 @@ def rank_vessels(port_name: str, cargo_volume: float, predicted_freight_rate: fl
     """
     project_root = Path(__file__).resolve().parent.parent.parent.parent
     data_dir = project_root / 'data'
-    raw_dir = project_root / 'backend' / 'data' / 'raw' / 'manual_reference'
+    raw_dir = data_dir / 'raw' / 'manual_reference'
     
     port_specs_path = data_dir / 'port_constraints.csv'
     vessel_specs_path = raw_dir / 'vessel_specs.csv'
@@ -47,7 +47,7 @@ def rank_vessels(port_name: str, cargo_volume: float, predicted_freight_rate: fl
             })
         else:
             # Financial Cost Calculation
-            freight_cost = vessel['capacity_t'] * predicted_freight_rate
+            freight_cost = cargo_volume * predicted_freight_rate
             port_fee = vessel['typical_port_fee_usd']
             opex = vessel['daily_opex_usd'] * transit_days
             fuel_cost = vessel['fuel_per_day_t'] * fuel_price * transit_days
@@ -74,8 +74,11 @@ def rank_vessels(port_name: str, cargo_volume: float, predicted_freight_rate: fl
             risk_penalty = base_total_cost * risk_mult
             total_cost = base_total_cost + risk_penalty
             
+            cargo_utilization_pct = round((cargo_volume / vessel['capacity_t']) * 100, 1)
             feasible.append({
                 'vessel_class': vessel['vessel_class'],
+                'capacity_t': int(vessel['capacity_t']),
+                'cargo_utilization_pct': cargo_utilization_pct,
                 'total_cost': total_cost,
                 'weather_risk_label': weather_risk_score,
                 'risk_note': f"Risk penalty applied due to {weather_risk_score} weather" if risk_mult > 0 else "Normal operating conditions",

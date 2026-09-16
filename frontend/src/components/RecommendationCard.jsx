@@ -1,7 +1,24 @@
-import { TrendingDown, TrendingUp, AlertCircle, CheckCircle, Share2, Check } from 'lucide-react';
+import { TrendingDown, TrendingUp, AlertCircle, CheckCircle, Share2, Fuel, Anchor, Wind, BarChart2, Package } from 'lucide-react';
 import WeatherRiskBadge from './WeatherRiskBadge';
 
-export default function RecommendationCard({ action, rationale, expectedSavings, currentRate, route, commodity, factors, activeHorizon, weatherRisk }) {
+const DRIVER_ICONS = {
+  'Fuel Impact': Fuel,
+  'Port Congestion': Anchor,
+  'Seasonality (Calendar)': BarChart2,
+  'Market Momentum (Lags)': TrendingUp,
+  // Fallbacks
+  'Fuel': Fuel,
+  'Congestion': Anchor,
+  'Weather': Wind,
+};
+
+const DRIVER_COLORS = {
+  0: { bar: 'bg-blue-500', text: 'text-blue-600', bg: 'bg-blue-50' },
+  1: { bar: 'bg-amber-500', text: 'text-amber-600', bg: 'bg-amber-50' },
+  2: { bar: 'bg-violet-500', text: 'text-violet-600', bg: 'bg-violet-50' },
+};
+
+export default function RecommendationCard({ action, rationale, expectedSavings, currentRate, route, factors, activeHorizon, weatherRisk, cargoVolume }) {
   
   let actionColor = "text-slate-700 bg-slate-100 border-slate-200 ring-slate-200";
   let Icon = AlertCircle;
@@ -25,6 +42,17 @@ export default function RecommendationCard({ action, rationale, expectedSavings,
     actionableAdvice = "NO STRONG SIGNAL: The market is moving sideways. Proceed with your standard booking schedule without urgency.";
   }
 
+  // Get top 3 drivers sorted by impact
+  const topDrivers = factors && Object.keys(factors).length > 0
+    ? Object.entries(factors)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 3)
+    : [];
+
+  const cargoLabel = cargoVolume
+    ? `${(cargoVolume / 1000).toFixed(0)}k t`
+    : '50k t';
+
   return (
     <div className={`bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden`}>
       <div className="p-8">
@@ -33,8 +61,6 @@ export default function RecommendationCard({ action, rationale, expectedSavings,
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center space-x-2 text-slate-500 text-sm font-medium">
                 <span>{route || 'Global Market'}</span>
-                <span>•</span>
-                <span>{commodity || 'All Commodities'}</span>
               </div>
               <div className="flex items-center space-x-3">
                 <WeatherRiskBadge riskLevel={weatherRisk} />
@@ -72,31 +98,43 @@ export default function RecommendationCard({ action, rationale, expectedSavings,
               </span>
               <span className="text-slate-500 text-sm font-medium">savings vs {activeHorizon} days</span>
             </div>
-            <div className="flex justify-between items-center text-sm border-t border-slate-200 pt-3 mt-4">
+            <div className="flex items-center space-x-1.5 text-xs text-slate-400 mb-3">
+              <Package size={12} />
+              <span>Based on {cargoLabel} cargo</span>
+            </div>
+            <div className="flex justify-between items-center text-sm border-t border-slate-200 pt-3 mt-1">
               <span className="text-slate-500">Current Rate</span>
               <span className="font-semibold text-slate-800">${Math.round(currentRate).toLocaleString()} / day</span>
             </div>
           </div>
         </div>
 
-        {factors && (
+        {/* Forecast Drivers — top 3 */}
+        {topDrivers.length > 0 && (
           <div className="mt-8 pt-8 border-t border-slate-100">
-            <h4 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Key Drivers</h4>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {Object.entries(factors).map(([name, value]) => (
-                <div key={name} className="flex flex-col">
-                  <div className="flex justify-between text-xs mb-1">
-                    <span className="font-medium text-slate-700">{name}</span>
-                    <span className="text-slate-500">{value}%</span>
+            <h4 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">What's Driving This Forecast</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {topDrivers.map(([name, value], idx) => {
+                const colors = DRIVER_COLORS[idx] || DRIVER_COLORS[2];
+                const DriverIcon = DRIVER_ICONS[name] || BarChart2;
+                return (
+                  <div key={name} className={`${colors.bg} rounded-xl p-4 border border-slate-100`}>
+                    <div className="flex items-center space-x-2 mb-3">
+                      <div className={`p-1.5 rounded-lg bg-white shadow-sm`}>
+                        <DriverIcon size={14} className={colors.text} />
+                      </div>
+                      <span className="font-semibold text-slate-700 text-sm">{name}</span>
+                    </div>
+                    <div className="w-full bg-white rounded-full h-2 mb-2 overflow-hidden shadow-inner">
+                      <div
+                        className={`${colors.bar} h-2 rounded-full transition-all duration-500`}
+                        style={{ width: `${value}%` }}
+                      />
+                    </div>
+                    <div className={`text-xs font-bold ${colors.text}`}>{value}% impact</div>
                   </div>
-                  <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
-                    <div 
-                      className="bg-blue-500 h-1.5 rounded-full" 
-                      style={{ width: `${value}%` }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         )}
@@ -108,10 +146,6 @@ export default function RecommendationCard({ action, rationale, expectedSavings,
           <button className="flex items-center space-x-2 px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors">
             <Share2 size={16} />
             <span>Share Analysis</span>
-          </button>
-          <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors shadow-sm">
-            <Check size={16} />
-            <span>Confirm Procurement</span>
           </button>
         </div>
       </div>
