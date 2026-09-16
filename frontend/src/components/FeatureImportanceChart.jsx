@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import BASE_URL from '../api/client';
 import { 
   BarChart, 
   Bar, 
@@ -18,7 +19,7 @@ export default function FeatureImportanceChart() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/v1/feature-importance');
+        const response = await fetch(`${BASE_URL}/api/v1/feature-importance`);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const result = await response.json();
         

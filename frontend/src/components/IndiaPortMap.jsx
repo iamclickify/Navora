@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import BASE_URL from '../api/client';
 import { MapContainer, TileLayer, Marker, Popup, CircleMarker, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -29,7 +30,7 @@ export default function IndiaPortMap({ selectedPort }) {
   useEffect(() => {
     async function loadAllPorts() {
       try {
-        const res = await fetch(`http://127.0.0.1:8000/api/v1/weather-forecast/all`);
+        const res = await fetch(`${BASE_URL}/api/v1/weather-forecast/all`);
         if (res.ok) {
           const data = await res.json();
           setPortsData(data.ports || []);

@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { LineChart, CloudRain, Anchor, History, X } from 'lucide-react';
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from './ui/sheet';
 
 export default function Sidebar({ isOpen, onClose }) {
   const navItems = [
@@ -10,31 +11,11 @@ export default function Sidebar({ isOpen, onClose }) {
   ];
 
   return (
-    <>
-      {/* Overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40 transition-opacity"
-          onClick={onClose}
-        />
-      )}
-
-      {/* Sidebar Panel */}
-      <div
-        className={`fixed top-0 left-0 h-full w-64 bg-slate-900 border-r border-slate-800 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
-      >
-        <div className="flex items-center justify-between p-4 border-b border-slate-800">
-          <span className="text-white font-bold text-lg tracking-tight ml-2">Navigation</span>
-          <button
-            onClick={onClose}
-            className="text-slate-400 hover:text-white transition-colors p-1"
-          >
-            <X size={20} />
-          </button>
-        </div>
-
+    <Sheet open={isOpen} onOpenChange={(open) => !open && onClose()}>
+      <SheetContent side="left" className="w-64 bg-slate-900 border-r border-slate-800 p-0 text-slate-300">
+        <SheetHeader className="p-4 border-b border-slate-800 text-left">
+          <SheetTitle className="text-white font-bold text-lg tracking-tight ml-2">Navigation</SheetTitle>
+        </SheetHeader>
         <nav className="p-4 space-y-2">
           {navItems.map((item) => (
             <NavLink
@@ -54,7 +35,7 @@ export default function Sidebar({ isOpen, onClose }) {
             </NavLink>
           ))}
         </nav>
-      </div>
-    </>
+      </SheetContent>
+    </Sheet>
   );
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import BASE_URL from '../api/client';
 
 const DEFAULT_VOYAGES = [
   { id: 'V1', earliest_start: 0, duration: 25 },
@@ -16,7 +17,7 @@ export default function VoyageTimeline() {
       setIsLoading(true);
       setError(null);
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/v1/multi-voyage-optimization', {
+        const response = await fetch(`${BASE_URL}/api/v1/multi-voyage-optimization`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

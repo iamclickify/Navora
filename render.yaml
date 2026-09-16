@@ -1,0 +1,17 @@
+# Render deployment configuration
+# This file tells Render how to build and run the backend service.
+# Docs: https://render.com/docs/render-yaml-spec
+
+services:
+  - type: web
+    name: navora-api
+    runtime: python
+    region: singapore  # Closest to India for lower latency
+    plan: free
+    rootDir: .
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.src.api.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /docs
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0

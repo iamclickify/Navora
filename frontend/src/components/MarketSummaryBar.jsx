@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import BASE_URL from '../api/client';
 import { TrendingUp, TrendingDown, Clock, Activity, Anchor, Fuel, CloudLightning } from 'lucide-react';
 
 export default function MarketSummaryBar() {
@@ -9,7 +10,7 @@ export default function MarketSummaryBar() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const summaryRes = await fetch('http://127.0.0.1:8000/api/v1/market-summary');
+        const summaryRes = await fetch(`${BASE_URL}/api/v1/market-summary`);
         if (!summaryRes.ok) throw new Error("Failed to fetch market summary");
         
         const summaryData = await summaryRes.json();
@@ -53,49 +54,47 @@ export default function MarketSummaryBar() {
   };
 
   return (
-    <div className="bg-slate-900 border-b border-slate-800 text-slate-300 px-6 py-2 flex items-center justify-between text-xs shadow-inner">
+    <div className="bg-slate-900 border-b border-slate-800 text-slate-300 px-6 py-2 flex items-center justify-between text-sm shadow-inner">
       <div className="flex items-center space-x-6 overflow-x-auto whitespace-nowrap hide-scrollbar flex-1">
         
         <div className="flex items-center space-x-2">
-          <Activity size={14} className="text-blue-400" />
-          <span className="font-semibold text-white">BDI (Global):</span>
-          <span className="font-mono">{summary.bdi.value.toLocaleString()}</span>
-          <span className={`flex items-center font-mono ${trendColor(summary.bdi.trend_pct)}`}>
+          <Activity size={16} className="text-blue-400" />
+          <span className="font-bold text-white uppercase tracking-wide text-xs">BDI (Global):</span>
+          <span className="font-mono font-bold text-white">{summary.bdi.value.toLocaleString()}</span>
+          <span className={`flex items-center font-mono font-bold ${trendColor(summary.bdi.trend_pct)}`}>
             ({summary.bdi.trend_pct > 0 ? '+' : ''}{summary.bdi.trend_pct}%)
             <TrendIcon trend={summary.bdi.trend_pct} />
           </span>
         </div>
 
-        <div className="w-px h-4 bg-slate-700"></div>
+        <div className="w-px h-5 bg-slate-700"></div>
 
         <div className="flex items-center space-x-2">
-          <Fuel size={14} className="text-amber-400" />
-          <span className="font-semibold text-white">Bunker Fuel (Proxy):</span>
-          <span className="font-mono">${summary.fuel.value.toFixed(2)}</span>
-          <span className={`flex items-center font-mono ${trendColor(summary.fuel.trend_pct)}`}>
+          <Fuel size={16} className="text-amber-400" />
+          <span className="font-bold text-white uppercase tracking-wide text-xs">Bunker Fuel:</span>
+          <span className="font-mono font-bold text-white">${summary.fuel.value.toFixed(2)}</span>
+          <span className={`flex items-center font-mono font-bold ${trendColor(summary.fuel.trend_pct)}`}>
             ({summary.fuel.trend_pct > 0 ? '+' : ''}{summary.fuel.trend_pct}%)
             <TrendIcon trend={summary.fuel.trend_pct} />
           </span>
         </div>
 
-        <div className="w-px h-4 bg-slate-700"></div>
+        <div className="w-px h-5 bg-slate-700"></div>
 
         <div className="flex items-center space-x-2">
-          <Anchor size={14} className="text-rose-400" />
-          <span className="font-semibold text-white">Avg Congestion:</span>
-          <span className="font-mono">{summary.congestion.value.toFixed(2)} idx</span>
-          <span className={`flex items-center font-mono ${trendColor(summary.congestion.trend_pct)}`}>
+          <Anchor size={16} className="text-rose-400" />
+          <span className="font-bold text-white uppercase tracking-wide text-xs">Avg Congestion:</span>
+          <span className="font-mono font-bold text-white">{summary.congestion.value.toFixed(2)} idx</span>
+          <span className={`flex items-center font-mono font-bold ${trendColor(summary.congestion.trend_pct)}`}>
             ({summary.congestion.trend_pct > 0 ? '+' : ''}{summary.congestion.trend_pct}%)
             <TrendIcon trend={summary.congestion.trend_pct} />
           </span>
         </div>
         
-
-
       </div>
 
-      <div className="flex items-center space-x-2 text-slate-500 ml-4 hidden sm:flex">
-        <Clock size={12} />
+      <div className="flex items-center space-x-2 text-slate-500 ml-4 hidden sm:flex text-xs font-medium">
+        <Clock size={14} />
         <span>Last Updated: {summary.last_updated}</span>
       </div>
     </div>

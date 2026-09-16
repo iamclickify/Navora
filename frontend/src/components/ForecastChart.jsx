@@ -64,7 +64,7 @@ export default function ForecastChart({ forecastData, activeModel = 'ensemble', 
       
       <div className="flex-grow min-h-[350px]">
         <ResponsiveContainer width="100%" height="100%">
-          <ComposedChart data={chartData} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
+          <ComposedChart data={chartData} margin={{ top: 20, right: 10, left: -10, bottom: 20 }}>
             <defs>
               <linearGradient id="colorCI" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.15}/>

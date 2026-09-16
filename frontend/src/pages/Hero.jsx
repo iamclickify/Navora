@@ -21,14 +21,7 @@ export default function Hero() {
             <a href="#solution" className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Our Solution</a>
             <a href="#impact" className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Impact</a>
           </nav>
-          <div>
-            <button 
-              onClick={() => navigate('/dashboard')}
-              className="text-sm font-semibold text-blue-600 bg-blue-50 px-4 py-2 rounded-lg hover:bg-blue-100 transition-colors"
-            >
-              Log in
-            </button>
-          </div>
+          
         </div>
       </header>
 

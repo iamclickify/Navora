@@ -1,5 +1,9 @@
 import { TrendingDown, TrendingUp, AlertCircle, CheckCircle, Share2, Fuel, Anchor, Wind, BarChart2, Package } from 'lucide-react';
 import WeatherRiskBadge from './WeatherRiskBadge';
+import { Card, CardContent, CardFooter } from './ui/card';
+import { Badge } from './ui/badge';
+import { Progress } from './ui/progress';
+import { Button } from './ui/button';
 
 const DRIVER_ICONS = {
   'Fuel Impact': Fuel,
@@ -30,16 +34,16 @@ export default function RecommendationCard({ action, rationale, expectedSavings,
     Icon = CheckCircle;
     shadowColor = "shadow-emerald-500/30";
     actionableAdvice = "URGENT ACTION REQUIRED: Lock in rates immediately. Delaying procurement will likely result in paying a premium.";
-  } else if (action === "Wait") {
+  } else if (action === "Wait" || action === "Monitor") {
     actionColor = "text-blue-700 bg-blue-50 border-blue-200 ring-blue-200";
     Icon = TrendingDown;
     shadowColor = "shadow-blue-500/30";
-    actionableAdvice = "DO NOT BOOK YET: Rates are actively falling. Delay your procurement to capture the expected savings.";
+    actionableAdvice = "DEFER BOOKING: Rates are actively falling. Delay your procurement to capture the expected savings.";
   } else if (action === "Hold") {
     actionColor = "text-amber-700 bg-amber-50 border-amber-200 ring-amber-200";
     Icon = TrendingUp;
     shadowColor = "shadow-amber-500/30";
-    actionableAdvice = "NO STRONG SIGNAL: The market is moving sideways. Proceed with your standard booking schedule without urgency.";
+    actionableAdvice = "STANDARD SCHEDULE: The market is moving sideways. Proceed with your standard booking schedule without urgency.";
   }
 
   // Get top 3 drivers sorted by impact
@@ -53,29 +57,32 @@ export default function RecommendationCard({ action, rationale, expectedSavings,
     ? `${(cargoVolume / 1000).toFixed(0)}k t`
     : '50k t';
 
+  const displayAction = action === "Wait" ? "Monitor" : action;
+
   return (
-    <div className={`bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden`}>
-      <div className="p-8">
+    <Card className={`rounded-2xl shadow-xl border-slate-200 overflow-hidden`}>
+      <CardContent className="p-8">
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
+            <h2 className="text-2xl font-bold text-slate-800 tracking-tight mb-4">Market Analysis & Forecasting</h2>
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center space-x-2 text-slate-500 text-sm font-medium">
                 <span>{route || 'Global Market'}</span>
               </div>
               <div className="flex items-center space-x-3">
                 <WeatherRiskBadge riskLevel={weatherRisk} />
-                <div className="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold uppercase tracking-wider">
+                <Badge variant="secondary" className="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold uppercase tracking-wider">
                   {activeHorizon}-Day Outlook
-                </div>
+                </Badge>
               </div>
             </div>
             
             <div className={`inline-flex items-center space-x-3 px-6 py-3 rounded-full border-2 mb-6 ${actionColor} shadow-lg ${shadowColor} relative`}>
-              {action === "Buy Now" && (
+              {displayAction === "Buy Now" && (
                 <span className="absolute w-full h-full rounded-full ring-4 ring-emerald-400/30 animate-ping opacity-75 inset-0"></span>
               )}
               <Icon size={24} className="relative z-10" />
-              <span className="font-bold text-2xl relative z-10 tracking-tight uppercase">{action}</span>
+              <span className="font-bold text-2xl relative z-10 tracking-tight uppercase">{displayAction}</span>
             </div>
             
             <p className="text-slate-700 text-xl font-medium leading-relaxed max-w-2xl mb-4">
@@ -83,30 +90,32 @@ export default function RecommendationCard({ action, rationale, expectedSavings,
             </p>
 
             <div className={`p-4 rounded-lg border-l-4 font-medium text-sm max-w-2xl
-              ${action === 'Wait' ? 'bg-blue-50 border-blue-500 text-blue-800' : 
+              ${(action === 'Wait' || action === 'Monitor') ? 'bg-blue-50 border-blue-500 text-blue-800' : 
                 action === 'Hold' ? 'bg-amber-50 border-amber-500 text-amber-800' : 
                 'bg-emerald-50 border-emerald-500 text-emerald-800'}`}>
               <strong>Directive: </strong> {actionableAdvice}
             </div>
           </div>
 
-          <div className="bg-slate-50 border border-slate-100 rounded-xl p-6 min-w-[300px]">
-            <p className="text-sm font-medium text-slate-500 mb-1">Expected Financial Impact</p>
-            <div className="flex items-baseline space-x-2 mb-2">
-              <span className="text-3xl font-extrabold text-emerald-600">
-                ${expectedSavings.toLocaleString(undefined, {maximumFractionDigits: 0})}
-              </span>
-              <span className="text-slate-500 text-sm font-medium">savings vs {activeHorizon} days</span>
-            </div>
-            <div className="flex items-center space-x-1.5 text-xs text-slate-400 mb-3">
-              <Package size={12} />
-              <span>Based on {cargoLabel} cargo</span>
-            </div>
-            <div className="flex justify-between items-center text-sm border-t border-slate-200 pt-3 mt-1">
-              <span className="text-slate-500">Current Rate</span>
-              <span className="font-semibold text-slate-800">${Math.round(currentRate).toLocaleString()} / day</span>
-            </div>
-          </div>
+          <Card className="bg-slate-50 border-slate-100 min-w-[300px]">
+            <CardContent className="p-6">
+              <p className="text-sm font-medium text-slate-500 mb-1">Expected Financial Impact</p>
+              <div className="flex items-baseline space-x-2 mb-2">
+                <span className="text-3xl font-extrabold text-emerald-600">
+                  ${expectedSavings.toLocaleString(undefined, {maximumFractionDigits: 0})}
+                </span>
+                <span className="text-slate-500 text-sm font-medium">savings vs {activeHorizon} days</span>
+              </div>
+              <div className="flex items-center space-x-1.5 text-xs text-slate-400 mb-3">
+                <Package size={12} />
+                <span>Based on {cargoLabel} cargo</span>
+              </div>
+              <div className="flex justify-between items-center text-sm border-t border-slate-200 pt-3 mt-1">
+                <span className="text-slate-500">Current Rate</span>
+                <span className="font-semibold text-slate-800">${Math.round(currentRate).toLocaleString()} / day</span>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Forecast Drivers — top 3 */}
@@ -125,12 +134,7 @@ export default function RecommendationCard({ action, rationale, expectedSavings,
                       </div>
                       <span className="font-semibold text-slate-700 text-sm">{name}</span>
                     </div>
-                    <div className="w-full bg-white rounded-full h-2 mb-2 overflow-hidden shadow-inner">
-                      <div
-                        className={`${colors.bar} h-2 rounded-full transition-all duration-500`}
-                        style={{ width: `${value}%` }}
-                      />
-                    </div>
+                    <Progress value={value} className="h-2 mb-2 bg-white" indicatorColor={colors.bar} />
                     <div className={`text-xs font-bold ${colors.text}`}>{value}% impact</div>
                   </div>
                 );
@@ -138,17 +142,17 @@ export default function RecommendationCard({ action, rationale, expectedSavings,
             </div>
           </div>
         )}
-      </div>
+      </CardContent>
 
-      <div className="bg-slate-50 px-8 py-4 border-t border-slate-100 flex items-center justify-between">
+      <CardFooter className="bg-slate-50 px-8 py-4 border-t border-slate-100 flex items-center justify-between m-0">
         <span className="text-xs text-slate-400 font-medium">ML Confidence Score: High (92%)</span>
         <div className="flex space-x-3">
-          <button className="flex items-center space-x-2 px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors">
+          <Button variant="outline" className="flex items-center space-x-2 bg-white text-slate-600">
             <Share2 size={16} />
             <span>Share Analysis</span>
-          </button>
+          </Button>
         </div>
-      </div>
-    </div>
+      </CardFooter>
+    </Card>
   );
 }

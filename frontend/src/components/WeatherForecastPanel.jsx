@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import BASE_URL from '../api/client';
 import {
   ComposedChart,
   Line,
@@ -24,7 +25,7 @@ export default function WeatherForecastPanel({ portName }) {
       setIsLoading(true);
       setError(null);
       try {
-        const res = await fetch(`http://127.0.0.1:8000/api/v1/weather-forecast?port=${encodeURIComponent(portName)}`);
+        const res = await fetch(`${BASE_URL}/api/v1/weather-forecast?port=${encodeURIComponent(portName)}`);
         if (!res.ok) throw new Error("Failed to fetch weather forecast");
         const data = await res.json();
         setForecast(data.forecast || []);
@@ -96,17 +97,6 @@ export default function WeatherForecastPanel({ portName }) {
               {i === 0 ? 'Today' : formatDay(day.date)}
             </span>
             <span className="text-xl font-bold text-slate-800 mb-2">{Math.round(day.temp_max)}°C</span>
-            
-            <div className="flex flex-col gap-1 w-full text-[11px] font-medium text-slate-500 bg-slate-50 p-1.5 rounded-lg border border-slate-100">
-              <div className="flex justify-between items-center">
-                <CloudRain size={12} className="text-blue-400" />
-                <span>{day.rain} mm</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <Wind size={12} className="text-slate-400" />
-                <span className={getRiskColor(day.risk)}>{day.wind} km/h</span>
-              </div>
-            </div>
           </div>
         ))}
       </div>

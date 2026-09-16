@@ -346,6 +346,13 @@ def port_optimization(port: str, cargo_volume: float = 50000):
             if congestion < 0.4:
                 reason += ", low congestion"
                 
+            # Simple Financial Estimation
+            primary_congestion_score = get_congestion(port)
+            extra_travel_cost = (dist_km / 600.0) * 25000
+            delay_saved_days = (primary_congestion_score - congestion) * 5.0
+            risk_savings_days = 3.0 if primary_risk == "High" else 0.0
+            net_savings_usd = (delay_saved_days + risk_savings_days) * 25000 - extra_travel_cost
+                
             alternatives.append({
                 "port": alt_port,
                 "score": score,
@@ -356,6 +363,7 @@ def port_optimization(port: str, cargo_volume: float = 50000):
                 "rain_mm": rain_mm,
                 "congestion": round(congestion, 2),
                 "cargo_cap_t": int(get_cargo_cap(alt_port)),
+                "extra_fuel_cost_usd": round(extra_travel_cost, 2),
                 "reason": reason
             })
         
@@ -371,6 +379,7 @@ def port_optimization(port: str, cargo_volume: float = 50000):
         "primary_status": primary_status,
         "primary_risk": primary_risk,
         "primary_wind_kmh": primary_wind,
+        "primary_congestion": round(get_congestion(port), 2),
         "alternatives": alternatives[:5] # Top 5
     }
 

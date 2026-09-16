@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import BASE_URL from '../api/client';
 import { Outlet, useOutletContext } from 'react-router-dom';
 import RouteSelector from '../components/RouteSelector';
 import MarketSummaryBar from '../components/MarketSummaryBar';
@@ -26,13 +27,22 @@ export default function DashboardLayout() {
   const scenario = mockScenarios[selectedRoute];
   const destPort = scenario.routeInfo.destination;
 
+  // Keep-alive ping: Render free tier spins down after 15min of inactivity.
+  // Ping the health endpoint every 13 minutes to keep it warm.
+  useEffect(() => {
+    const ping = () => fetch(`${BASE_URL}/docs`).catch(() => {});
+    ping(); // Ping immediately on mount (wakes up Render if sleeping)
+    const interval = setInterval(ping, 13 * 60 * 1000); // Every 13 minutes
+    return () => clearInterval(interval);
+  }, []);
+
   // Load Forecast Data
   useEffect(() => {
     async function loadForecast() {
       setIsForecastLoading(true);
       setForecastError(null);
       try {
-        let url = `http://127.0.0.1:8000/api/v1/multi-horizon-forecast?route=${encodeURIComponent(selectedRoute)}&cargo_volume=${cargoVolume}`;
+        let url = `${BASE_URL}/api/v1/multi-horizon-forecast?route=${encodeURIComponent(selectedRoute)}&cargo_volume=${cargoVolume}`;
         if (fuelShock !== 0) url += `&fuel_shock_pct=${fuelShock}`;
         if (congestionShock !== 0) url += `&congestion_shock_pct=${congestionShock}`;
 
