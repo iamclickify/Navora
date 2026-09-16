@@ -18,7 +18,7 @@ project_root = Path(__file__).resolve().parent.parent.parent.parent
 data_dir = project_root / 'data'
 models_dir = project_root / 'backend' / 'models'
 
-from data.ingest.live_data_fetcher import refresh_live_data, fetch_live_weather, fetch_port_forecast, PORT_COORDS
+from backend.src.data.ingest.live_data_fetcher import refresh_live_data, fetch_live_weather, fetch_port_forecast, PORT_COORDS
 
 from backend.src.optimization.vessel_ranking import rank_vessels
 from backend.src.optimization.voyage_scheduler import schedule_voyages
