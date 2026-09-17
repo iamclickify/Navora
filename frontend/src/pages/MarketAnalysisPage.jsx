@@ -61,6 +61,7 @@ function WelcomeBanner() {
 
 export default function MarketAnalysisPage() {
   const {
+    selectedRoute,
     forecastData,
     isForecastLoading,
     forecastError,
