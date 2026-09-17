@@ -154,6 +154,95 @@ def fetch_port_forecast(port_name: str, days: int = 7) -> list:
 
     return result
 
+def fetch_all_ports_forecast_batch(days: int = 7) -> dict:
+    """
+    Fetches 7-day atmospheric and marine forecasts for all ports in just 2 batch API requests.
+    Returns a dict mapping port_name to a list of daily forecast dicts.
+    """
+    ports = list(PORT_COORDS.items())
+    lats = ",".join(str(c["lat"]) for _, c in ports)
+    lons = ",".join(str(c["lon"]) for _, c in ports)
+    forecast_days = min(days, 16)
+
+    # 1. Atmospheric batch
+    atmo_url = "https://api.open-meteo.com/v1/forecast"
+    atmo_params = {
+        "latitude": lats,
+        "longitude": lons,
+        "daily": "weather_code,temperature_2m_max,temperature_2m_min,wind_speed_10m_max,precipitation_sum",
+        "timezone": "Asia/Kolkata",
+        "forecast_days": forecast_days,
+    }
+
+    # 2. Marine batch
+    marine_url = "https://marine-api.open-meteo.com/v1/marine"
+    marine_params = {
+        "latitude": lats,
+        "longitude": lons,
+        "daily": "wave_height_max",
+        "timezone": "Asia/Kolkata",
+        "forecast_days": forecast_days,
+    }
+
+    results = {}
+    
+    try:
+        atmo_resp = requests.get(atmo_url, params=atmo_params, timeout=15, verify=False)
+        atmo_resp.raise_for_status()
+        atmo_data = atmo_resp.json()
+        if isinstance(atmo_data, dict) and "daily" in atmo_data:
+            atmo_data = [atmo_data] # Wrap if single location returned
+    except Exception as e:
+        logging.error(f"Atmospheric batch failed: {e}")
+        atmo_data = []
+
+    try:
+        marine_resp = requests.get(marine_url, params=marine_params, timeout=15, verify=False)
+        marine_resp.raise_for_status()
+        marine_data = marine_resp.json()
+        if isinstance(marine_data, dict) and "daily" in marine_data:
+            marine_data = [marine_data]
+    except Exception as e:
+        logging.warning(f"Marine batch failed: {e}")
+        marine_data = []
+
+    for i, (port_name, _) in enumerate(ports):
+        port_forecast = []
+        if i < len(atmo_data):
+            daily_atmo = atmo_data[i].get("daily", {})
+            dates = daily_atmo.get("time", [])
+            w_codes = daily_atmo.get("weather_code", [None]*len(dates))
+            t_max = daily_atmo.get("temperature_2m_max", [None]*len(dates))
+            t_min = daily_atmo.get("temperature_2m_min", [None]*len(dates))
+            wind = daily_atmo.get("wind_speed_10m_max", [None]*len(dates))
+            precip = daily_atmo.get("precipitation_sum", [None]*len(dates))
+            
+            daily_marine = marine_data[i].get("daily", {}) if i < len(marine_data) and marine_data[i] else {}
+            waves = daily_marine.get("wave_height_max", [None]*len(dates))
+
+            for j, date_str in enumerate(dates):
+                w_code = int(w_codes[j]) if w_codes[j] is not None else 0
+                wind_spd = float(wind[j]) if wind[j] is not None else 0.0
+                prcp = float(precip[j]) if precip[j] is not None else 0.0
+                label, icon = WMO_CODE_MAP.get(w_code, ("Unknown", "cloudy"))
+                risk = get_risk_score(wind_spd, prcp)
+                wave_val = round(float(waves[j]), 2) if j < len(waves) and waves[j] is not None else None
+
+                port_forecast.append({
+                    "date": date_str,
+                    "temp_max": round(float(t_max[j]), 1) if t_max[j] is not None else None,
+                    "temp_min": round(float(t_min[j]), 1) if t_min[j] is not None else None,
+                    "wind": round(wind_spd, 1),
+                    "rain": round(prcp, 1),
+                    "wave": wave_val,
+                    "weather_code": w_code,
+                    "weather_label": label,
+                    "weather_icon": icon,
+                    "risk": risk
+                })
+        results[port_name] = port_forecast
+        
+    return results
 
 import time
 

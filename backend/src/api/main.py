@@ -18,7 +18,7 @@ project_root = Path(__file__).resolve().parent.parent.parent.parent
 data_dir = project_root / 'data'
 models_dir = project_root / 'backend' / 'models'
 
-from backend.src.data.ingest.live_data_fetcher import refresh_live_data, fetch_live_weather, fetch_port_forecast, PORT_COORDS
+from backend.src.data.ingest.live_data_fetcher import refresh_live_data, fetch_live_weather, fetch_port_forecast, PORT_COORDS, fetch_all_ports_forecast_batch
 
 from backend.src.optimization.vessel_ranking import rank_vessels
 from backend.src.optimization.voyage_scheduler import schedule_voyages
@@ -222,24 +222,16 @@ def get_weather_forecast(port: str = "Paradip"):
 
 @app.get("/api/v1/weather-forecast/all")
 def get_all_weather_forecasts():
+    batch_results = fetch_all_ports_forecast_batch(days=7)
     all_forecasts = []
     
-    def fetch_for_port(port, coords):
-        forecast = fetch_port_forecast(port, days=7)
-        return {
+    for port, coords in PORT_COORDS.items():
+        all_forecasts.append({
             "port": port,
             "lat": coords["lat"],
             "lon": coords["lon"],
-            "forecast": forecast
-        }
-
-    with ThreadPoolExecutor(max_workers=10) as executor:
-        futures = [executor.submit(fetch_for_port, p, c) for p, c in PORT_COORDS.items()]
-        for future in futures:
-            try:
-                all_forecasts.append(future.result())
-            except Exception as e:
-                logging.error(f"Error fetching for port in ThreadPool: {e}")
+            "forecast": batch_results.get(port, [])
+        })
 
     return {"ports": all_forecasts}
 
