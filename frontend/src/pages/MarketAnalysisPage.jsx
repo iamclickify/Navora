@@ -6,7 +6,6 @@ import ModelToggle from '../components/ModelToggle';
 import HorizonSelector from '../components/HorizonSelector';
 import ForecastChart from '../components/ForecastChart';
 import SensitivityPanel from '../components/SensitivityPanel';
-import ShareAnalysisButton from '../components/ShareAnalysisButton';
 import heroImg from '../assets/Navora_logo_transparent.png';
 
 const MARITIME_QUOTES = [
@@ -140,17 +139,6 @@ export default function MarketAnalysisPage() {
         />
       </div>
 
-      {/* Share/Export Row */}
-      <div className="w-full flex justify-end mt-4 mb-8">
-        <ShareAnalysisButton 
-          forecastData={forecastData}
-          selectedRoute={selectedRoute}
-          cargoVolume={cargoVolume}
-          activeHorizon={activeHorizon}
-          fuelShock={fuelShock}
-          congestionShock={congestionShock}
-        />
-      </div>
     </div>
   );
 }
