@@ -144,14 +144,8 @@ export default function RecommendationCard({ action, rationale, expectedSavings,
         )}
       </CardContent>
 
-      <CardFooter className="bg-slate-50 px-8 py-4 border-t border-slate-100 flex items-center justify-between m-0">
+      <CardFooter className="bg-slate-50 px-8 py-4 border-t border-slate-100 flex items-center m-0">
         <span className="text-xs text-slate-400 font-medium">ML Confidence Score: High (92%)</span>
-        <div className="flex space-x-3">
-          <Button variant="outline" className="flex items-center space-x-2 bg-white text-slate-600">
-            <Share2 size={16} />
-            <span>Share Analysis</span>
-          </Button>
-        </div>
       </CardFooter>
     </Card>
   );
