@@ -72,16 +72,20 @@ def load_models():
             ensemble_weight = ens_data.get('w', 1.0)
         print(f"Ensemble Model loaded successfully (w={ensemble_weight}).")
 
-    # Refresh live data
-    print("Triggering live data refresh...")
-    try:
-        bdi, fuel = refresh_live_data(project_root)
-        if bdi and fuel:
-            print(f"Live data refreshed: BDI={bdi}, Fuel={fuel}")
-        else:
-            print("Live data refresh did not return new values.")
-    except Exception as e:
-        print(f"Error during live data refresh: {e}")
+    # Refresh live data in the background so it doesn't block startup
+    print("Triggering live data refresh in background...")
+    import threading
+    def background_refresh():
+        try:
+            bdi, fuel = refresh_live_data(project_root)
+            if bdi and fuel:
+                print(f"Live data refreshed: BDI={bdi}, Fuel={fuel}")
+            else:
+                print("Live data refresh did not return new values.")
+        except Exception as e:
+            print(f"Error during live data refresh: {e}")
+            
+    threading.Thread(target=background_refresh, daemon=True).start()
 
     # Weather is fetched lazily on first request to avoid Open-Meteo rate limits at startup.
     print("API Startup Complete.")
@@ -441,18 +445,16 @@ def forecast_freight_rate(req: ForecastRequest):
         bdi_roll_mean_7 = np.mean(current_bdi[-7:])
         bdi_roll_std_7 = np.std(current_bdi[-7:])
         
-        model_input = pd.DataFrame([{
-            'fuel in usd': base_fuel,
-            'congestion_score': base_cong,
-            'month': d.month,
-            'dayofweek': d.dayofweek,
-            'bdi_lag_1': bdi_lag_1,
-            'bdi_lag_7': bdi_lag_7,
-            'bdi_roll_mean_7': bdi_roll_mean_7,
-            'bdi_roll_std_7': bdi_roll_std_7,
-            'wind_speed_max_kmh': 0.0, # Defaulting for general endpoint
-            'precipitation_sum_mm': 0.0
-        }])
+        feature_cols = [
+            'fuel in usd', 'congestion_score', 'month', 'dayofweek',
+            'bdi_lag_1', 'bdi_lag_7', 'bdi_roll_mean_7', 'bdi_roll_std_7',
+            'wind_speed_max_kmh', 'precipitation_sum_mm'
+        ]
+        model_input = pd.DataFrame([[
+            base_fuel, base_cong, d.month, d.dayofweek,
+            bdi_lag_1, bdi_lag_7, bdi_roll_mean_7, bdi_roll_std_7,
+            0.0, 0.0
+        ]], columns=feature_cols)
         
         x_rate = float(xgboost_model.predict(model_input)[0])
         xgb_preds.append({"date": d.strftime('%Y-%m-%d'), "rate": x_rate})
@@ -616,18 +618,16 @@ def get_multi_horizon_forecast(
         bdi_roll_mean_7 = np.mean(current_bdi_list[-7:])
         bdi_roll_std_7 = np.std(current_bdi_list[-7:])
         
-        model_input = pd.DataFrame([{
-            'fuel in usd': base_fuel,
-            'congestion_score': base_cong,
-            'month': d.month,
-            'dayofweek': d.dayofweek,
-            'bdi_lag_1': bdi_lag_1,
-            'bdi_lag_7': bdi_lag_7,
-            'bdi_roll_mean_7': bdi_roll_mean_7,
-            'bdi_roll_std_7': bdi_roll_std_7,
-            'wind_speed_max_kmh': wind_speed,
-            'precipitation_sum_mm': precip
-        }])
+        feature_cols = [
+            'fuel in usd', 'congestion_score', 'month', 'dayofweek',
+            'bdi_lag_1', 'bdi_lag_7', 'bdi_roll_mean_7', 'bdi_roll_std_7',
+            'wind_speed_max_kmh', 'precipitation_sum_mm'
+        ]
+        model_input = pd.DataFrame([[
+            base_fuel, base_cong, d.month, d.dayofweek,
+            bdi_lag_1, bdi_lag_7, bdi_roll_mean_7, bdi_roll_std_7,
+            wind_speed, precip
+        ]], columns=feature_cols)
         
         x_rate = float(xgboost_model.predict(model_input)[0])
         e_rate = float(ensemble_weight * p_rate + (1 - ensemble_weight) * x_rate)
