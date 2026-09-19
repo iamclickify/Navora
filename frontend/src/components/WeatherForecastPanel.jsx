@@ -26,7 +26,7 @@ export default function WeatherForecastPanel({ portName }) {
       setError(null);
       try {
         const res = await fetch(`${BASE_URL}/api/v1/weather-forecast?port=${encodeURIComponent(portName)}`);
-        if (!res.ok) throw new Error("Failed to fetch weather forecast");
+        if (!res.ok) throw new Error(`Weather API error (${res.status})`);
         const data = await res.json();
         setForecast(data.forecast || []);
       } catch (err) {
@@ -56,11 +56,22 @@ export default function WeatherForecastPanel({ portName }) {
     );
   }
 
-  if (error || !today) {
+  if (error) {
     return (
-      <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-full flex flex-col justify-center items-center text-slate-500">
-        <p>Could not load weather data for {portName}</p>
-        <p className="text-sm mt-2">{error}</p>
+      <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-full flex flex-col justify-center items-center text-slate-500 gap-2">
+        <span className="text-2xl">🌥️</span>
+        <p className="font-medium">Weather data temporarily unavailable</p>
+        <p className="text-xs text-slate-400">{portName} · Will retry on next load</p>
+      </div>
+    );
+  }
+
+  if (!today) {
+    return (
+      <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-full flex flex-col justify-center items-center text-slate-500 gap-2">
+        <span className="text-2xl">🌥️</span>
+        <p className="font-medium">No forecast data for {portName}</p>
+        <p className="text-xs text-slate-400">Open-Meteo may be temporarily rate-limited</p>
       </div>
     );
   }

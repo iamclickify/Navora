@@ -81,25 +81,31 @@ async def load_models():
     def _load_xgboost():
         global xgboost_model
         xgb_path = models_dir / 'xgboost_model.pkl'
-        if xgb_path.exists():
+        try:
+            if not xgb_path.exists():
+                print(f"[STARTUP] WARNING: XGBoost model not found at {xgb_path}")
+                return
             t0 = time.perf_counter()
             with open(xgb_path, 'rb') as f:
                 xgboost_model = pickle.load(f)
-            print(f"XGBoost model loaded in {time.perf_counter() - t0:.2f}s")
-        else:
-            print(f"Warning: XGBoost model not found at {xgb_path}.")
+            print(f"[STARTUP] XGBoost loaded OK in {time.perf_counter() - t0:.2f}s")
+        except Exception as e:
+            print(f"[STARTUP] ERROR loading XGBoost: {type(e).__name__}: {e}")
 
     def _load_ensemble():
         global ensemble_weight
         ens_path = models_dir / 'ensemble_model.pkl'
-        if ens_path.exists():
+        try:
+            if not ens_path.exists():
+                print(f"[STARTUP] WARNING: Ensemble model not found at {ens_path}")
+                return
             t0 = time.perf_counter()
             with open(ens_path, 'rb') as f:
                 ens_data = pickle.load(f)
                 ensemble_weight = ens_data.get('w', 1.0)
-            print(f"Ensemble weights loaded in {time.perf_counter() - t0:.2f}s (w={ensemble_weight})")
-        else:
-            print("Warning: Ensemble model not found.")
+            print(f"[STARTUP] Ensemble loaded OK in {time.perf_counter() - t0:.2f}s (w={ensemble_weight})")
+        except Exception as e:
+            print(f"[STARTUP] ERROR loading Ensemble: {type(e).__name__}: {e}")
 
     # Load XGBoost + Ensemble concurrently (Prophet is lazy)
     loop = asyncio.get_event_loop()
@@ -108,9 +114,16 @@ async def load_models():
             loop.run_in_executor(executor, _load_xgboost),
             loop.run_in_executor(executor, _load_ensemble),
         ]
-        await asyncio.gather(*futures)
+        await asyncio.gather(*futures, return_exceptions=True)
 
-    print(f"Core models loaded in {time.perf_counter() - startup_t0:.2f}s. Prophet will load on first forecast request.")
+    # Always print a clear model status summary — nothing is hidden
+    elapsed = time.perf_counter() - startup_t0
+    print(f"[STARTUP] ── Model Status ──────────────────────")
+    print(f"[STARTUP]   XGBoost  : {'LOADED ✓' if xgboost_model is not None else 'NOT LOADED ✗'}")
+    print(f"[STARTUP]   Ensemble : w={ensemble_weight}")
+    print(f"[STARTUP]   Prophet  : lazy (loads on first /forecast call)")
+    print(f"[STARTUP]   Models dir: {models_dir}")
+    print(f"[STARTUP] ────────────────────────────────────── {elapsed:.2f}s")
 
     # Refresh live data in the background — does not block startup
     def background_refresh():
@@ -126,7 +139,7 @@ async def load_models():
     threading.Thread(target=background_refresh, daemon=True).start()
 
     # Weather is fetched lazily on first request to avoid Open-Meteo rate limits at startup.
-    print(f"API Startup Complete in {time.perf_counter() - startup_t0:.2f}s")
+    print(f"[STARTUP] API ready in {time.perf_counter() - startup_t0:.2f}s")
 
 
 def get_weather_cache():
@@ -250,16 +263,22 @@ def get_weather_risk():
 
 @app.get("/api/v1/weather-forecast")
 def get_weather_forecast(port: str = "Paradip"):
-    forecast = fetch_port_forecast(port, days=15)
-    if not forecast:
-        raise HTTPException(status_code=404, detail=f"Weather forecast not found or failed for port: {port}")
-    
     coords = PORT_COORDS.get(port, {})
+    if not coords:
+        raise HTTPException(status_code=404, detail=f"Unknown port: {port}")
+    
+    try:
+        forecast = fetch_port_forecast(port, days=15)
+    except Exception as e:
+        logging.error(f"Weather forecast failed for {port}: {e}")
+        forecast = []
+    
     return {
         "port": port,
         "lat": coords.get("lat"),
         "lon": coords.get("lon"),
-        "forecast": forecast
+        "forecast": forecast,
+        "unavailable": len(forecast) == 0
     }
 
 @app.get("/api/v1/weather-forecast/all")

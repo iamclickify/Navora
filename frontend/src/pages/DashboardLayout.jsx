@@ -30,7 +30,7 @@ export default function DashboardLayout() {
   // Keep-alive ping: Render free tier spins down after 15min of inactivity.
   // Ping the health endpoint every 13 minutes to keep it warm.
   useEffect(() => {
-    const ping = () => fetch(`${BASE_URL}/docs`).catch(() => {});
+    const ping = () => fetch(`${BASE_URL}/`).catch(() => {});
     ping(); // Ping immediately on mount (wakes up Render if sleeping)
     const interval = setInterval(ping, 13 * 60 * 1000); // Every 13 minutes
     return () => clearInterval(interval);
