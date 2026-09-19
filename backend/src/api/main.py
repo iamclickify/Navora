@@ -11,6 +11,8 @@ import sys
 import asyncio
 import logging
 import math
+import time
+import threading
 from concurrent.futures import ThreadPoolExecutor
 
 # Setup paths
@@ -40,41 +42,77 @@ app.add_middleware(
 
 # Global State
 xgboost_model = None
-prophet_model = None
+# Prophet is intentionally NOT loaded at startup — its import chain (pystan/cmdstanpy)
+# adds 15-25s to cold-start. It is lazy-loaded on the first /forecast request instead.
+_prophet_model = None
+_prophet_lock = threading.Lock()
 ensemble_weight = 1.0
 live_weather_cache = {}
 
-@app.on_event("startup")
-def load_models():
-    global xgboost_model, prophet_model, ensemble_weight, live_weather_cache
-    
-    # Load XGBoost
-    xgb_path = models_dir / 'xgboost_model.pkl'
-    if xgb_path.exists():
-        with open(xgb_path, 'rb') as f:
-            xgboost_model = pickle.load(f)
-        print("XGBoost Model loaded successfully.")
-    else:
-        print(f"Warning: Model not found at {xgb_path}.")
-        
-    # Load Prophet
-    prophet_path = models_dir / 'prophet_model.pkl'
-    if prophet_path.exists():
-        with open(prophet_path, 'rb') as f:
-            prophet_model = pickle.load(f)
-        print("Prophet Model loaded successfully.")
-        
-    # Load Ensemble
-    ens_path = models_dir / 'ensemble_model.pkl'
-    if ens_path.exists():
-        with open(ens_path, 'rb') as f:
-            ens_data = pickle.load(f)
-            ensemble_weight = ens_data.get('w', 1.0)
-        print(f"Ensemble Model loaded successfully (w={ensemble_weight}).")
 
-    # Refresh live data in the background so it doesn't block startup
-    print("Triggering live data refresh in background...")
-    import threading
+def get_prophet_model():
+    """Lazy-loads the Prophet model on first use. Thread-safe."""
+    global _prophet_model
+    if _prophet_model is not None:
+        return _prophet_model
+    with _prophet_lock:
+        # Double-checked locking — re-check after acquiring the lock
+        if _prophet_model is not None:
+            return _prophet_model
+        prophet_path = models_dir / 'prophet_model.pkl'
+        if prophet_path.exists():
+            t0 = time.perf_counter()
+            with open(prophet_path, 'rb') as f:
+                _prophet_model = pickle.load(f)
+            print(f"Prophet Model lazy-loaded in {time.perf_counter() - t0:.2f}s")
+        else:
+            print(f"Warning: Prophet model not found at {prophet_path}.")
+    return _prophet_model
+
+
+@app.on_event("startup")
+async def load_models():
+    """Loads XGBoost and Ensemble models in parallel at startup.
+    Prophet is skipped here and lazy-loaded on the first forecast request.
+    """
+    global xgboost_model, ensemble_weight
+    startup_t0 = time.perf_counter()
+
+    def _load_xgboost():
+        global xgboost_model
+        xgb_path = models_dir / 'xgboost_model.pkl'
+        if xgb_path.exists():
+            t0 = time.perf_counter()
+            with open(xgb_path, 'rb') as f:
+                xgboost_model = pickle.load(f)
+            print(f"XGBoost model loaded in {time.perf_counter() - t0:.2f}s")
+        else:
+            print(f"Warning: XGBoost model not found at {xgb_path}.")
+
+    def _load_ensemble():
+        global ensemble_weight
+        ens_path = models_dir / 'ensemble_model.pkl'
+        if ens_path.exists():
+            t0 = time.perf_counter()
+            with open(ens_path, 'rb') as f:
+                ens_data = pickle.load(f)
+                ensemble_weight = ens_data.get('w', 1.0)
+            print(f"Ensemble weights loaded in {time.perf_counter() - t0:.2f}s (w={ensemble_weight})")
+        else:
+            print("Warning: Ensemble model not found.")
+
+    # Load XGBoost + Ensemble concurrently (Prophet is lazy)
+    loop = asyncio.get_event_loop()
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        futures = [
+            loop.run_in_executor(executor, _load_xgboost),
+            loop.run_in_executor(executor, _load_ensemble),
+        ]
+        await asyncio.gather(*futures)
+
+    print(f"Core models loaded in {time.perf_counter() - startup_t0:.2f}s. Prophet will load on first forecast request.")
+
+    # Refresh live data in the background — does not block startup
     def background_refresh():
         try:
             bdi, fuel = refresh_live_data(project_root)
@@ -84,11 +122,11 @@ def load_models():
                 print("Live data refresh did not return new values.")
         except Exception as e:
             print(f"Error during live data refresh: {e}")
-            
+
     threading.Thread(target=background_refresh, daemon=True).start()
 
     # Weather is fetched lazily on first request to avoid Open-Meteo rate limits at startup.
-    print("API Startup Complete.")
+    print(f"API Startup Complete in {time.perf_counter() - startup_t0:.2f}s")
 
 
 def get_weather_cache():
@@ -394,6 +432,7 @@ def port_optimization(port: str, cargo_volume: float = 50000):
 
 @app.post("/api/v1/forecast")
 def forecast_freight_rate(req: ForecastRequest):
+    prophet_model = get_prophet_model()
     if xgboost_model is None or prophet_model is None:
         raise HTTPException(status_code=503, detail="Models are not loaded.")
         
@@ -531,6 +570,7 @@ def get_multi_horizon_forecast(
     cargo_volume: float = 50000.0
 ):
     """Generates forecasts for 7, 15, 30, 60, and 90 days in one go."""
+    prophet_model = get_prophet_model()
     if xgboost_model is None or prophet_model is None:
         raise HTTPException(status_code=503, detail="Models are not loaded.")
         
@@ -797,7 +837,7 @@ def multi_voyage_optimization(req: MultiVoyageOptimizationRequest):
 
 @app.post("/api/v1/sensitivity-analysis")
 def sensitivity_analysis(req: SensitivityAnalysisRequest):
-    if xgboost_model is None or prophet_model is None:
+    if xgboost_model is None or get_prophet_model() is None:
         raise HTTPException(status_code=503, detail="Model is not loaded.")
         
     # Get base fuel and congestion to apply shocks
