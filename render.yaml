@@ -9,7 +9,7 @@ services:
     region: singapore  # Closest to India for lower latency
     plan: free
     rootDir: .
-    buildCommand: pip install -r backend/requirements.txt
+    buildCommand: pip install --prefer-binary --no-cache-dir -r backend/requirements.txt
     startCommand: uvicorn backend.src.api.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /
     envVars:
