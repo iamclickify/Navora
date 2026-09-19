@@ -1,11 +1,14 @@
-pandas==2.2.2
-numpy==1.26.4
-scikit-learn==1.5.1
-prophet==1.1.5
-xgboost==2.1.1
-fastapi==0.115.0
-uvicorn[standard]==0.30.6
-pydantic==2.8.2
-requests==2.32.3
+# Versions pinned to match local training environment.
+# IMPORTANT: pandas version MUST match what was used to train/pickle the models.
+# Mismatches cause StringDtype/pickle incompatibility errors at load time.
+pandas==3.0.1
+numpy==2.3.5
+scikit-learn==1.8.0
+prophet==1.4.0
+xgboost==3.2.0
+fastapi==0.131.0
+uvicorn[standard]==0.41.0
+pydantic==2.12.5
+requests==2.32.5
 python-dotenv==1.0.1
-yfinance==0.2.43
+yfinance==1.7.0
