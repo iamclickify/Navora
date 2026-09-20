@@ -1,8 +1,0 @@
-vessel_class,draft_m,loa_m,beam_m,capacity_t,daily_opex_usd,typical_port_fee_usd
-Capesize,18.0,290.0,45.0,150000,12000,55000
-Newcastlemax,14.5,299.0,47.0,208000,14000,70000
-Panamax,12.5,225.0,32.0,75000,9000,38000
-Ultramax,10.5,199.0,32.0,63000,7500,30000
-Supramax,10.0,190.0,32.0,58000,6500,26000
-Handymax,9.5,180.0,30.0,47000,5800,22000
-Handysize,8.5,170.0,27.0,35000,5000,18000

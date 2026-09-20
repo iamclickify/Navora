@@ -1,4 +1,0 @@
-origin,commodity,commodity_share_pct,target_ports,typical_vessel_class,typical_transit_days_min,typical_transit_days_max
-Brazil,Iron Ore,100,Shanghai|Rotterdam,Capesize,30,45
-Australia,Coal,100,Shanghai|Singapore,Capesize,15,25
-USA,Grain,100,Rotterdam|Los Angeles,Panamax,20,35
