@@ -55,6 +55,12 @@ def main():
             df_freight['bdi_roll_mean_30'] = df_freight['bdi'].rolling(30).mean()
             df_freight['bdi_roll_std_30'] = df_freight['bdi'].rolling(30).std()
             
+        # Optional: Generate simple rolling stats for sub-indices if they exist
+        if 'capesize_index' in df_freight.columns:
+            df_freight['capesize_lag_1'] = df_freight['capesize_index'].shift(1)
+        if 'panamax_index' in df_freight.columns:
+            df_freight['panamax_lag_1'] = df_freight['panamax_index'].shift(1)
+            
         df_freight = df_freight.reset_index()
     else:
         df_freight = pd.DataFrame(columns=['date'])

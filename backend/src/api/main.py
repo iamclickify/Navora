@@ -467,7 +467,7 @@ def forecast_freight_rate(req: ForecastRequest):
     hist_list = df.tail(30).apply(lambda row: {"date": row['date'].strftime('%Y-%m-%d'), "rate": float(row['bdi_index'])}, axis=1).tolist()
     
     # Setup for recursive XGBoost
-    current_bdi = list(df['bdi_index'].tail(7).values)
+    current_bdi = list(df['bdi_index'].tail(30).values)
     last_date = df['date'].iloc[-1]
     
     base_fuel = req.fuel_in_usd if req.fuel_in_usd is not None else float(df['fuel in usd'].iloc[-1])
@@ -477,12 +477,70 @@ def forecast_freight_rate(req: ForecastRequest):
     xgb_preds = []
     ens_preds = []
     
+    # Get latest macro indicator (copper)
+    base_copper = 0.0
+    macro_path = data_dir / 'processed' / 'macro_indicators.csv'
+    if macro_path.exists():
+        macro_df = pd.read_csv(macro_path)
+        base_copper = float(macro_df['copper_usd'].iloc[-1])
+        
+    # Get latest capesize and panamax indices
+    capesize_lag_1 = current_bdi[-1] * 1.5
+    panamax_lag_1 = current_bdi[-1] * 0.8
+    rates_path = data_dir / 'processed' / 'freight_rates.csv'
+    if rates_path.exists():
+        rates_df = pd.read_csv(rates_path)
+        capesize_lag_1 = float(rates_df['capesize_index'].dropna().iloc[-1])
+        panamax_lag_1 = float(rates_df['panamax_index'].dropna().iloc[-1])
+        
     # Generate dates
     future_dates = [last_date + timedelta(days=i) for i in range(1, req.horizon + 1)]
     
     # Prophet batch predict
     prophet_df = pd.DataFrame({'ds': future_dates})
     prophet_fcst = prophet_model.predict(prophet_df)
+    
+    # --- DIRECT MULTI-HORIZON FORECAST (XGBoost) ---
+    bdi_lag_1 = current_bdi[-1]
+    bdi_lag_3 = current_bdi[-3]
+    bdi_lag_7 = current_bdi[-7]
+    bdi_lag_14 = current_bdi[-14]
+    bdi_lag_30 = current_bdi[-30]
+    
+    bdi_roll_mean_7 = np.mean(current_bdi[-7:])
+    bdi_roll_std_7 = np.std(current_bdi[-7:])
+    bdi_roll_mean_14 = np.mean(current_bdi[-14:])
+    bdi_roll_std_14 = np.std(current_bdi[-14:])
+    bdi_roll_mean_30 = np.mean(current_bdi[-30:])
+    bdi_roll_std_30 = np.std(current_bdi[-30:])
+    
+    port = req.route.split(" - ")[1] if (req.route and " - " in req.route) else None
+    wind_speed, precip = 0.0, 0.0
+    if port and port in get_weather_cache():
+        _wc = get_weather_cache()
+        wind_speed = _wc[port].get("wind_speed_max_kmh", 0.0)
+        precip = _wc[port].get("precipitation_sum_mm", 0.0)
+    
+    feature_cols = [
+        'fuel in usd', 'congestion_score', 'month', 'dayofweek',
+        'bdi_lag_1', 'bdi_lag_3', 'bdi_lag_7', 'bdi_lag_14', 'bdi_lag_30',
+        'bdi_roll_mean_7', 'bdi_roll_std_7', 'bdi_roll_mean_14', 'bdi_roll_std_14',
+        'bdi_roll_mean_30', 'bdi_roll_std_30',
+        'wind_speed_max_kmh', 'precipitation_sum_mm', 'copper_usd',
+        'capesize_lag_1', 'panamax_lag_1'
+    ]
+    
+    model_input = pd.DataFrame([[
+        base_fuel, base_cong, future_dates[0].month, future_dates[0].dayofweek,
+        bdi_lag_1, bdi_lag_3, bdi_lag_7, bdi_lag_14, bdi_lag_30,
+        bdi_roll_mean_7, bdi_roll_std_7, bdi_roll_mean_14, bdi_roll_std_14,
+        bdi_roll_mean_30, bdi_roll_std_30,
+        wind_speed, precip, base_copper,
+        capesize_lag_1, panamax_lag_1
+    ]], columns=feature_cols)
+    
+    # MultiOutputRegressor returns shape (1, horizon)
+    xgb_preds_array = xgboost_model.predict(model_input)[0]
     
     for i, d in enumerate(future_dates):
         # Prophet
@@ -497,31 +555,18 @@ def forecast_freight_rate(req: ForecastRequest):
             "upper": p_upper
         })
         
-        # XGBoost
-        bdi_lag_1 = current_bdi[-1]
-        bdi_lag_7 = current_bdi[-7]
-        bdi_roll_mean_7 = np.mean(current_bdi[-7:])
-        bdi_roll_std_7 = np.std(current_bdi[-7:])
-        
-        feature_cols = [
-            'fuel in usd', 'congestion_score', 'month', 'dayofweek',
-            'bdi_lag_1', 'bdi_lag_7', 'bdi_roll_mean_7', 'bdi_roll_std_7',
-            'wind_speed_max_kmh', 'precipitation_sum_mm'
-        ]
-        model_input = pd.DataFrame([[
-            base_fuel, base_cong, d.month, d.dayofweek,
-            bdi_lag_1, bdi_lag_7, bdi_roll_mean_7, bdi_roll_std_7,
-            0.0, 0.0
-        ]], columns=feature_cols)
-        
-        x_rate = float(xgboost_model.predict(model_input)[0])
+        # XGBoost Direct Prediction
+        # If horizon requested > 30, we just repeat the 30th day for simplicity or truncate.
+        # Our MultiOutputRegressor is trained for 30 days.
+        x_idx = min(i, 29) 
+        x_rate = float(xgb_preds_array[x_idx])
         xgb_preds.append({"date": d.strftime('%Y-%m-%d'), "rate": x_rate})
         
         # Ensemble
         e_rate = float(ensemble_weight * p_rate + (1 - ensemble_weight) * x_rate)
         ens_preds.append({"date": d.strftime('%Y-%m-%d'), "rate": e_rate, "lower": p_lower, "upper": p_upper}) # Use Prophet CI as proxy
         
-        # Update rolling state with ensemble prediction
+        # Keep track for calculations
         current_bdi.append(e_rate)
         
     avg_next_7 = np.mean([x['rate'] for x in ens_preds[:7]])
@@ -604,7 +649,7 @@ def get_multi_horizon_forecast(
     # Grab last 30 for historical chart
     hist_list = df.tail(30).apply(lambda row: {"date": row['date'].strftime('%Y-%m-%d'), "rate": float(row['bdi_index'])}, axis=1).tolist()
     
-    current_bdi_list = list(df['bdi_index'].tail(7).values)
+    current_bdi_list = list(df['bdi_index'].tail(30).values)
     last_date = df['date'].iloc[-1]
     
     base_fuel = float(df['fuel in usd'].iloc[-1]) * (1 + (fuel_shock_pct / 100.0))
@@ -637,6 +682,56 @@ def get_multi_horizon_forecast(
     
     prophet_df = pd.DataFrame({'ds': future_dates})
     prophet_fcst = prophet_model.predict(prophet_df)
+    
+    # Get latest macro indicator (copper)
+    base_copper = 0.0
+    macro_path = data_dir / 'processed' / 'macro_indicators.csv'
+    if macro_path.exists():
+        macro_df = pd.read_csv(macro_path)
+        base_copper = float(macro_df['copper_usd'].iloc[-1])
+        
+    # Get latest capesize and panamax indices
+    capesize_lag_1 = current_bdi_list[-1] * 1.5
+    panamax_lag_1 = current_bdi_list[-1] * 0.8
+    rates_path = data_dir / 'processed' / 'freight_rates.csv'
+    if rates_path.exists():
+        rates_df = pd.read_csv(rates_path)
+        capesize_lag_1 = float(rates_df['capesize_index'].dropna().iloc[-1])
+        panamax_lag_1 = float(rates_df['panamax_index'].dropna().iloc[-1])
+    
+    # --- DIRECT MULTI-HORIZON FORECAST (XGBoost) ---
+    bdi_lag_1 = current_bdi_list[-1]
+    bdi_lag_3 = current_bdi_list[-3]
+    bdi_lag_7 = current_bdi_list[-7]
+    bdi_lag_14 = current_bdi_list[-14]
+    bdi_lag_30 = current_bdi_list[-30]
+    
+    bdi_roll_mean_7 = np.mean(current_bdi_list[-7:])
+    bdi_roll_std_7 = np.std(current_bdi_list[-7:])
+    bdi_roll_mean_14 = np.mean(current_bdi_list[-14:])
+    bdi_roll_std_14 = np.std(current_bdi_list[-14:])
+    bdi_roll_mean_30 = np.mean(current_bdi_list[-30:])
+    bdi_roll_std_30 = np.std(current_bdi_list[-30:])
+    
+    feature_cols = [
+        'fuel in usd', 'congestion_score', 'month', 'dayofweek',
+        'bdi_lag_1', 'bdi_lag_3', 'bdi_lag_7', 'bdi_lag_14', 'bdi_lag_30',
+        'bdi_roll_mean_7', 'bdi_roll_std_7', 'bdi_roll_mean_14', 'bdi_roll_std_14',
+        'bdi_roll_mean_30', 'bdi_roll_std_30',
+        'wind_speed_max_kmh', 'precipitation_sum_mm', 'copper_usd',
+        'capesize_lag_1', 'panamax_lag_1'
+    ]
+    
+    model_input = pd.DataFrame([[
+        base_fuel, base_cong, future_dates[0].month, future_dates[0].dayofweek,
+        bdi_lag_1, bdi_lag_3, bdi_lag_7, bdi_lag_14, bdi_lag_30,
+        bdi_roll_mean_7, bdi_roll_std_7, bdi_roll_mean_14, bdi_roll_std_14,
+        bdi_roll_mean_30, bdi_roll_std_30,
+        wind_speed, precip, base_copper,
+        capesize_lag_1, panamax_lag_1
+    ]], columns=feature_cols)
+    
+    xgb_preds_array = xgboost_model.predict(model_input)[0]
     
     ens_preds = []
     xgb_preds = []
@@ -672,23 +767,8 @@ def get_multi_horizon_forecast(
         p_lower = float(prophet_fcst['yhat_lower'].iloc[i])
         p_upper = float(prophet_fcst['yhat_upper'].iloc[i])
         
-        bdi_lag_1 = current_bdi_list[-1]
-        bdi_lag_7 = current_bdi_list[-7]
-        bdi_roll_mean_7 = np.mean(current_bdi_list[-7:])
-        bdi_roll_std_7 = np.std(current_bdi_list[-7:])
-        
-        feature_cols = [
-            'fuel in usd', 'congestion_score', 'month', 'dayofweek',
-            'bdi_lag_1', 'bdi_lag_7', 'bdi_roll_mean_7', 'bdi_roll_std_7',
-            'wind_speed_max_kmh', 'precipitation_sum_mm'
-        ]
-        model_input = pd.DataFrame([[
-            base_fuel, base_cong, d.month, d.dayofweek,
-            bdi_lag_1, bdi_lag_7, bdi_roll_mean_7, bdi_roll_std_7,
-            wind_speed, precip
-        ]], columns=feature_cols)
-        
-        x_rate = float(xgboost_model.predict(model_input)[0])
+        x_idx = min(i, 29)
+        x_rate = float(xgb_preds_array[x_idx])
         e_rate = float(ensemble_weight * p_rate + (1 - ensemble_weight) * x_rate)
         
         date_str = d.strftime('%Y-%m-%d')
