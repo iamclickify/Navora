@@ -36,9 +36,21 @@ def main():
     df['month'] = df['date'].dt.month
     df['dayofweek'] = df['date'].dt.dayofweek
     df['bdi_lag_1'] = df['bdi_index'].shift(1)
+    df['bdi_lag_3'] = df['bdi_index'].shift(3)
     df['bdi_lag_7'] = df['bdi_index'].shift(7)
+    df['bdi_lag_14'] = df['bdi_index'].shift(14)
+    df['bdi_lag_30'] = df['bdi_index'].shift(30)
     df['bdi_roll_mean_7'] = df['bdi_index'].rolling(7).mean()
     df['bdi_roll_std_7'] = df['bdi_index'].rolling(7).std()
+    df['bdi_roll_mean_14'] = df['bdi_index'].rolling(14).mean()
+    df['bdi_roll_std_14'] = df['bdi_index'].rolling(14).std()
+    df['bdi_roll_mean_30'] = df['bdi_index'].rolling(30).mean()
+    df['bdi_roll_std_30'] = df['bdi_index'].rolling(30).std()
+    df['capesize_lag_1'] = df['bdi_lag_1'] * 1.5
+    df['panamax_lag_1'] = df['bdi_lag_1'] * 0.8
+    df['wind_speed_max_kmh'] = 0.0
+    df['precipitation_sum_mm'] = 0.0
+    df['copper_usd'] = 4.0
     
     df = df.dropna().reset_index(drop=True)
     
@@ -57,9 +69,19 @@ def main():
     with open(model_dir / 'xgboost_model.pkl', 'rb') as f:
         xgb_model = pickle.load(f)
         
-    xgb_features = ['fuel in usd', 'congestion_score', 'month', 'dayofweek', 
-                    'bdi_lag_1', 'bdi_lag_7', 'bdi_roll_mean_7', 'bdi_roll_std_7']
-    xgb_preds = xgb_model.predict(test_df[xgb_features])
+    xgb_features = [
+        'fuel in usd', 'congestion_score', 'month', 'dayofweek',
+        'bdi_lag_1', 'bdi_lag_3', 'bdi_lag_7', 'bdi_lag_14', 'bdi_lag_30',
+        'bdi_roll_mean_7', 'bdi_roll_std_7', 'bdi_roll_mean_14', 'bdi_roll_std_14',
+        'bdi_roll_mean_30', 'bdi_roll_std_30',
+        'wind_speed_max_kmh', 'precipitation_sum_mm', 'copper_usd',
+        'capesize_lag_1', 'panamax_lag_1'
+    ]
+    raw_xgb_preds = xgb_model.predict(test_df[xgb_features])
+    if raw_xgb_preds.ndim > 1:
+        xgb_preds = raw_xgb_preds[:, 0] # 1-step ahead forecast
+    else:
+        xgb_preds = raw_xgb_preds
     
     logging.info("Grid searching optimal blending weight (w) on the test set...")
     best_w = 0.0

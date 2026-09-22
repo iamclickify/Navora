@@ -20,6 +20,9 @@ export default function ForecastChart({ forecastData, activeModel = 'ensemble', 
   const horizonData = forecastData.horizons[activeHorizon] || {};
   const activeForecast = horizonData[activeModel] || horizonData.data || [];
 
+  const lastHist = historical.length > 0 ? historical[historical.length - 1] : null;
+  const lastHistRate = lastHist ? lastHist.rate : null;
+
   // Combine historical and forecast for the chart
   const historicalMapped = historical.map(d => ({
     date: d.date,
@@ -31,6 +34,15 @@ export default function ForecastChart({ forecastData, activeModel = 'ensemble', 
     forecastRate: d.rate,
     confidenceInterval: (d.lower !== undefined && d.upper !== undefined) ? [d.lower, d.upper] : null
   }));
+
+  // Seamlessly bridge the last historical data point into the forecast line
+  if (lastHist && forecastMapped.length > 0 && forecastMapped[0].date !== lastHist.date) {
+    forecastMapped.unshift({
+      date: lastHist.date,
+      forecastRate: lastHist.rate,
+      confidenceInterval: [lastHist.rate, lastHist.rate]
+    });
+  }
 
   const allDates = Array.from(new Set([...historicalMapped.map(d=>d.date), ...forecastMapped.map(d=>d.date)])).sort();
   
@@ -44,8 +56,6 @@ export default function ForecastChart({ forecastData, activeModel = 'ensemble', 
       confidenceInterval: fore ? fore.confidenceInterval : null,
     };
   });
-
-  const lastHistRate = historical.length > 0 ? historical[historical.length - 1].rate : null;
 
   return (
     <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 h-full flex flex-col relative overflow-hidden">
@@ -107,7 +117,7 @@ export default function ForecastChart({ forecastData, activeModel = 'ensemble', 
             )}
 
             <Area 
-              type="monotone" 
+              type="linear" 
               dataKey="confidenceInterval" 
               fill="url(#colorCI)" 
               stroke="none" 
@@ -115,22 +125,22 @@ export default function ForecastChart({ forecastData, activeModel = 'ensemble', 
             />
             
             <Area 
-              type="monotone" 
+              type="linear" 
               dataKey="historicalRate" 
               fill="url(#colorHist)" 
               stroke="#0f172a" 
-              strokeWidth={3} 
+              strokeWidth={2.5} 
               name="Historical" 
               connectNulls
             />
             
             <Line 
-              type="monotone" 
+              type="linear" 
               dataKey="forecastRate" 
               stroke="#3b82f6" 
-              strokeWidth={3} 
-              strokeDasharray="6 6"
-              dot={false}
+              strokeWidth={2.5} 
+              strokeDasharray="4 4"
+              dot={{ r: 2, fill: '#3b82f6' }}
               activeDot={{ r: 6, fill: '#3b82f6', stroke: '#fff', strokeWidth: 2 }}
               name={`Forecast`}
               connectNulls
