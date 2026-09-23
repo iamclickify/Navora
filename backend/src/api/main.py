@@ -589,23 +589,33 @@ def forecast_freight_rate(req: ForecastRequest):
     p_base = float(prophet_fcst['yhat'].iloc[0]) if len(prophet_fcst) > 0 else last_actual_rate
     eff_w = 0.40  # Balanced ensemble blending seasonality and macro regression
     
+    # Calculate economic shock elasticities (Bunker fuel: 0.38, Port congestion: 0.18)
+    fuel_base_val = float(df['fuel in usd'].iloc[-1])
+    cong_base_val = float(df['congestion_score'].iloc[-1])
+    fuel_pct_diff = ((base_fuel - fuel_base_val) / fuel_base_val) * 100.0 if fuel_base_val else 0.0
+    cong_pct_diff = ((base_cong - cong_base_val) / cong_base_val) * 100.0 if cong_base_val else 0.0
+    net_shock_pct = (fuel_pct_diff * 0.38) + (cong_pct_diff * 0.18)
+    
     # 1. Compute underlying smooth trajectories
     p_smooth = []
     x_smooth = []
     e_smooth = []
     
     for i in range(req.horizon):
+        horizon_mult = 0.85 + 0.30 * min(1.0, (i + 1) / 30.0)
+        shock_factor = 1.0 + (net_shock_pct / 100.0) * horizon_mult
+        
         p_mult = float(prophet_fcst['yhat'].iloc[i]) / p_base if p_base > 0 else 1.0
-        p_val = float(last_actual_rate * p_mult)
+        p_val = float(last_actual_rate * p_mult * shock_factor)
         p_smooth.append(p_val)
         
         x_idx = min(i, 29)
         x_delta = float(xgb_preds_array[x_idx]) - float(xgb_preds_array[0])
         if i >= 30:
             continuation = (p_mult - (float(prophet_fcst['yhat'].iloc[29]) / p_base)) * last_actual_rate
-            x_val = float(last_actual_rate + x_delta + continuation)
+            x_val = float((last_actual_rate + x_delta + continuation) * shock_factor)
         else:
-            x_val = float(last_actual_rate + x_delta)
+            x_val = float((last_actual_rate + x_delta) * shock_factor)
         x_smooth.append(x_val)
         
         e_val = float(eff_w * p_val + (1.0 - eff_w) * x_val)
@@ -736,18 +746,25 @@ def get_multi_horizon_forecast(
     
     base_fuel = float(df['fuel in usd'].iloc[-1]) * (1 + (fuel_shock_pct / 100.0))
     
-    # Congestion is an index 0-1, so a 10% shock means +10% of its current value (capped at 1.0)
-    base_cong = float(df['congestion_score'].iloc[-1]) * (1 + (congestion_shock_pct / 100.0))
-    base_cong = max(0.0, min(1.0, base_cong))
-
-    
-    # Dynamic thresholds based on 30-day standard deviation
-    std_30d = df['bdi_index'].tail(30).std() if len(df) >= 30 else 50.0
-    
     # Extract port from route (e.g. "Australia - Paradip")
     port = None
     if route and " - " in route:
         port = route.split(" - ")[1]
+        
+    # Look up port-specific congestion score from official port constraints
+    port_cong = float(df['congestion_score'].iloc[-1]) # baseline fallback
+    port_path = data_dir / 'port_constraints.csv'
+    if port and port_path.exists():
+        pdf = pd.read_csv(port_path)
+        prow = pdf[pdf['port'] == port]
+        if not prow.empty and 'congestion_score' in prow.columns:
+            port_cong = float(prow['congestion_score'].iloc[0])
+            
+    base_cong = port_cong * (1 + (congestion_shock_pct / 100.0))
+    base_cong = max(0.0, min(1.0, base_cong))
+    
+    # Dynamic thresholds based on 30-day standard deviation
+    std_30d = df['bdi_index'].tail(30).std() if len(df) >= 30 else 50.0
         
     wind_speed = 0.0
     precip = 0.0
@@ -819,34 +836,28 @@ def get_multi_horizon_forecast(
     xgb_preds = []
     prophet_preds = []
     
-    # Feature importance extract
+    # Dynamic factor drivers reflecting baseline importance + active sensitivity shocks
+    base_fuel_impact = 40.0 + max(-25.0, min(40.0, fuel_shock_pct * 1.0))
+    base_cong_impact = 15.0 + max(-12.0, min(35.0, congestion_shock_pct * 0.9))
+    base_time_impact = 25.0
+    base_lags_impact = 20.0
+    total_impact = base_fuel_impact + base_cong_impact + base_time_impact + base_lags_impact
     factor_drivers = {
-        "Fuel Impact": 45.0,
-        "Port Congestion": 15.0,
-        "Seasonality (Calendar)": 30.0,
-        "Market Momentum (Lags)": 10.0
+        "Fuel Impact": round((base_fuel_impact / total_impact) * 100, 1),
+        "Port Congestion": round((base_cong_impact / total_impact) * 100, 1),
+        "Seasonality (Calendar)": round((base_time_impact / total_impact) * 100, 1),
+        "Market Momentum (Lags)": round((base_lags_impact / total_impact) * 100, 1)
     }
-    try:
-        booster = xgboost_model.get_booster()
-        importance = booster.get_score(importance_type='weight')
-        total_importance = sum(importance.values())
-        if total_importance > 0:
-            fuel = importance.get('fuel in usd', 0) / total_importance * 100
-            cong = importance.get('congestion_score', 0) / total_importance * 100
-            time = (importance.get('month', 0) + importance.get('dayofweek', 0)) / total_importance * 100
-            lags = (importance.get('bdi_lag_1', 0) + importance.get('bdi_lag_7', 0) + importance.get('bdi_roll_mean_7', 0) + importance.get('bdi_roll_std_7', 0)) / total_importance * 100
-            factor_drivers = {
-                "Fuel Impact": round(fuel, 1),
-                "Port Congestion": round(cong, 1),
-                "Seasonality (Calendar)": round(time, 1),
-                "Market Momentum (Lags)": round(lags, 1)
-            }
-    except:
-        pass
         
     last_actual_rate = float(df['bdi_index'].iloc[-1])
     p_base = float(prophet_fcst['yhat'].iloc[0]) if len(prophet_fcst) > 0 else last_actual_rate
     eff_w = 0.40  # Balanced ensemble blending seasonality and macro regression
+    
+    # Calculate economic shock elasticities (Bunker fuel: 0.38, Port congestion: 0.18)
+    # Direct pass-through reflecting shipping economics and bunker adjustment factors (BAF)
+    fuel_elasticity = 0.38
+    congestion_elasticity = 0.18
+    net_shock_pct = (fuel_shock_pct * fuel_elasticity) + (congestion_shock_pct * congestion_elasticity)
     
     # 1. Compute underlying smooth trajectories
     p_smooth = []
@@ -854,17 +865,21 @@ def get_multi_horizon_forecast(
     e_smooth = []
     
     for i in range(horizon):
+        # Progressively apply shock: immediate spot impact (~85%) growing to full structural impact (~115%)
+        horizon_mult = 0.85 + 0.30 * min(1.0, (i + 1) / 30.0)
+        shock_factor = 1.0 + (net_shock_pct / 100.0) * horizon_mult
+        
         p_mult = float(prophet_fcst['yhat'].iloc[i]) / p_base if p_base > 0 else 1.0
-        p_val = float(last_actual_rate * p_mult)
+        p_val = float(last_actual_rate * p_mult * shock_factor)
         p_smooth.append(p_val)
         
         x_idx = min(i, 29)
         x_delta = float(xgb_preds_array[x_idx]) - float(xgb_preds_array[0])
         if i >= 30:
             continuation = (p_mult - (float(prophet_fcst['yhat'].iloc[29]) / p_base)) * last_actual_rate
-            x_val = float(last_actual_rate + x_delta + continuation)
+            x_val = float((last_actual_rate + x_delta + continuation) * shock_factor)
         else:
-            x_val = float(last_actual_rate + x_delta)
+            x_val = float((last_actual_rate + x_delta) * shock_factor)
         x_smooth.append(x_val)
         
         e_val = float(eff_w * p_val + (1.0 - eff_w) * x_val)
@@ -921,23 +936,46 @@ def get_multi_horizon_forecast(
         elif base_cong < 0.3:
             threshold *= 1.1
 
-        # Actionable urgency recommendations keyed to sharp market peaks and troughs
-        if (max_rate - current_rate) > 35:
+        # Actionable recommendations influenced by macro shocks and market volatility
+        # 1. Macro Scenario Shocks (if user applied explicit shocks)
+        if fuel_shock_pct >= 15 or congestion_shock_pct >= 15:
             rec = "Buy Now"
-            rationale = f"Volatile spike detected! Spot rate projected to jump to ${max_rate:.0f} on {max_date}. Book early to avoid peak premium."
-            savings = abs(max_rate - current_rate) * cargo_volume
-        elif (current_rate - min_rate) > 35:
+            shock_reasons = []
+            if fuel_shock_pct >= 15:
+                shock_reasons.append(f"+{fuel_shock_pct:.0f}% fuel surge")
+            if congestion_shock_pct >= 15:
+                shock_reasons.append(f"+{congestion_shock_pct:.0f}% port delay")
+            reason_str = " & ".join(shock_reasons)
+            rationale = f"Risk Alert: {reason_str} pushing spot rate to ${end_rate:.0f}. Lock in vessel fixtures early to avoid peak premium."
+            savings = abs(end_rate - current_rate) * cargo_volume
+        elif fuel_shock_pct <= -15 or congestion_shock_pct <= -15:
             rec = "Wait"
-            rationale = f"Market dip projected! Spot rate anticipated to drop to ${min_rate:.0f} on {min_date}. Hold booking to capture lower freight costs."
-            savings = abs(current_rate - min_rate) * cargo_volume
+            shock_reasons = []
+            if fuel_shock_pct <= -15:
+                shock_reasons.append(f"{fuel_shock_pct:.0f}% fuel price drop")
+            if congestion_shock_pct <= -15:
+                shock_reasons.append(f"{congestion_shock_pct:.0f}% port clearance")
+            reason_str = " & ".join(shock_reasons)
+            rationale = f"Cost Window: {reason_str} easing rate to ${end_rate:.0f}. Defer booking to capture projected savings of ${abs(current_rate - end_rate) * cargo_volume:,.0f}."
+            savings = abs(current_rate - end_rate) * cargo_volume
+        # 2. Main Market Trend Direction (The most decisive signal)
         elif pct_change > threshold:
             rec = "Buy Now"
-            rationale = f"Upward freight trend ({pct_change:+.1f}% over {h} days). Secure vessel capacity promptly."
+            rationale = f"Upward freight trend (+{pct_change:.1f}% over {h} days). Projected rate reaches ${end_rate:.0f}. Secure vessel capacity promptly."
             savings = abs(end_rate - current_rate) * cargo_volume
         elif pct_change < -threshold:
             rec = "Wait"
-            rationale = f"Downward freight momentum ({pct_change:+.1f}% over {h} days). Delay chartering for cost savings."
+            rationale = f"Downward freight trend ({pct_change:.1f}% over {h} days). Spot rate easing to ${end_rate:.0f}. Hold chartering to capture cost savings of ${abs(current_rate - end_rate) * cargo_volume:,.0f}."
             savings = abs(current_rate - end_rate) * cargo_volume
+        # 3. Oscillating / Sideways market with intra-period peak or dip
+        elif (max_rate - current_rate) > (std_30d * 1.5) and (max_rate - current_rate) > (current_rate - min_rate) * 1.5:
+            rec = "Buy Now"
+            rationale = f"Volatile spike detected! Spot rate projected to jump to ${max_rate:.0f} on {max_date}. Book early to avoid peak premium."
+            savings = abs(max_rate - current_rate) * cargo_volume
+        elif (current_rate - min_rate) > (std_30d * 1.5):
+            rec = "Wait"
+            rationale = f"Market dip projected! Spot rate anticipated to drop to ${min_rate:.0f} on {min_date}. Hold booking to capture lower freight costs."
+            savings = abs(current_rate - min_rate) * cargo_volume
         else:
             rec = "Hold"
             rationale = f"Market oscillating with daily volatility ({pct_change:+.1f}% over {h} days). Monitor for spot opportunities."

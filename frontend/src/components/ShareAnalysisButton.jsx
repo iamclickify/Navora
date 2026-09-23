@@ -70,10 +70,7 @@ export default function ShareAnalysisButton({
     doc.setFontSize(10);
     
     const splitRationale = doc.splitTextToSize(forecastData.rationale || '', 180);
-    let actionText = forecastData.recommendation || '';
-    if (actionText.toLowerCase() === 'hold') {
-        actionText = 'Hold / Monitor';
-    }
+    const actionText = (forecastData.recommendation === 'Buy Now') ? 'Buy Now' : 'Hold';
     doc.text(`Action: ${actionText}`, 14, 76);
     doc.text(splitRationale, 14, 82);
     

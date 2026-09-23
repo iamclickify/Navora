@@ -137,6 +137,10 @@ export default function MarketAnalysisPage() {
           setFuelChange={setFuelShock}
           congestionChange={congestionShock}
           setCongestionChange={setCongestionShock}
+          activeHorizonData={activeHorizonData}
+          currentRate={currentRate}
+          cargoVolume={cargoVolume}
+          activeHorizon={activeHorizon}
         />
       </div>
 

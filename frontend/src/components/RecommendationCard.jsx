@@ -1,9 +1,8 @@
-import { TrendingDown, TrendingUp, AlertCircle, CheckCircle, Share2, Fuel, Anchor, Wind, BarChart2, Package } from 'lucide-react';
+import { TrendingDown, TrendingUp, AlertCircle, CheckCircle, Minus, Share2, Fuel, Anchor, Wind, BarChart2, Package } from 'lucide-react';
 import WeatherRiskBadge from './WeatherRiskBadge';
-import { Card, CardContent, CardFooter } from './ui/card';
+import { Card, CardContent } from './ui/card';
 import { Badge } from './ui/badge';
 import { Progress } from './ui/progress';
-import { Button } from './ui/button';
 
 const DRIVER_ICONS = {
   'Fuel Impact': Fuel,
@@ -24,26 +23,19 @@ const DRIVER_COLORS = {
 
 export default function RecommendationCard({ action, rationale, expectedSavings, currentRate, route, factors, activeHorizon, weatherRisk, cargoVolume }) {
   
-  let actionColor = "text-slate-700 bg-slate-100 border-slate-200 ring-slate-200";
-  let Icon = AlertCircle;
-  let shadowColor = "shadow-slate-500/20";
-  let actionableAdvice = "";
+  const isBuyNow = action === "Buy Now";
+  const displayAction = isBuyNow ? "Buy Now" : "Hold";
+
+  let actionColor = "text-amber-700 bg-amber-50 border-amber-200 ring-amber-200";
+  let Icon = Minus;
+  let shadowColor = "shadow-amber-500/30";
+  let actionableAdvice = "HOLD PROCUREMENT: Current market trajectory favors waiting. Defer chartering to capture potential rate dips.";
   
-  if (action === "Buy Now") {
+  if (isBuyNow) {
     actionColor = "text-emerald-700 bg-emerald-50 border-emerald-200 ring-emerald-200";
     Icon = CheckCircle;
     shadowColor = "shadow-emerald-500/30";
     actionableAdvice = "URGENT ACTION REQUIRED: Lock in rates immediately. Delaying procurement will likely result in paying a premium.";
-  } else if (action === "Wait" || action === "Monitor") {
-    actionColor = "text-blue-700 bg-blue-50 border-blue-200 ring-blue-200";
-    Icon = TrendingDown;
-    shadowColor = "shadow-blue-500/30";
-    actionableAdvice = "DEFER BOOKING: Rates are actively falling. Delay your procurement to capture the expected savings.";
-  } else if (action === "Hold") {
-    actionColor = "text-amber-700 bg-amber-50 border-amber-200 ring-amber-200";
-    Icon = TrendingUp;
-    shadowColor = "shadow-amber-500/30";
-    actionableAdvice = "STANDARD SCHEDULE: The market is moving sideways. Proceed with your standard booking schedule without urgency.";
   }
 
   // Get top 3 drivers sorted by impact
@@ -56,8 +48,6 @@ export default function RecommendationCard({ action, rationale, expectedSavings,
   const cargoLabel = cargoVolume
     ? `${(cargoVolume / 1000).toFixed(0)}k t`
     : '50k t';
-
-  const displayAction = action === "Wait" ? "Monitor" : action;
 
   return (
     <Card className={`rounded-2xl shadow-xl border-slate-200 overflow-hidden`}>
@@ -89,10 +79,11 @@ export default function RecommendationCard({ action, rationale, expectedSavings,
               {rationale}
             </p>
 
-            <div className={`p-4 rounded-lg border-l-4 font-medium text-sm max-w-2xl
-              ${(action === 'Wait' || action === 'Monitor') ? 'bg-blue-50 border-blue-500 text-blue-800' : 
-                action === 'Hold' ? 'bg-amber-50 border-amber-500 text-amber-800' : 
-                'bg-emerald-50 border-emerald-500 text-emerald-800'}`}>
+            <div className={`p-4 rounded-lg border-l-4 font-medium text-sm max-w-2xl ${
+              isBuyNow 
+                ? 'bg-emerald-50 border-emerald-500 text-emerald-800' 
+                : 'bg-amber-50 border-amber-500 text-amber-800'
+            }`}>
               <strong>Directive: </strong> {actionableAdvice}
             </div>
           </div>
@@ -143,10 +134,6 @@ export default function RecommendationCard({ action, rationale, expectedSavings,
           </div>
         )}
       </CardContent>
-
-      <CardFooter className="bg-slate-50 px-8 py-4 border-t border-slate-100 flex items-center m-0">
-        <span className="text-xs text-slate-400 font-medium">ML Confidence Score: High (92%)</span>
-      </CardFooter>
     </Card>
   );
 }

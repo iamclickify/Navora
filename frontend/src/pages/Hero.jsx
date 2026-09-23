@@ -233,7 +233,7 @@ export default function Hero() {
               <li><a href="https://www.linkedin.com/in/urmil-mahajan-15006739b/" className="hover:text-white hover:underline transition-all">Urmil Mahajan</a></li>
               <li><a href="https://www.linkedin.com/in/sai-ware-5278a1384/" className="hover:text-white hover:underline transition-all">Sai Ware</a></li>
               <li><a href="https://www.linkedin.com/in/himanshu-patil-5b2933373/" className="hover:text-white hover:underline transition-all">Himanshu Patil</a></li>
-              <li><a href="https://www.linkedin.com/in/rupesh-sadul-857255381/" className="hover:text-white hover:underline transition-all">Rupesh Sadul</a></li>
+              <li><a href="https://www.linkedin.com/in/siddhi-joshi-3788973a2/" className="hover:text-white hover:underline transition-all">Siddhi Joshi</a></li>
             </ul>
           </div>
         </div>

@@ -5,20 +5,16 @@ export default function MultiHorizonPanel({ horizonsData, activeHorizon, onSelec
 
   const getIcon = (recommendation) => {
     if (recommendation === 'Buy Now') return <CheckCircle size={16} className="text-emerald-600" />;
-    if (recommendation === 'Wait' || recommendation === 'Monitor') return <TrendingDown size={16} className="text-blue-600" />;
     return <Minus size={16} className="text-amber-600" />;
   };
 
   const getRecColor = (recommendation) => {
     if (recommendation === 'Buy Now') return 'text-emerald-700 bg-emerald-50 border-emerald-200';
-    if (recommendation === 'Wait' || recommendation === 'Monitor') return 'text-blue-700 bg-blue-50 border-blue-200';
     return 'text-amber-700 bg-amber-50 border-amber-200';
   };
 
   const getDisplayRec = (rec) => {
-    if (rec === 'Wait') return 'Monitor';
-    if (rec === 'Hold') return 'Standard Schedule';
-    return rec;
+    return rec === 'Buy Now' ? 'Buy Now' : 'Hold';
   };
 
   const getTrendColor = (pct) => {

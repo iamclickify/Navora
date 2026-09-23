@@ -1,26 +1,62 @@
-import { Settings2, Zap, Fuel, Anchor } from 'lucide-react';
+import { Settings2, Zap, Fuel, Anchor, RotateCcw } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './ui/card';
 import { Slider } from './ui/slider';
 
 export default function SensitivityPanel({ 
-  fuelChange, 
+  fuelChange = 0, 
   setFuelChange, 
-  congestionChange, 
-  setCongestionChange 
+  congestionChange = 0, 
+  setCongestionChange,
+  activeHorizonData,
+  currentRate = 1700,
+  cargoVolume = 50000,
+  activeHorizon = '30'
 }) {
+  const hasShock = fuelChange !== 0 || congestionChange !== 0;
+
+  // Real maritime economic elasticity (Bunker Fuel: 38%, Port Congestion: 18%)
+  const netShiftPct = (fuelChange * 0.38) + (congestionChange * 0.18);
+  const deltaRate = currentRate * (netShiftPct / 100);
+  const voyageImpact = deltaRate * cargoVolume;
+
   return (
     <Card className="rounded-2xl shadow-xl border-slate-200 overflow-hidden">
-      <CardHeader className="flex flex-row items-center justify-between pb-2">
+      <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
         <div>
           <CardTitle className="font-bold text-xl text-slate-800 flex items-center space-x-2">
             <Settings2 className="text-blue-500" size={24} />
-            <span>Live Sensitivity Analysis</span>
+            <span>Live Sensitivity & Risk Scenario Analysis</span>
           </CardTitle>
           <CardDescription className="text-slate-500 text-sm mt-1">
-            Instantly see how extreme market shifts affect the forecast.
+            Simulate macroeconomic shocks and see real-time shifts in freight rate forecasts and recommendations.
           </CardDescription>
         </div>
-        
+
+        {hasShock && (
+          <div className="flex items-center gap-3 flex-wrap">
+            <div className={`px-4 py-2 rounded-xl border text-sm font-semibold flex items-center gap-2 shadow-sm ${
+              deltaRate > 0 
+                ? 'bg-red-50 text-red-700 border-red-200' 
+                : 'bg-emerald-50 text-emerald-700 border-emerald-200'
+            }`}>
+              <Zap size={16} className={deltaRate > 0 ? 'text-red-500' : 'text-emerald-500'} />
+              <span>
+                Net Rate Impact: <strong>{deltaRate > 0 ? '+' : ''}${Math.round(deltaRate)}/t ({netShiftPct > 0 ? '+' : ''}{netShiftPct.toFixed(1)}%)</strong>
+              </span>
+              <span className="text-xs opacity-75 hidden md:inline">
+                | Voyage: {voyageImpact > 0 ? '+' : ''}${Math.round(voyageImpact).toLocaleString()}
+              </span>
+            </div>
+            <button 
+              onClick={() => { setFuelChange(0); setCongestionChange(0); }}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors"
+              title="Reset all scenario shocks"
+            >
+              <RotateCcw size={14} />
+              <span>Reset</span>
+            </button>
+          </div>
+        )}
       </CardHeader>
 
       <CardContent className="p-6">
@@ -34,7 +70,13 @@ export default function SensitivityPanel({
               <label htmlFor="fuel-slider" className="text-sm font-bold text-slate-700 uppercase tracking-wide flex items-center gap-2">
                 <Fuel size={16} className="text-blue-500"/> Fuel Price Shock
               </label>
-              <div className={`px-4 py-1.5 rounded-full font-bold text-lg shadow-sm border ${fuelChange === 0 ? 'bg-white text-slate-600 border-slate-200' : fuelChange > 0 ? 'bg-red-50 text-red-600 border-red-200' : 'bg-emerald-50 text-emerald-600 border-emerald-200'}`}>
+              <div className={`px-4 py-1.5 rounded-full font-bold text-lg shadow-sm border ${
+                fuelChange === 0 
+                  ? 'bg-white text-slate-600 border-slate-200' 
+                  : fuelChange > 0 
+                    ? 'bg-red-50 text-red-600 border-red-200' 
+                    : 'bg-emerald-50 text-emerald-600 border-emerald-200'
+              }`}>
                 {fuelChange > 0 ? '+' : ''}{fuelChange}%
               </div>
             </div>
@@ -73,7 +115,13 @@ export default function SensitivityPanel({
               <label htmlFor="congestion-slider" className="text-sm font-bold text-slate-700 uppercase tracking-wide flex items-center gap-2">
                 <Anchor size={16} className="text-amber-500"/> Port Congestion Delay
               </label>
-              <div className={`px-4 py-1.5 rounded-full font-bold text-lg shadow-sm border ${congestionChange === 0 ? 'bg-white text-slate-600 border-slate-200' : congestionChange > 0 ? 'bg-amber-50 text-amber-600 border-amber-200' : 'bg-emerald-50 text-emerald-600 border-emerald-200'}`}>
+              <div className={`px-4 py-1.5 rounded-full font-bold text-lg shadow-sm border ${
+                congestionChange === 0 
+                  ? 'bg-white text-slate-600 border-slate-200' 
+                  : congestionChange > 0 
+                    ? 'bg-amber-50 text-amber-600 border-amber-200' 
+                    : 'bg-emerald-50 text-emerald-600 border-emerald-200'
+              }`}>
                 {congestionChange > 0 ? '+' : ''}{congestionChange}%
               </div>
             </div>
