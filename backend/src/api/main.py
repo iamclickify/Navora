@@ -136,7 +136,15 @@ async def load_models():
         except Exception as e:
             print(f"Error during live data refresh: {e}")
 
-    threading.Thread(target=background_refresh, daemon=True).start()
+    # Pre-warm Prophet model in background — does not block fast API startup
+    def background_warmup_prophet():
+        try:
+            get_prophet_model()
+            print("[STARTUP] Prophet model pre-warmed in background.")
+        except Exception as e:
+            print(f"[STARTUP] Background Prophet warm-up error: {e}")
+
+    threading.Thread(target=background_warmup_prophet, daemon=True).start()
 
     # Weather is fetched lazily on first request to avoid Open-Meteo rate limits at startup.
     print(f"[STARTUP] API ready in {time.perf_counter() - startup_t0:.2f}s")

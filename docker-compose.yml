@@ -1,16 +1,43 @@
-version: '3.8'
-
 services:
   backend:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: navora-backend
-    restart: always
+    restart: unless-stopped
     ports:
-      - "8000:8000"
+      - "${BACKEND_PORT:-8000}:8000"
     environment:
       - PYTHONPATH=/app
+      - PORT=8000
+      - PYTHONUNBUFFERED=1
+      - EIA_API_KEY=${EIA_API_KEY:-VL7xKxNbnYKRlLdFgD8eaFWS5EKPfxfCqK3eE801}
     volumes:
       - ./data:/app/data
       - ./backend/models:/app/backend/models
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    networks:
+      - navora-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: navora-frontend
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-5173}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - navora-network
+
+networks:
+  navora-network:
+    driver: bridge

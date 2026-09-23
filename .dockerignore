@@ -1,0 +1,30 @@
+.git
+.github
+.gitignore
+.gitattributes
+.env.local
+.venv
+venv
+env
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache
+
+# Exclude frontend node_modules and dist from backend build context
+frontend/node_modules
+frontend/dist
+
+# Exclude docs and scripts not needed inside containers
+docs/
+deploy_azure.sh
+start.bat
+docker-start.bat
+docker-start.sh
+
+# IDE and OS files
+.vscode
+.idea
+.DS_Store
+Thumbs.db

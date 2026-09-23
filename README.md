@@ -6,6 +6,46 @@ This document details the technical architecture, technology choices, data pipel
 
 ---
 
+## 🐳 Quickstart with Docker Compose (Recommended)
+
+Run the complete Navora platform (React Frontend + FastAPI AI Backend) on **any laptop** (Windows, macOS, Linux) with a single command without needing Python, Node.js, or local virtual environments manually installed.
+
+### Prerequisites
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Windows / macOS) or [Docker Engine](https://docs.docker.com/engine/install/) (Linux).
+- Ensure Docker Desktop is running.
+
+### 1. Start the Entire Stack
+From the project root directory, run:
+
+```bash
+docker compose up --build
+```
+
+> **Tip for Windows users:** You can simply double-click [`docker-start.bat`](file:///d:/Coding/Projects/navora/docker-start.bat).  
+> **Tip for macOS/Linux users:** You can execute `./docker-start.sh`.
+
+### 2. Access the Application
+Once the containers finish building and starting:
+- 🌐 **Frontend Dashboard:** [http://localhost:5173](http://localhost:5173)
+- ⚙️ **Backend API:** [http://localhost:8000](http://localhost:8000)
+- 📚 **Interactive API Docs (Swagger):** [http://localhost:8000/docs](http://localhost:8000/docs)
+
+### 3. Stop the Stack
+To shut down containers and free resources:
+```bash
+docker compose down
+```
+
+### Configuration (Optional)
+To customize host ports or API keys, copy `.env.example` to `.env`:
+```env
+FRONTEND_PORT=5173
+BACKEND_PORT=8000
+EIA_API_KEY=your_key_here
+```
+
+---
+
 ## 🛠️ Technology Stack & Architectural Decisions
 
 When architecting Navora, the primary goal was to bridge the gap between heavy machine learning workloads and a responsive, interactive user experience. We needed a stack that allowed rapid iteration while maintaining the rigor required for accurate forecasting.

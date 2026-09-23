@@ -1,0 +1,69 @@
+name: Deploy Backend to Azure
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'backend/**'
+      - 'data/**'
+      - '.github/workflows/deploy.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Azure Linux Server via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.AZURE_VM_HOST }}
+          username: ${{ secrets.AZURE_VM_USER }}
+          key: ${{ secrets.AZURE_SSH_KEY }}
+          passphrase: ${{ secrets.AZURE_SSH_PASSPHRASE }}
+          port: 22
+          timeout: 120s
+          command_timeout: 15m
+          script: |
+            set -e
+            echo "=== [1/4] Syncing repository from GitHub ==="
+            cd /opt/navora
+
+            # Cleanly sync with origin/main to prevent merge conflicts caused by server-generated data
+            git fetch origin main
+            git reset --hard origin/main
+
+            echo "=== [2/4] Checking Python dependencies ==="
+            # Only run pip install if backend/requirements.txt changed (reduces deploy time from 8m to 10s)
+            REQ_HASH_FILE="/opt/navora/venv/.requirements.sha256"
+            CURRENT_HASH=$(sha256sum backend/requirements.txt | cut -d ' ' -f 1)
+
+            if [ -f "$REQ_HASH_FILE" ] && [ "$(cat "$REQ_HASH_FILE")" = "$CURRENT_HASH" ]; then
+              echo "Requirements unchanged. Skipping pip install (instant deployment)."
+            else
+              echo "Requirements changed or first run. Updating dependencies..."
+              /opt/navora/venv/bin/pip install --prefer-binary -r backend/requirements.txt
+              echo "$CURRENT_HASH" > "$REQ_HASH_FILE"
+            fi
+
+            echo "=== [3/4] Restarting Navora Backend service ==="
+            sudo systemctl restart navora-backend
+
+            echo "=== [4/4] Verifying API Health (Port 8000) ==="
+            SUCCESS=0
+            for i in $(seq 1 10); do
+              if curl -s -f http://127.0.0.1:8000/ > /dev/null 2>&1; then
+                echo "Navora Backend is healthy and responding (attempt $i)!"
+                SUCCESS=1
+                break
+              fi
+              echo "Waiting for API to initialize... (attempt $i/10)"
+              sleep 2
+            done
+
+            if [ $SUCCESS -ne 1 ]; then
+              echo "[ERROR] Deployment verification failed! Printing recent service logs:"
+              sudo journalctl -u navora-backend -n 40 --no-pager
+              exit 1
+            fi
