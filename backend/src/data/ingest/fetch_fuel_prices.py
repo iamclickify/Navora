@@ -24,7 +24,7 @@ def main():
         'data[0]': 'value',
         'facets[series][]': 'RWTC', # WTI Cushing OK Spot Price FOB
         'sort[0][column]': 'period',
-        'sort[0][direction]': 'asc',
+        'sort[0][direction]': 'desc',
         'offset': 0,
         'length': 5000
     }

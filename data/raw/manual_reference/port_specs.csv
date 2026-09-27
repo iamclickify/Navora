@@ -1,0 +1,5 @@
+port,draft_m,max_loa_m,beam_m,cargo_capacity_t,main_commodities,suitable_vessel_types,latitude,longitude
+Shanghai,15.0,400.0,60.0,500000,Electronics|Machinery,Capesize|Panamax,31.2304,121.4737
+Singapore,16.0,400.0,60.0,450000,Oil|Electronics,Capesize|Panamax,1.3521,103.8198
+Rotterdam,17.0,400.0,60.0,400000,Oil|Machinery,Capesize|Panamax,51.9244,4.4777
+Los Angeles,14.5,350.0,50.0,300000,Electronics|Apparel,Panamax|Supramax,33.7288,-118.262

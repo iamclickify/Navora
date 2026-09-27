@@ -42,7 +42,8 @@ def main():
         ('fetch_fuel_prices.py', 'Fuel Prices Ingestion'),
         ('fetch_commodity_prices.py', 'Commodity Prices Ingestion'),
         ('fetch_weather.py', 'Weather Ingestion'),
-        ('generate_congestion_proxy.py', 'Synthetic Congestion Generation')
+        ('generate_congestion_proxy.py', 'Synthetic Congestion Generation'),
+        ('live_data_fetcher.py', 'Live Freight/Fuel Appending')
     ]
     
     summary = []

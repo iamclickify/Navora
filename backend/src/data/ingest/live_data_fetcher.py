@@ -660,3 +660,8 @@ def refresh_live_data(project_root: Path):
     latest_bdi = float(df_hist['bdi_index'].iloc[-1])
     latest_fuel = float(df_hist['fuel in usd'].iloc[-1])
     return latest_bdi, latest_fuel
+
+ i f   _ _ n a m e _ _   = =   ' _ _ m a i n _ _ ' : 
+         p r o j e c t _ r o o t   =   P a t h ( _ _ f i l e _ _ ) . r e s o l v e ( ) . p a r e n t s [ 4 ] 
+         r e f r e s h _ l i v e _ d a t a ( p r o j e c t _ r o o t )  
+ 
